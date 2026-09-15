@@ -1,0 +1,39 @@
+{
+  "_odigies": "Kathe pigi prepei na exei tier. Tier 1 = dimosios foreas / xoros pou dimosievei to diko tou programma. MONO tier 1 fevgei automata. Elegxe ta dikaiomata prin prostheseis pigi kai grapse imerominia elegxou.",
+
+  "ath": [
+    {
+      "onoma": "Τεχνόπολη Δήμου Αθηναίων",
+      "url": "https://athens-technopolis.gr/index.php/el/ekdiloseis",
+      "feed": "",
+      "typos": "rss",
+      "tier": 1,
+      "energi": false,
+      "dikaiomata": "ΔΕΝ ΕΛΕΓΧΘΗΚΕ — δοκίμασε /feed, /rss, ?format=feed πριν ενεργοποιήσεις",
+      "elegxthike": ""
+    },
+    {
+      "onoma": "Δήμος Αθηναίων",
+      "url": "https://www.cityofathens.gr",
+      "feed": "",
+      "typos": "rss",
+      "tier": 1,
+      "energi": false,
+      "dikaiomata": "ΔΕΝ ΕΛΕΓΧΘΗΚΕ",
+      "elegxthike": ""
+    }
+  ],
+
+  "thes": [
+    {
+      "onoma": "Δήμος Θεσσαλονίκης",
+      "url": "https://thessaloniki.gr",
+      "feed": "",
+      "typos": "rss",
+      "tier": 1,
+      "energi": false,
+      "dikaiomata": "ΔΕΝ ΕΛΕΓΧΘΗΚΕ",
+      "elegxthike": ""
+    }
+  ]
+}

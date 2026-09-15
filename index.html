@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ΤΟ ΠΙΤΟΓΥΡΟ — Η πόλη στον δρόμο</title>
+<meta name="description" content="Φαγητό, μουσική, γειτονιές και ό,τι ανοίγει απόψε σε Αθήνα και Θεσσαλονίκη.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&family=Fira+Sans+Extra+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --harti:#E8E0CC;
+    --harti-skia:#DBD2BA;
+    --melani:#17140F;
+    --melani-soft:#4A443A;
+    --kokkino:#D6242B;
+    --thermaikos:#1B6E7A;
+    --mustarda:#E0A213;
+    --akcenta:var(--kokkino);
+    --grammi:rgba(23,20,15,.18);
+    --maxw:1180px;
+  }
+
+  *{box-sizing:border-box}
+
+  html{-webkit-text-size-adjust:100%}
+
+  body{
+    margin:0;
+    background-color:var(--harti);
+    background-image:
+      radial-gradient(rgba(23,20,15,.05) 1px, transparent 1px),
+      radial-gradient(rgba(23,20,15,.035) 1px, transparent 1px);
+    background-size:7px 7px, 11px 11px;
+    background-position:0 0, 4px 5px;
+    color:var(--melani);
+    font-family:"Commissioner",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.55;
+  }
+
+  h1,h2,h3,.blokos,.megalo{
+    font-family:"Fira Sans Extra Condensed","Commissioner",sans-serif;
+    font-weight:900;
+    letter-spacing:-.005em;
+    line-height:.95;
+    margin:0;
+  }
+
+  a{color:inherit}
+
+  :focus-visible{
+    outline:3px solid var(--akcenta);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 22px;
+  }
+
+  /* ---------- ΚΕΦΑΛΙΔΑ ---------- */
+
+  .kefalida{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--harti);
+    border-bottom:2px solid var(--melani);
+  }
+
+  .kefalida-in{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:12px 22px;
+    max-width:var(--maxw);
+    margin:0 auto;
+  }
+
+  .sfragida{
+    background:var(--kokkino);
+    color:var(--harti);
+    font-family:"Fira Sans Extra Condensed",sans-serif;
+    font-weight:900;
+    font-size:clamp(21px,3.4vw,30px);
+    line-height:1;
+    padding:9px 13px 10px;
+    transform:rotate(-1.6deg);
+    text-decoration:none;
+    white-space:nowrap;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    gap:11px;
+  }
+
+  .eikonidio{
+    width:auto;
+    height:1.25em;
+    display:block;
+    flex-shrink:0;
+    padding-right:11px;
+    border-right:2px solid rgba(232,224,204,.42);
+  }
+
+  .diakoptis{
+    display:flex;
+    border:2px solid var(--melani);
+    margin-left:auto;
+    flex-shrink:0;
+  }
+
+  .diakoptis button{
+    font-family:"Fira Sans Extra Condensed",sans-serif;
+    font-weight:800;
+    font-size:clamp(13px,2vw,17px);
+    background:transparent;
+    color:var(--melani);
+    border:0;
+    padding:7px 13px;
+    cursor:pointer;
+    letter-spacing:.02em;
+  }
+
+  .diakoptis button+button{border-left:2px solid var(--melani)}
+  .diakoptis button[aria-pressed="true"]{background:var(--melani);color:var(--harti)}
+
+  .ploigisi{
+    display:flex;
+    gap:19px;
+    font-size:14.5px;
+    font-weight:500;
+  }
+
+  .ploigisi a{text-decoration:none;padding:2px 0;border-bottom:2px solid transparent}
+  .ploigisi a:hover{border-bottom-color:var(--akcenta)}
+
+  @media(max-width:820px){.ploigisi{display:none}}
+
+  /* ---------- ΛΩΡΙΔΑ ΕΓΓΡΑΦΗΣ ---------- */
+
+  .lorida{
+    background:var(--melani);
+    color:var(--harti);
+    border-bottom:2px solid var(--melani);
+  }
+
+  .lorida-in{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:20px 22px 22px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:26px;
+    align-items:center;
+  }
+
+  .lorida h2{
+    font-size:clamp(20px,2.7vw,28px);
+    margin-bottom:5px;
+  }
+
+  .lorida p{
+    margin:0;
+    font-size:14.5px;
+    color:rgba(232,224,204,.72);
+    max-width:54ch;
+  }
+
+  @media(max-width:760px){
+    .lorida-in{grid-template-columns:1fr;gap:15px}
+  }
+
+  /* ---------- ΑΠΟΨΕ ---------- */
+
+  .apopse{
+    padding:40px 0 46px;
+    display:grid;
+    grid-template-columns:1.45fr 1fr;
+    gap:44px;
+    align-items:start;
+  }
+
+  .titlos-tmimatos{
+    font-size:clamp(13px,1.6vw,15px);
+    font-weight:800;
+    font-family:"Fira Sans Extra Condensed",sans-serif;
+    letter-spacing:.06em;
+    padding-bottom:7px;
+    border-bottom:2px solid var(--melani);
+    margin-bottom:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+  }
+
+  .ora{
+    font-variant-numeric:tabular-nums;
+    font-weight:700;
+    color:var(--akcenta);
+    font-size:15px;
+    font-family:"Commissioner",sans-serif;
+    letter-spacing:0;
+  }
+
+  .kyrio-arthro h1{
+    font-size:clamp(41px,6.6vw,74px);
+    margin-bottom:15px;
+  }
+
+  .kyrio-arthro p{
+    font-size:19px;
+    max-width:52ch;
+    color:var(--melani-soft);
+    margin:0 0 17px;
+  }
+
+  .ypografi{
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--akcenta);
+    text-transform:none;
+  }
+
+  .eikona-arthrou{
+    width:100%;
+    aspect-ratio:16/9;
+    background:var(--akcenta);
+    margin-bottom:19px;
+    display:flex;
+    align-items:flex-end;
+    padding:19px;
+    color:var(--harti);
+    font-family:"Fira Sans Extra Condensed",sans-serif;
+    font-weight:800;
+    font-size:15px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .eikona-arthrou::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:repeating-linear-gradient(48deg,rgba(0,0,0,.11) 0 13px,transparent 13px 26px);
+  }
+
+  .eikona-arthrou span{position:relative}
+
+  /* ---------- ΛΙΣΤΑ ΕΚΔΗΛΩΣΕΩΝ ---------- */
+
+  .ekdilosi{
+    display:grid;
+    grid-template-columns:60px 1fr;
+    gap:14px;
+    padding:13px 0;
+    border-bottom:1px solid var(--grammi);
+    align-items:baseline;
+  }
+
+  .ekdilosi:first-of-type{border-top:1px solid var(--grammi)}
+
+  .ekd-ora{
+    font-weight:700;
+    font-variant-numeric:tabular-nums;
+    font-size:16px;
+  }
+
+  .ekd-titlos{font-weight:700;font-size:16.5px;line-height:1.3}
+
+  .ekd-topos{
+    font-size:14px;
+    color:var(--melani-soft);
+    margin-top:2px;
+  }
+
+  .ekdilosi.perase{opacity:.42}
+
+  .simadi{
+    display:inline-block;
+    background:var(--akcenta);
+    color:var(--harti);
+    font-size:11.5px;
+    font-weight:700;
+    padding:1px 6px 2px;
+    margin-left:7px;
+    vertical-align:1px;
+  }
+
+  .perase .simadi{background:var(--melani-soft)}
+
+  /* ---------- ΡΟΗ ---------- */
+
+  .roi{
+    padding:10px 0 54px;
+    border-top:2px solid var(--melani);
+  }
+
+  .roi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:36px 34px;
+  }
+
+  .karta{
+    display:block;
+    text-decoration:none;
+    padding-top:17px;
+    border-top:1px solid var(--grammi);
+  }
+
+  .karta .kat{
+    font-size:12.5px;
+    font-weight:700;
+    color:var(--akcenta);
+    margin-bottom:7px;
+  }
+
+  .karta h3{
+    font-size:clamp(23px,2.7vw,30px);
+    margin-bottom:9px;
+  }
+
+  .karta p{
+    margin:0;
+    font-size:15.5px;
+    color:var(--melani-soft);
+    line-height:1.5;
+  }
+
+  .karta:hover h3{color:var(--akcenta)}
+
+  /* ---------- ΔΕΙΚΤΗΣ ---------- */
+
+  .deiktis{
+    border-top:2px solid var(--melani);
+    border-bottom:2px solid var(--melani);
+    padding:34px 0 38px;
+    margin-bottom:54px;
+  }
+
+  .deiktis-kefali{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:26px;
+    flex-wrap:wrap;
+  }
+
+  .deiktis h2{font-size:clamp(31px,4.4vw,48px)}
+
+  .deiktis-epex{
+    font-size:14.5px;
+    color:var(--melani-soft);
+    max-width:40ch;
+    margin:7px 0 0;
+  }
+
+  .times{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:2px;
+    background:var(--melani);
+    border:2px solid var(--melani);
+  }
+
+  .timi{
+    background:var(--harti);
+    padding:17px 15px 19px;
+  }
+
+  .timi .geitonia{
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:9px;
+  }
+
+  .timi .poso{
+    font-family:"Fira Sans Extra Condensed",sans-serif;
+    font-weight:900;
+    font-size:clamp(30px,4.6vw,44px);
+    line-height:1;
+  }
+
+  .timi .simiosi{
+    font-size:13px;
+    color:var(--melani-soft);
+    margin-top:7px;
+  }
+
+  .timi.fthinotero{background:var(--mustarda)}
+  .timi.fthinotero .simiosi{color:rgba(23,20,15,.72)}
+
+  /* ---------- ΣΕΛΙΔΑ ΑΡΘΡΟΥ ---------- */
+
+  .anagnosi{display:none;padding:34px 0 60px}
+  body.diavazei .anagnosi{display:block}
+  body.diavazei .krypse{display:none}
+
+  .piso{
+    background:none;border:0;padding:0;margin:0 0 26px;
+    font-family:"Fira Sans Extra Condensed",sans-serif;
+    font-weight:800;font-size:16px;color:var(--akcenta);
+    cursor:pointer;letter-spacing:.02em;
+  }
+  .piso:hover{text-decoration:underline}
+
+  .anagnosi .kat{
+    font-size:13px;font-weight:700;color:var(--akcenta);margin-bottom:10px;
+  }
+  .anagnosi h1{
+    font-size:clamp(34px,5.6vw,60px);
+    max-width:20ch;margin-bottom:16px;
+  }
+  .anagnosi .mesa{
+    max-width:62ch;
+  }
+  .anagnosi .mesa p{
+    font-size:18.5px;line-height:1.62;margin:0 0 19px;
+  }
+  .anagnosi .mesa p:first-of-type{
+    font-size:21px;font-weight:500;
+  }
+  .anagnosi .zoni{
+    width:100%;aspect-ratio:21/9;background:var(--akcenta);
+    margin:0 0 26px;position:relative;overflow:hidden;
+  }
+  .anagnosi .zoni::before{
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(48deg,rgba(0,0,0,.11) 0 13px,transparent 13px 26px);
+  }
+
+  /* ---------- ΥΠΟΣΕΛΙΔΟ ---------- */
+
+  .egrafi{
+    background:var(--melani);
+    color:var(--harti);
+    padding:44px 0 48px;
+  }
+
+  .egrafi h2{
+    font-size:clamp(33px,5.2vw,58px);
+    max-width:17ch;
+    margin-bottom:15px;
+  }
+
+  .egrafi p{
+    max-width:46ch;
+    color:rgba(232,224,204,.78);
+    margin:0 0 24px;
+    font-size:16.5px;
+  }
+
+  .forma{display:flex;gap:10px;flex-wrap:wrap;max-width:480px}
+
+  .forma input{
+    flex:1 1 220px;
+    background:transparent;
+    border:2px solid var(--harti);
+    color:var(--harti);
+    padding:12px 14px;
+    font-family:inherit;
+    font-size:16px;
+  }
+
+  .forma input::placeholder{color:rgba(232,224,204,.5)}
+
+  .forma button{
+    background:var(--harti);
+    color:var(--melani);
+    border:2px solid var(--harti);
+    font-family:"Fira Sans Extra Condensed",sans-serif;
+    font-weight:900;
+    font-size:19px;
+    padding:12px 22px;
+    cursor:pointer;
+  }
+
+  .forma button:hover{background:var(--kokkino);border-color:var(--kokkino);color:var(--harti)}
+
+  .minima{margin:15px 0 0;font-size:15px;color:var(--mustarda);min-height:22px}
+
+  .krifo{
+    position:absolute;
+    width:1px;height:1px;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+    white-space:nowrap;
+  }
+
+  .synenesi{
+    margin:14px 0 0;
+    font-size:13.5px;
+    color:rgba(232,224,204,.6);
+    max-width:52ch;
+  }
+
+  .synenesi a{color:var(--mustarda)}
+
+  .forma button[disabled]{opacity:.55;cursor:wait}
+
+  .poda{
+    padding:26px 0 34px;
+    font-size:14px;
+    color:var(--melani-soft);
+    display:flex;
+    justify-content:space-between;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+
+  .poda a{text-decoration:none;margin-right:16px}
+  .poda a:hover{color:var(--akcenta)}
+
+  /* ---------- ΕΙΣΟΔΟΣ ---------- */
+
+  @keyframes stamp{
+    0%{transform:rotate(-1.6deg) scale(1.7);opacity:0}
+    62%{transform:rotate(-1.6deg) scale(.94);opacity:1}
+    100%{transform:rotate(-1.6deg) scale(1);opacity:1}
+  }
+
+  .sfragida{animation:stamp .5s cubic-bezier(.2,.85,.3,1) both}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+
+  /* ---------- ΜΙΚΡΕΣ ΟΘΟΝΕΣ ---------- */
+
+  @media(max-width:960px){
+    .apopse{grid-template-columns:1fr;gap:36px}
+    .roi-grid{grid-template-columns:repeat(2,1fr)}
+    .times{grid-template-columns:repeat(2,1fr)}
+  }
+
+  @media(max-width:620px){
+    body{font-size:16px}
+    .roi-grid{grid-template-columns:1fr;gap:26px}
+    .kefalida-in{gap:12px;padding:10px 16px}
+    .wrap{padding:0 16px}
+    .apopse{padding:28px 0 34px}
+  }
+</style>
+</head>
+<body>
+
+<header class="kefalida">
+  <div class="kefalida-in">
+    <a href="#" class="sfragida" aria-label="ΤΟ ΠΙΤΟΓΥΡΟ — αρχική">
+      <svg class="eikonidio" viewBox="0 0 40 48" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6.5 16 L20 45 L33.5 16"/>
+          <path d="M6.5 16 q4.5 -7 9 0 q4.5 -7 9 0 q4.5 -7 9 0"/>
+          <path d="M6.5 16 Q20 21.5 33.5 16"/>
+          <path d="M11.8 27.5 L28.2 23.5"/>
+        </g>
+      </svg>
+      <span>ΤΟ ΠΙΤΟΓΥΡΟ</span>
+    </a>
+    <nav class="ploigisi" aria-label="Κύρια πλοήγηση">
+      <a href="#roi">Ροή</a>
+      <a href="#deiktis">Φαγητό</a>
+      <a href="#apopse">Απόψε</a>
+      <a href="#roi">Γειτονιές</a>
+    </nav>
+    <div class="diakoptis" role="group" aria-label="Επιλογή πόλης">
+      <button type="button" data-poli="ath" aria-pressed="true">ΑΘΗΝΑ</button>
+      <button type="button" data-poli="thes" aria-pressed="false">ΘΕΣΣΑΛΟΝΙΚΗ</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="anagnosi wrap" id="anagnosi" aria-live="polite"></section>
+
+  <section class="lorida krypse">
+    <div class="lorida-in">
+      <div>
+        <h2>Κάθε μέρα, τι παίζει στην πόλη σου</h2>
+        <p>Ένα σύντομο email το πρωί. Πέντε πράγματα για σήμερα — πού τρως, πού παίζει μουσική, τι άνοιξε.</p>
+      </div>
+      <div>
+        <form class="forma" data-forma action="https://app.kit.com/forms/9920246/subscriptions" method="post" target="ck-sink">
+          <label for="email-pano" class="krifo">Το email σου</label>
+          <input type="email" id="email-pano" name="email_address" data-email placeholder="το email σου" autocomplete="email" inputmode="email">
+          <button type="submit" data-koumpi>ΕΓΓΡΑΦΗ</button>
+        </form>
+        <p class="minima" data-minima role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap apopse krypse" id="apopse">
+    <div class="kyrio-arthro">
+      <div class="titlos-tmimatos">
+        <span id="etiketa-kyrio">ΤΟ ΘΕΜΑ ΤΗΣ ΗΜΕΡΑΣ</span>
+      </div>
+      <div class="eikona-arthrou"><span id="legenda-eikonas"></span></div>
+      <h1 id="kyrio-titlos"><a href="#" data-arthro="kyrio" style="text-decoration:none"></a></h1>
+      <p id="kyrio-keimeno"></p>
+      <div class="ypografi" id="kyrio-ypografi"></div>
+    </div>
+
+    <aside>
+      <div class="titlos-tmimatos">
+        <span id="etiketa-apopse">ΑΠΟΨΕ</span>
+        <span class="ora" id="roloi" aria-live="off"></span>
+      </div>
+      <div id="lista-ekdiloseon"></div>
+    </aside>
+  </section>
+
+  <section class="wrap deiktis krypse" id="deiktis">
+    <div class="deiktis-kefali">
+      <div>
+        <h2 id="titlos-deikti"></h2>
+        <p class="deiktis-epex">Τιμή πιτόγυρου με απ' όλα, ανά γειτονιά. Ελέγχουμε κάθε Δευτέρα.</p>
+      </div>
+    </div>
+    <div class="times" id="times"></div>
+  </section>
+
+  <section class="wrap roi krypse" id="roi">
+    <div class="titlos-tmimatos"><span id="etiketa-roi">Η ΡΟΗ</span></div>
+    <div class="roi-grid" id="roi-grid"></div>
+  </section>
+
+  <section class="egrafi">
+    <div class="wrap">
+      <h2>Κάθε μέρα, τι παίζει το βράδυ</h2>
+      <p>Ένα email το πρωί. Φαγητό, συναυλίες, εκθέσεις και ό,τι άνοιξε στην πόλη σου.</p>
+      <form class="forma" data-forma action="https://app.kit.com/forms/9920246/subscriptions" method="post" target="ck-sink">
+        <label for="email" class="krifo">Το email σου</label>
+        <input type="email" id="email" name="email_address" data-email placeholder="το email σου" autocomplete="email" inputmode="email">
+        <button type="submit" data-koumpi>ΕΓΓΡΑΦΗ</button>
+      </form>
+      <p class="minima" data-minima role="status"></p>
+      <p class="synenesi">Θα σου στείλουμε ένα email επιβεβαίωσης. Διαγραφή με ένα κλικ, όποτε θέλεις. Δες την <a href="#">Πολιτική Απορρήτου</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<iframe name="ck-sink" title="υποδοχή εγγραφής" style="display:none" aria-hidden="true"></iframe>
+
+<footer class="wrap poda">
+  <div>
+    <a href="#">Ποιοι είμαστε</a>
+    <a href="#">Επικοινωνία</a>
+    <a href="#">Απόρρητο</a>
+    <a href="#">Διορθώσεις</a>
+  </div>
+  <div>ΤΟ ΠΙΤΟΓΥΡΟ — Η πόλη στον δρόμο.</div>
+</footer>
+
+<script>
+const DEDOMENA = {
+  ath: {
+    onoma:"ΑΘΗΝΑ",
+    se:"ΣΤΗΝ ΑΘΗΝΑ",
+    akcenta:"#D6242B",
+    kyrio:{
+      etiketa:"ΑΠΟΨΕ",
+      legenda:"15/9/2026",
+      titlos:"Δοκιμαστικό κύριο",
+      keimeno:"Περίληψη.",
+      ypografi:"Αυτόματο άρθρο · ΤΟ ΠΙΤΟΓΥΡΟ",
+      soma:["Πρώτη.","Δεύτερη.","Τρίτη."]
+    },
+    ekdiloseis:[
+      {ora:"19:00", titlos:"Έκθεση χαρακτικής, εγκαίνια", topos:"Ψυρρή · ελεύθερη είσοδος"},
+      {ora:"20:30", titlos:"Τρίο κιθάρας, πρώτο σετ", topos:"Εξάρχεια · 8€"},
+      {ora:"21:00", titlos:"Οι Χαΐνηδες στην Τεχνόπολη", topos:"Γκάζι · 15€"},
+      {ora:"23:00", titlos:"DJ set μέχρι αργά", topos:"Κεραμεικός · 10€"}
+    ],
+    times:[
+      {geitonia:"Πετράλωνα", poso:"3,00", simiosi:"με πατάτα μέσα"},
+      {geitonia:"Κυψέλη", poso:"3,20", simiosi:"σταθερή τρεις μήνες"},
+      {geitonia:"Εξάρχεια", poso:"3,50", simiosi:"+20 λεπτά από τον Ιούνιο"},
+      {geitonia:"Κολωνάκι", poso:"4,80", simiosi:"χωρίς πατάτα"}
+    ],
+    arthra:[
+      {
+            "kat": "ΜΟΥΣΙΚΗ",
+            "titlos": "Δοκιμαστικό δεύτερο",
+            "keimeno": "Περίληψη β.",
+            "soma": [
+                  "Α.",
+                  "Β.",
+                  "Γ."
+            ]
+      }
+]
+  },
+  thes: {
+    onoma:"ΘΕΣΣΑΛΟΝΙΚΗ",
+    se:"ΣΤΗ ΘΕΣΣΑΛΟΝΙΚΗ",
+    akcenta:"#1B6E7A",
+    kyrio:{
+      etiketa:"ΦΑΓΗΤΟ",
+      legenda:"15/9/2026",
+      titlos:"Θεσσαλονίκη δοκιμή",
+      keimeno:"Περίληψη γ.",
+      ypografi:"Αυτόματο άρθρο · ΤΟ ΠΙΤΟΓΥΡΟ",
+      soma:["Α.","Β.","Γ."]
+    },
+    ekdiloseis:[
+      {ora:"19:30", titlos:"Έκθεση φωτογραφίας, εγκαίνια", topos:"Βαλαωρίτου · ελεύθερη είσοδος"},
+      {ora:"21:00", titlos:"Live σχήμα από Αθήνα", topos:"Μύλος · 12€"},
+      {ora:"22:00", titlos:"Ρεμπέτικο, χωρίς μικρόφωνα", topos:"Άνω Πόλη · κατανάλωση"},
+      {ora:"23:30", titlos:"Techno μέχρι το πρωί", topos:"Ξηροκρήνη · 10€"}
+    ],
+    times:[
+      {geitonia:"Τούμπα", poso:"2,90", simiosi:"το φθηνότερο της πόλης"},
+      {geitonia:"Ξηροκρήνη", poso:"3,00", simiosi:"ανοιχτά μέχρι τις 5"},
+      {geitonia:"Λαδάδικα", poso:"3,40", simiosi:"+30 λεπτά φέτος"},
+      {geitonia:"Νέα Παραλία", poso:"4,20", simiosi:"πληρώνεις τη θέα"}
+    ],
+    arthra:[]
+  }
+};
+
+function oraAthinas(){
+  return new Date().toLocaleTimeString("el-GR",{
+    timeZone:"Europe/Athens", hour:"2-digit", minute:"2-digit"
+  });
+}
+
+function leptaTora(){
+  const t = new Date().toLocaleTimeString("en-GB",{
+    timeZone:"Europe/Athens", hour:"2-digit", minute:"2-digit", hour12:false
+  });
+  const [w,l] = t.split(":").map(Number);
+  return w*60+l;
+}
+
+function grapseRoloi(){
+  document.getElementById("roloi").textContent = oraAthinas();
+}
+
+function grapseEkdiloseis(){
+  const d = DEDOMENA[poliTora];
+  const tora = leptaTora();
+  document.getElementById("lista-ekdiloseon").innerHTML = d.ekdiloseis.map(e=>{
+    const [w,l] = e.ora.split(":").map(Number);
+    const perase = (w*60+l) < tora && tora < 5*60 === false;
+    const simadi = perase
+      ? '<span class="simadi">ξεκίνησε</span>'
+      : '';
+    return `<div class="ekdilosi ${perase?"perase":""}">
+      <div class="ekd-ora">${e.ora}</div>
+      <div>
+        <div class="ekd-titlos">${e.titlos}${simadi}</div>
+        <div class="ekd-topos">${e.topos}</div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function grapsePoli(){
+  const d = DEDOMENA[poliTora];
+  document.documentElement.style.setProperty("--akcenta", d.akcenta);
+
+  document.getElementById("etiketa-kyrio").textContent = d.kyrio.etiketa;
+  document.getElementById("legenda-eikonas").textContent = d.kyrio.legenda;
+  document.querySelector("#kyrio-titlos a").textContent = d.kyrio.titlos;
+  document.getElementById("kyrio-keimeno").textContent = d.kyrio.keimeno;
+  document.getElementById("kyrio-ypografi").textContent = d.kyrio.ypografi;
+
+  document.getElementById("etiketa-apopse").textContent = "ΑΠΟΨΕ " + d.se;
+  document.getElementById("etiketa-roi").textContent = "Η ΡΟΗ — " + d.onoma;
+  document.getElementById("titlos-deikti").textContent = "Ο δείκτης πιτόγυρου";
+
+  const fthino = d.times.reduce((a,b)=>
+    parseFloat(a.poso.replace(",","."))<=parseFloat(b.poso.replace(",",".")) ? a : b
+  );
+
+  document.getElementById("times").innerHTML = d.times.map(t=>`
+    <div class="timi ${t===fthino?"fthinotero":""}">
+      <div class="geitonia">${t.geitonia}</div>
+      <div class="poso">${t.poso}€</div>
+      <div class="simiosi">${t.simiosi}</div>
+    </div>`).join("");
+
+  document.getElementById("roi-grid").innerHTML = d.arthra.map((a,i)=>`
+    <a class="karta" href="#" data-arthro="${i}">
+      <div class="kat">${a.kat}</div>
+      <h3>${a.titlos}</h3>
+      <p>${a.keimeno}</p>
+    </a>`).join("");
+
+  grapseEkdiloseis();
+}
+
+document.querySelectorAll(".diakoptis button").forEach(b=>{
+  b.addEventListener("click",()=>{
+    poliTora = b.dataset.poli;
+    document.querySelectorAll(".diakoptis button").forEach(x=>
+      x.setAttribute("aria-pressed", String(x===b))
+    );
+    grapsePoli();
+  });
+});
+
+/* =======================================================
+   ΕΓΓΡΑΦΗ ΣΤΟ NEWSLETTER
+   Δύο διαδρομές: πρώτα fetch (δουλεύει σε κανονικό host),
+   αλλιώς κανονικό POST φόρμας σε κρυφό iframe (δουλεύει
+   εκεί που το fetch κόβεται από CORS). Η κατάσταση
+   εμφανίζεται στον χρήστη σε κάθε περίπτωση.
+   ======================================================= */
+
+const KIT_URL = "https://app.kit.com/forms/9920246/subscriptions";
+
+function minima(box, keimeno, xroma){
+  const m = box.parentElement.querySelector("[data-minima]");
+  if(m){ m.textContent = keimeno; m.style.color = xroma || "var(--mustarda)"; }
+}
+
+function epitychia(box){
+  const input = box.querySelector("[data-email]");
+  const koumpi = box.querySelector("[data-koumpi]");
+  input.value = "";
+  koumpi.disabled = false;
+  minima(box, "Σχεδόν έτοιμο. Άνοιξε το email σου και πάτα το λινκ επιβεβαίωσης.");
+}
+
+function meIframe(box){
+  const sink = document.getElementsByName("ck-sink")[0];
+  let egine = false;
+  const otanFortosei = ()=>{
+    if(egine) return;
+    egine = true;
+    sink.removeEventListener("load", otanFortosei);
+    epitychia(box);
+  };
+  sink.addEventListener("load", otanFortosei);
+  setTimeout(otanFortosei, 4000);
+  HTMLFormElement.prototype.submit.call(box);
+}
+
+document.querySelectorAll("[data-forma]").forEach(box=>{
+  box.addEventListener("submit", async e=>{
+    e.preventDefault();
+
+    const input = box.querySelector("[data-email]");
+    const koumpi = box.querySelector("[data-koumpi]");
+    const timi = input.value.trim();
+
+    if(!timi){
+      minima(box, "Γράψε ένα email για να σου στέλνουμε το δελτίο.");
+      input.focus();
+      return;
+    }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(timi)){
+      minima(box, "Αυτό δεν μοιάζει με email. Έλεγξε το @ και την κατάληξη.");
+      input.focus();
+      return;
+    }
+
+    koumpi.disabled = true;
+    minima(box, "Στέλνουμε…");
+
+    try{
+      const fd = new FormData();
+      fd.append("email_address", timi);
+      const r = await fetch(KIT_URL, {
+        method:"POST", body:fd, headers:{ "Accept":"application/json" }
+      });
+      if(!r.ok) throw new Error(r.status);
+      epitychia(box);
+    }catch(err){
+      try{
+        meIframe(box);
+      }catch(err2){
+        koumpi.disabled = false;
+        minima(box, "Δεν στάλθηκε. Χρησιμοποίησε το λινκ από κάτω.", "#ff8b8b");
+      }
+    }
+  });
+});
+
+function anoixeArthro(a){
+  document.getElementById("anagnosi").innerHTML = `
+    <button type="button" class="piso" id="piso">← ΠΙΣΩ ΣΤΗ ΡΟΗ</button>
+    <div class="kat">${a.kat || DEDOMENA[poliTora].kyrio.etiketa}</div>
+    <h1>${a.titlos}</h1>
+    <div class="zoni"></div>
+    <div class="mesa">${(a.soma||[]).map(p=>`<p>${p}</p>`).join("")}</div>`;
+  document.body.classList.add("diavazei");
+  document.getElementById("piso").addEventListener("click", kleiseArthro);
+  window.scrollTo(0,0);
+}
+
+function kleiseArthro(){
+  document.body.classList.remove("diavazei");
+  window.scrollTo(0,0);
+}
+
+document.addEventListener("click", e=>{
+  const k = e.target.closest("[data-arthro]");
+  if(!k) return;
+  e.preventDefault();
+  const d = DEDOMENA[poliTora];
+  const i = k.dataset.arthro;
+  anoixeArthro(i === "kyrio" ? d.kyrio : d.arthra[+i]);
+});
+
+grapsePoli();
+grapseRoloi();
+setInterval(()=>{ grapseRoloi(); grapseEkdiloseis(); }, 30000);
+</script>
+
+</body>
+</html>
