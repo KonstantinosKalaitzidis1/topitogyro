@@ -32,6 +32,9 @@ const HARD_BLOCK = [
   // crime / accidents / health / legal
   "πυροβολ", "δολοφον", "αστυνομ", "συνεληφ", "συλληψ", "τραυματ", "νεκρ", "θανατ",
   "ατυχημ", "νοσοκομ", "ιατρ", "δικασ", "κατηγορου", "μηνυσ", "βρεφονηπ", "απορρυπαντικ",
+  // weather / disruption / cancellation noise — not editorial discovery leads
+  "καταιγιδ", "βροχ", "καιρ", "ανεμ", "θυελλ", "χαλαζ",
+  "ακυρων", "ματαιων", "αναβαλλ", "ακυρωθ", "ματαιωθ", "αναβληθ",
   // sport noise
   "ολυμπιακ", "παναθηναικ", "αεκ", "παοκ", "ποδοσφαιρ", "μπασκετ", "προπονητ", "μεντιλιμπαρ"
 ];
@@ -103,7 +106,7 @@ function scoreCandidate(c) {
   const city = c.city || "";
 
   if (!title || title.length < 8) return { keep:false, reason:"too_short", score:-99 };
-  if (hasHardBlock(hay)) return { keep:false, reason:"sensitive_political_or_sports", score:-99 };
+  if (hasHardBlock(hay)) return { keep:false, reason:"sensitive_political_weather_cancelled_or_sports", score:-99 };
 
   const shape = entityShape(title);
   const food = hasAny(hay, FOOD_SIGNALS);
