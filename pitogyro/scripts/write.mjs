@@ -25,8 +25,10 @@ const YFOS = `Γράφεις για ΤΟ ΠΙΤΟΓΥΡΟ — καθημεριν
 - Χρησιμοποιείς ΜΟΝΟ τα facts που δίνονται στο συγκεκριμένο input. ΟΧΙ γενική γνώση, μνήμη ή υποθέσεις.
 - ΠΟΤΕ δεν παραφράζεις ή αναπαράγεις κείμενο τρίτου. Γράφεις νέο κείμενο βασισμένο στα επιβεβαιωμένα facts.
 - ΠΟΤΕ δεν εφευρίσκεις ώρα, τιμή, διεύθυνση, γειτονιά, menu item, όνομα, ημερομηνία, δρομολόγιο, opening date ή άλλη πρακτική λεπτομέρεια.
-- ΠΟΤΕ δεν προσθέτεις αξιολογική κρίση, θετική ή αρνητική, αν δεν δίνεται ως fact. Απαγορεύονται συμπεράσματα τύπου «δουλεύει με σοβαρότητα», «είναι focused», «αξίζει», «καλύτερο», «τίμιο», «δυνατό».
+- ΠΟΤΕ δεν προσθέτεις αξιολογική κρίση, θετική ή αρνητική, αν δεν δίνεται ως fact.
 - ΠΟΤΕ δεν συμπεραίνεις ότι κάτι λείπει από το menu ή το concept αν δεν δίνεται ρητά.
+- ΠΟΤΕ δεν χαρακτηρίζεις μια περιοχή ως «κέντρο», «γειτονιά», «πιάτσα» κ.λπ. αν αυτό δεν δίνεται ρητά στα facts. Χρησιμοποίησε μόνο την ακριβή τοποθεσία που δίνεται.
+- ΠΟΤΕ δεν γράφεις «περισσότερες λεπτομέρειες θα ανακοινωθούν», «αναμένονται πληροφορίες» ή άλλη εικασία για άγνωστα μελλοντικά στοιχεία.
 - Πρόσεχε τον χρόνο: αν το input λέει ότι ένα μαγαζί λειτουργεί ήδη επί μήνες, ΜΗ γράψεις ότι «ανοίγει τώρα» ή «ανοίγει τις πόρτες του».
 - Αν λείπει στοιχείο, το παραλείπεις. Δεν το συμπληρώνεις.
 - Κάθε πρόταση πρέπει να μπορεί να στηριχθεί άμεσα σε fact του input. Αν μια πρόταση υπάρχει μόνο για ύφος/εντύπωση, κόψ' την.
@@ -53,15 +55,11 @@ const QA = `Είσαι αυστηρός fact-checker και copy editor για �
 Απάντησε μόνο με ΕΝΑ πλήρες έγκυρο JSON object: {"ok":true,"reason":""} ή {"ok":false,"reason":"σύντομη σαφής αιτία"}.`;
 
 function parseJson(text) {
-  const clean = String(text || "")
-    .replace(/```json/gi, "")
-    .replace(/```/g, "")
-    .trim();
+  const clean = String(text || "").replace(/```json/gi, "").replace(/```/g, "").trim();
   const first = clean.indexOf("{");
   const last = clean.lastIndexOf("}");
   if (first === -1 || last <= first) return null;
-  const candidate = clean.slice(first, last + 1);
-  try { return JSON.parse(candidate); }
+  try { return JSON.parse(clean.slice(first, last + 1)); }
   catch { return null; }
 }
 
@@ -89,12 +87,11 @@ async function anthropic(body) {
   if (parsed) return parsed;
 
   console.log(`  JSON RETRY: μη έγκυρο JSON${raw.stopReason ? ` (stop_reason=${raw.stopReason})` : ""}`);
-  const retryBody = {
+  raw = await anthropicRaw({
     ...body,
     max_tokens: Math.max(Number(body.max_tokens || 0), 1400),
-    system: `${body.system}\n\nΚΡΙΣΙΜΟ: Η προηγούμενη απάντηση δεν ήταν parseable JSON. Αυτή τη φορά ολοκλήρωσε ολόκληρο το JSON object, κλείσε όλα τα strings/arrays/braces και μην γράψεις τίποτα εκτός JSON.`
-  };
-  raw = await anthropicRaw(retryBody);
+    system: `${body.system}\n\nΚΡΙΣΙΜΟ: Η προηγούμενη απάντηση δεν ήταν parseable JSON. Ολοκλήρωσε ολόκληρο το JSON object, κλείσε όλα τα strings/arrays/braces και μην γράψεις τίποτα εκτός JSON.`
+  });
   parsed = parseJson(raw.text);
   if (!parsed) throw new Error(`Μη έγκυρο JSON μετά από retry${raw.stopReason ? ` (stop_reason=${raw.stopReason})` : ""}`);
   return parsed;
@@ -105,10 +102,11 @@ async function grapse(item, poli, feedback = "") {
   return anthropic({
     model: MONTELO,
     max_tokens: 1200,
+    temperature: 0.1,
     system: YFOS,
     messages: [{
       role: "user",
-      content: `Πόλη: ${poliOnoma}\nΠηγή: ${item.pigi}\nURL πηγής: ${item.source_item_url || item.pigi_url || ""}\nΤίτλος: ${item.titlos}\nΗμερομηνία: ${item.imerominia || "άγνωστη"}\nΠρώτη ύλη (μόνο για facts, ΜΗΝ την αντιγράψεις): ${item.proti_yli}${feedback ? `\n\nΠροηγούμενο draft απορρίφθηκε για: ${feedback}. Διόρθωσέ το πλήρως.` : ""}\n\nΑξιολόγησε αν είναι ασφαλές και αρκετά τεκμηριωμένο για δημοσίευση. Αν ναι, γράψε πρωτότυπο άρθρο.`
+      content: `Πόλη: ${poliOnoma}\nΠηγή: ${item.pigi}\nURL πηγής: ${item.source_item_url || item.pigi_url || ""}\nΤίτλος αναφοράς: ${item.titlos}\nΗμερομηνία: ${item.imerominia || "άγνωστη"}\nΠρώτη ύλη (μόνο για facts, ΜΗΝ την αντιγράψεις): ${item.proti_yli}${feedback ? `\n\nΥΠΟΧΡΕΩΤΙΚΗ ΔΙΟΡΘΩΣΗ: Το προηγούμενο draft απορρίφθηκε για: ${feedback}. Στο νέο draft αφαίρεσε πλήρως το συγκεκριμένο πρόβλημα και μην το αντικαταστήσεις με άλλη υπόθεση.` : ""}\n\nΑξιολόγησε αν είναι ασφαλές και αρκετά τεκμηριωμένο για δημοσίευση. Αν ναι, γράψε πρωτότυπο άρθρο.`
     }]
   });
 }
@@ -117,6 +115,7 @@ async function elegxos(item, a) {
   return anthropic({
     model: MONTELO,
     max_tokens: 260,
+    temperature: 0,
     system: QA,
     messages: [{
       role: "user",
@@ -142,32 +141,34 @@ for (const poli of ["ath", "thes"]) {
   for (const item of lista) {
     try {
       let a = await grapse(item, poli);
+      let passed = false;
 
-      if (a.publish === false) {
-        console.log(`  SKIP: ${a.reason || "not_publishable"} — "${item.titlos}"`);
-        continue;
-      }
-
-      if (!a.titlos || !Array.isArray(a.soma) || a.soma.length < 3) {
-        console.log(`  ΑΠΟΡΡΙΨΗ: ελλιπές άρθρο για "${item.titlos}"`);
-        continue;
-      }
-
-      let qa = await elegxos(item, a);
-      if (!qa.ok) {
-        console.log(`  QA RETRY: ${qa.reason || "failed"}`);
-        a = await grapse(item, poli, qa.reason || "unsupported or unclear content");
-        if (a.publish === false || !a.titlos || !Array.isArray(a.soma) || a.soma.length < 3) {
-          console.log(`  ΑΠΟΡΡΙΨΗ μετά από retry: "${item.titlos}"`);
-          continue;
+      for (let attempt = 0; attempt < 3; attempt++) {
+        if (a.publish === false) {
+          console.log(`  SKIP: ${a.reason || "not_publishable"} — "${item.titlos}"`);
+          break;
         }
-        qa = await elegxos(item, a);
+        if (!a.titlos || !Array.isArray(a.soma) || a.soma.length < 3) {
+          console.log(`  ΑΠΟΡΡΙΨΗ: ελλιπές άρθρο για "${item.titlos}"`);
+          break;
+        }
+
+        const qa = await elegxos(item, a);
+        if (qa.ok) {
+          passed = true;
+          break;
+        }
+
+        if (attempt === 2) {
+          console.log(`  QA ΑΠΟΡΡΙΨΗ μετά από 3 drafts: ${qa.reason || "failed"} — "${item.titlos}"`);
+          break;
+        }
+
+        console.log(`  QA RETRY ${attempt + 1}: ${qa.reason || "failed"}`);
+        a = await grapse(item, poli, qa.reason || "unsupported or unclear content");
       }
 
-      if (!qa.ok) {
-        console.log(`  QA ΑΠΟΡΡΙΨΗ: ${qa.reason || "failed"} — "${item.titlos}"`);
-        continue;
-      }
+      if (!passed) continue;
 
       a.source = {
         name: item.pigi,
