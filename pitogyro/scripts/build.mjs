@@ -1,4 +1,5 @@
-// Παίρνει τα άρθρα και ξαναφτιάχνει το index.html από το template.
+// Χτίζει το δημόσιο site ΜΟΝΟ από QA-passed content/arthra.json.
+// Το template κρατά layout/design, αλλά ΚΑΝΕΝΑ demo datum δεν περνά στο public index.html.
 // Local city stories κρατούν το hero. Global "ΒΡΩΜΙΑ ΣΠΙΤΙ" μπαίνει στη ροή και των δύο πόλεων.
 // Οι εικόνες έρχονται μόνο από content/images.json με ρητό credit/license metadata.
 
@@ -6,13 +7,12 @@ import { readFile, writeFile } from "node:fs/promises";
 
 const template = await readFile("templates/site.html", "utf8");
 
-let arthra = null;
+let arthra;
 try {
   arthra = JSON.parse(await readFile("content/arthra.json", "utf8"));
 } catch {
-  console.log("Δεν βρέθηκαν παραγόμενα άρθρα. Το site βγαίνει με το υπάρχον template.");
-  await writeFile("index.html", template);
-  process.exit(0);
+  console.error("Δεν βρέθηκε έγκυρο content/arthra.json. Το υπάρχον δημόσιο index.html ΔΕΝ αντικαθίσταται από demo template.");
+  process.exit(1);
 }
 
 let images = {};
@@ -25,12 +25,10 @@ try {
 const arxi = template.indexOf("const DEDOMENA = {");
 const telos = template.indexOf("function oraAthinas(){");
 
-if (arxi === -1 || telos === -1) {
+if (arxi === -1 || telos === -1 || telos <= arxi) {
   console.error("Το template δεν έχει την αναμενόμενη δομή DEDOMENA.");
   process.exit(1);
 }
-
-const paliaDedomena = template.slice(arxi, telos);
 
 function sourceLabel(a) {
   const name = a?.source?.name?.trim();
@@ -47,61 +45,74 @@ function withImage(a) {
 function card(article) {
   const a = withImage(article);
   return {
-    kat: a.kat || "ΠΟΛΗ",
-    titlos: a.titlos,
-    keimeno: a.keimeno || "",
-    soma: a.soma,
+    kat: a?.kat || "ΠΟΛΗ",
+    titlos: a?.titlos || "",
+    keimeno: a?.keimeno || "",
+    soma: Array.isArray(a?.soma) ? a.soma : [],
     ypografi: sourceLabel(a),
-    eikona: a.eikona || null
+    eikona: a?.eikona || null
   };
 }
 
-function antikatastasi(blok, poli, local, global) {
-  const nea = (Array.isArray(local) ? local : []).map(withImage);
-  const koina = (Array.isArray(global) ? global : []).map(withImage);
-  let out = blok;
-
-  if (nea.length) {
-    const kyrio = nea[0];
-    const neoKyrio = `kyrio:{
-      etiketa:${JSON.stringify(kyrio.kat || "ΣΗΜΕΡΑ")},
-      legenda:${JSON.stringify(new Date().toLocaleDateString("el-GR"))},
-      titlos:${JSON.stringify(kyrio.titlos)},
-      keimeno:${JSON.stringify(kyrio.keimeno || "")},
-      ypografi:${JSON.stringify(sourceLabel(kyrio))},
-      soma:${JSON.stringify(kyrio.soma)},
-      eikona:${JSON.stringify(kyrio.eikona || null)}
-    }`;
-
-    const dei = new RegExp(`(${poli}:\\s*\\{[\\s\\S]*?)kyrio:\\{[\\s\\S]*?\\n    \\}`, "m");
-    out = out.replace(dei, `$1${neoKyrio}`);
-  }
-
-  const ypoloipa = [...nea.slice(1), ...koina];
-  if (ypoloipa.length) {
-    const neaArthra = `arthra:${JSON.stringify(ypoloipa.map(card), null, 6)}`;
-    const dei2 = new RegExp(`(${poli}:\\s*\\{[\\s\\S]*?)arthra:\\[[\\s\\S]*?\\n    \\]`, "m");
-    out = out.replace(dei2, `$1${neaArthra}`);
-  }
-
-  return out;
+function emptyHero() {
+  return {
+    etiketa: "",
+    legenda: "",
+    titlos: "",
+    keimeno: "",
+    ypografi: "",
+    soma: [],
+    eikona: null
+  };
 }
 
-let neaDedomena = paliaDedomena;
-neaDedomena = antikatastasi(neaDedomena, "ath", arthra.ath, arthra.global);
-neaDedomena = antikatastasi(neaDedomena, "thes", arthra.thes, arthra.global);
+function cityData(code, local = [], global = []) {
+  const localSafe = (Array.isArray(local) ? local : []).map(withImage);
+  const globalSafe = (Array.isArray(global) ? global : []).map(withImage);
+  const meta = code === "ath"
+    ? { onoma: "ΑΘΗΝΑ", se: "ΣΤΗΝ ΑΘΗΝΑ", akcenta: "#D6242B" }
+    : { onoma: "ΘΕΣΣΑΛΟΝΙΚΗ", se: "ΣΤΗ ΘΕΣΣΑΛΟΝΙΚΗ", akcenta: "#1B6E7A" };
 
+  const heroArticle = localSafe[0] || null;
+  const kyrio = heroArticle ? {
+    etiketa: heroArticle.kat || "ΣΗΜΕΡΑ",
+    legenda: new Date().toLocaleDateString("el-GR"),
+    titlos: heroArticle.titlos || "",
+    keimeno: heroArticle.keimeno || "",
+    ypografi: sourceLabel(heroArticle),
+    soma: Array.isArray(heroArticle.soma) ? heroArticle.soma : [],
+    eikona: heroArticle.eikona || null
+  } : emptyHero();
+
+  return {
+    ...meta,
+    kyrio,
+    // Μέχρι να υπάρχουν verified structured δεδομένα, αυτά μένουν πραγματικά κενά.
+    ekdiloseis: [],
+    times: [],
+    arthra: [...localSafe.slice(1), ...globalSafe].map(card)
+  };
+}
+
+const publicData = {
+  ath: cityData("ath", arthra.ath, arthra.global),
+  thes: cityData("thes", arthra.thes, arthra.global)
+};
+
+// Κρίσιμο: πετάμε ολόκληρο το demo DEDOMENA block του template και το αντικαθιστούμε
+// με JSON που προέρχεται μόνο από QA-passed αρχεία.
+const neaDedomena = `const DEDOMENA = ${JSON.stringify(publicData, null, 2)};\n\n`;
 let selida = template.slice(0, arxi) + neaDedomena + template.slice(telos);
 
-// Launch-safe mode: prototype events/τιμές/Θεσσαλονίκη παραμένουν στο template
-// μόνο για μελλοντική ενεργοποίηση, αλλά δεν εμφανίζονται δημόσια μέχρι να
-// τροφοδοτούνται από verified production data.
+const hasThessaloniki = Boolean(publicData.thes.kyrio.titlos);
 const launchSafeCss = `
 <style id="launch-safe">
+  /* Δεν υπάρχει ακόμη verified structured price/event feed. */
   #deiktis{display:none!important}
   #apopse aside{display:none!important}
   #apopse{grid-template-columns:minmax(0,1fr)!important}
-  .diakoptis button[data-poli="thes"]{display:none!important}
+  #apopse:has(#kyrio-titlos a:empty){display:none!important}
+  ${hasThessaloniki ? "" : '.diakoptis button[data-poli="thes"]{display:none!important}'}
   #roi:has(#roi-grid:empty){display:none!important}
 
   .eikona-arthrou.me-foto,
@@ -153,9 +164,11 @@ const imageRuntime = `
       const safeUrl = String(eikona.url).replace(/"/g, "%22");
       el.classList.add("me-foto");
       el.style.backgroundImage = 'url("' + safeUrl + '")';
+      if(eikona.alt) el.setAttribute("aria-label", eikona.alt);
     }else{
       el.classList.remove("me-foto");
       el.style.backgroundImage = "";
+      el.removeAttribute("aria-label");
     }
   }
 
@@ -215,7 +228,21 @@ try {
   process.exit(1);
 }
 
+// Άμυνα τελευταίου σταδίου: γνωστές demo φράσεις δεν επιτρέπεται να βγουν public.
+const forbiddenDemoMarkers = [
+  "Τρία ευρώ, ακόμα, στα Πετράλωνα",
+  "Χαΐνηδες στην Τεχνόπολη. Και μετά βλέπουμε.",
+  "Η Βαλαωρίτου άλλαξε πάλι χέρια",
+  "Μπουγάτσα πριν τις επτά: ποιος αξίζει το ξύπνημα"
+];
+for (const marker of forbiddenDemoMarkers) {
+  if (selida.includes(marker)) {
+    console.error(`DEMO GUARD: βρέθηκε απαγορευμένο prototype content: ${marker}`);
+    process.exit(1);
+  }
+}
+
 await writeFile("index.html", selida);
 
 const synolo = (arthra.ath?.length || 0) + (arthra.thes?.length || 0) + (arthra.global?.length || 0);
-console.log(`index.html ενημερώθηκε με ${synolo} QA-passed άρθρα/συνταγές και licensed image metadata.`);
+console.log(`index.html ενημερώθηκε με ${synolo} QA-passed άρθρα/συνταγές, 0 demo data και licensed image metadata.`);
