@@ -26,8 +26,9 @@ function stripSource(title = "") {
 }
 
 const HARD_BLOCK = [
-  // politics / public controversy
+  // politics / parties / politically affiliated events
   "πολιτικ", "βουλευτ", "κυβερν", "κομμα", "εκλογ", "υπουργ", "δημαρχ", "αντιδημαρχ",
+  "κνε", "οδηγητη", "οδηγητής", "φεστιβαλ κνε", "φεστιβάλ κνε",
   // crime / accidents / health / legal
   "πυροβολ", "δολοφον", "αστυνομ", "συνεληφ", "συλληψ", "τραυματ", "νεκρ", "θανατ",
   "ατυχημ", "νοσοκομ", "ιατρ", "δικασ", "κατηγορου", "μηνυσ", "βρεφονηπ", "απορρυπαντικ",
@@ -40,6 +41,11 @@ const GENERIC = [
   "στεκια που", "που θα φας", "πού θα φας", "κανε πως εισαι", "μα που πηγαν", "new entry",
   "ποσα ξοδευουν", "ο freddo της αθηνας", "η μουσικη ατζεντα της εβδομαδας", "agenda της εβδομαδας"
 ];
+
+const GENERIC_ENTITIES = new Set([
+  "αθηνα", "athens", "θεσσαλονικη", "thessaloniki", "εικονες", "images", "new entry",
+  "νεα", "news", "μουσικη", "music", "φαγητο", "food", "street food", "festival", "φεστιβαλ"
+].map(norm));
 
 const FOOD_SIGNALS = [
   "street food", "burger", "smash", "pizza", "πιτσα", "döner", "doner", "κεμπαπ", "kebab",
@@ -62,19 +68,28 @@ const CITY_SIGNALS = {
 function hasAny(hay, arr) { return arr.some(x => hay.includes(norm(x))); }
 function hasHardBlock(hay) { return HARD_BLOCK.some(x => hay.includes(norm(x))); }
 function generic(hay) { return GENERIC.some(x => hay.includes(norm(x))); }
+function meaningfulEntity(entity = "") {
+  const e = norm(entity);
+  if (!e || GENERIC_ENTITIES.has(e)) return false;
+  if (/^(εικονες|images|νεα|news)\b/.test(e)) return false;
+  if (e.split(" ").length === 1 && (e === "αθηνα" || e === "θεσσαλονικη")) return false;
+  return true;
+}
 
 function entityShape(title = "") {
   const core = stripSource(title);
   const quoted = core.match(/[«“"]([^»”"]{3,70})[»”"]/);
-  if (quoted) return { entity:quoted[1].trim(), strength:8, kind:"quoted" };
+  if (quoted && meaningfulEntity(quoted[1])) return { entity:quoted[1].trim(), strength:8, kind:"quoted" };
 
   const colon = core.split(":")[0].trim();
-  if (core.includes(":") && colon.length >= 2 && colon.length <= 70 && colon.split(/\s+/).length <= 8) {
+  if (core.includes(":") && colon.length >= 2 && colon.length <= 70 && colon.split(/\s+/).length <= 8 && meaningfulEntity(colon)) {
     return { entity:colon.replace(/[Ββ](?=[A-Za-z0-9])/g, m=>m==="Β"?"B":"b"), strength:9, kind:"colon" };
   }
 
   const verb = core.split(/\s+(?:στη|στην|στο|έρχεται|ερχεται|έρχονται|ερχονται|ανοίγει|ανοιγει|άνοιξε|ανοιξε|πάει|παει|πάνε|πανε|φέρνει|φερνει|φέρνουν|φερνουν|γιορτάζει|γιορταζει|παρουσιάζει|παρουσιαζει)\s+/i)[0].trim();
-  if (verb.length >= 3 && verb.length <= 65 && verb.split(/\s+/).length <= 6) return { entity:verb, strength:5, kind:"verb" };
+  if (verb.length >= 3 && verb.length <= 65 && verb.split(/\s+/).length <= 6 && meaningfulEntity(verb)) {
+    return { entity:verb, strength:5, kind:"verb" };
+  }
   return { entity:"", strength:0, kind:"none" };
 }
 
@@ -85,7 +100,7 @@ function scoreCandidate(c) {
   const city = c.city || "";
 
   if (!title || title.length < 8) return { keep:false, reason:"too_short", score:-99 };
-  if (hasHardBlock(hay)) return { keep:false, reason:"sensitive_or_sports", score:-99 };
+  if (hasHardBlock(hay)) return { keep:false, reason:"sensitive_political_or_sports", score:-99 };
 
   const shape = entityShape(title);
   const food = hasAny(hay, FOOD_SIGNALS);
@@ -94,7 +109,6 @@ function scoreCandidate(c) {
   const wrongCity = city === "ath" ? hasAny(hay, CITY_SIGNALS.thes) : hasAny(hay, CITY_SIGNALS.ath);
   if (wrongCity && !citySignal) return { keep:false, reason:"wrong_city_signal", score:-99 };
 
-  // Category must have an actual thematic signal in the title, not a substring accident.
   if (category === "openings_food" && !food) return { keep:false, reason:"no_food_opening_signal", score:-99 };
   if (category === "events_music_street" && !event) return { keep:false, reason:"no_event_street_signal", score:-99 };
 
@@ -106,10 +120,12 @@ function scoreCandidate(c) {
 
   const isGeneric = generic(hay);
   if (isGeneric) score -= 10;
-  if (!shape.entity) score -= 6;
+  if (!shape.entity) score -= 8;
 
-  // Generic listicles can remain out of the verification pool even if relevant.
-  if (isGeneric || score < 6) return { keep:false, reason:isGeneric ? "generic_headline" : "low_specificity", score };
+  // No named entity = no automatic verification. Listicles/agenda stay radar-only.
+  if (isGeneric || !shape.entity || score < 8) {
+    return { keep:false, reason:isGeneric ? "generic_headline" : !shape.entity ? "no_named_entity" : "low_specificity", score };
+  }
 
   return { keep:true, reason:"specific_local_lead", score, entity_hint:shape.entity, entity_kind:shape.kind };
 }
@@ -128,8 +144,8 @@ for (const city of ["ath","thes"]) {
   }
   kept.sort((a,b) => (b.specificity_score||0) - (a.specificity_score||0) || String(b.published_at||"").localeCompare(String(a.published_at||"")));
   discovery[city] = kept.slice(0,30);
-  report[city] = { input:source.length, kept:discovery[city].length, rejected:rejected.length, sample_rejected:rejected.slice(0,8) };
-  console.log(`RANK ${city.toUpperCase()}: ${source.length} → ${discovery[city].length} verification-worthy candidates.`);
+  report[city] = { input:source.length, kept:discovery[city].length, rejected:rejected.length, sample_rejected:rejected.slice(0,10) };
+  console.log(`RANK ${city.toUpperCase()}: ${source.length} → ${discovery[city].length} verification-worthy named candidates.`);
 }
 
 discovery.ranking = report;
