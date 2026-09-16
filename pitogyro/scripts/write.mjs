@@ -1,6 +1,7 @@
 // Γράφει πρωτότυπα άρθρα ΠΙΤΟΓΥΡΟ.
 // City stories: μόνο verified facts.
-// Global "ΒΡΩΜΙΑ ΣΠΙΤΙ": τρίτο άρθρο = έμπνευση μόνο, και παράγεται εντελώς πρωτότυπη συνταγή.
+// Global "ΒΡΩΜΙΑ ΣΠΙΤΙ": ξένο feed = έμπνευση μόνο, και παράγεται εντελώς πρωτότυπη συνταγή.
+// Τα νέα άρθρα συγχωνεύονται με τα τελευταία QA-passed ώστε recipe-only run να μη σβήνει city stories.
 
 import { readFile, writeFile } from "node:fs/promises";
 
@@ -61,7 +62,8 @@ const RECIPE_STYLE = `Γράφεις για ΤΟ ΠΙΤΟΓΥΡΟ, στη στή
 Σου δίνεται τίτλος/σύντομο snippet από ξένη food πηγή ΜΟΝΟ ως αφορμή/έμπνευση.
 
 ΣΤΟΧΟΣ
-Φτιάχνεις εντελώς πρωτότυπη, πρακτική, «βρώμικη» συνταγή για σπίτι: sauces, dips, loaded fries, burgers, sandwiches, fried chicken, tacos, wraps, hot dogs, nachos, wings και παρόμοια.
+Φτιάχνεις εντελώς πρωτότυπη, πρακτική, «βρώμικη» συνταγή για σπίτι που να συνδέεται ΚΑΘΑΡΑ με sauce, dip, burger, loaded fries, sandwich, fried chicken, tacos, wraps, hot dogs, nachos, wings, aioli, mayo, hot honey, grilled cheese, quesadilla ή αντίστοιχο street/junk/comfort concept.
+Αν η ιδέα είναι soup, salad, cake, pasta, υγιεινή/nutrition συνταγή ή γενικό dinner χωρίς σαφή street/junk σύνδεση, επέστρεψε {"publish":false,"reason":"not_dirty_food"}.
 
 ΚΑΝΟΝΕΣ ΠΝΕΥΜΑΤΙΚΗΣ ΙΔΙΟΚΤΗΣΙΑΣ
 - ΜΗΝ μεταφράζεις, ανακατασκευάζεις ή παραφράζεις τη συνταγή της πηγής.
@@ -76,6 +78,7 @@ const RECIPE_STYLE = `Γράφεις για ΤΟ ΠΙΤΟΓΥΡΟ, στη στή
 - Δώσε σαφείς ποσότητες για 2-4 άτομα, εύκολα υλικά, και σύντομα βήματα.
 - Επιτρέπεται playful κλείσιμο τύπου «βάλε χαρτοπετσέτες κοντά».
 - Μην ισχυρίζεσαι ότι το δοκιμάσαμε ή ότι είναι «το καλύτερο».
+- ΜΗΝ κάνεις ισχυρισμούς για πρωτεΐνη, ίνες, θερμίδες, υγεία, θρεπτική αξία ή «healthy» εκτός αν αυτό είναι απολύτως απαραίτητο — στη στήλη αυτή δεν είναι.
 
 ΑΣΦΑΛΕΙΑ
 - Καμία επικίνδυνη τεχνική.
@@ -95,7 +98,8 @@ const RECIPE_QA = `Είσαι QA editor για τη στήλη «ΒΡΩΜΙΑ Σ
 - λέει ότι «δοκιμάσαμε» ή κάνει ψεύτικη εμπειρική κρίση,
 - δεν έχει σαφείς ποσότητες ή πρακτικά βήματα,
 - περιέχει προφανώς επισφαλή food-safety οδηγία,
-- δεν ταιριάζει σε sauces/street/junk/comfort/home dirty food.
+- περιέχει health/nutrition claims (πρωτεΐνη, ίνες, θερμίδες, healthy κ.λπ.),
+- δεν ταιριάζει ξεκάθαρα σε sauces/dips/burgers/fries/sandwich/fried/loaded/wings/tacos/hot-dogs ή αντίστοιχη street/junk/comfort βρωμιά.
 Απάντησε μόνο: {"ok":true,"reason":""} ή {"ok":false,"reason":"σύντομη αιτία"}.`;
 
 function parseJson(text) {
@@ -148,7 +152,7 @@ async function grapse(item, poli, feedback = "") {
     return anthropic({
       model: MONTELO,
       max_tokens: 1400,
-      temperature: 0.45,
+      temperature: 0.4,
       system: RECIPE_STYLE,
       messages: [{
         role: "user",
@@ -192,10 +196,30 @@ async function diavaseJson(path, fallback) {
   catch { return fallback; }
 }
 
+function mergeArticles(fresh = [], previous = [], limit = 8) {
+  const retiredSourceIds = new Set([
+    // Πρώτο recipe smoke-test: soup -> lentil pita. Αποσύρεται οριστικά.
+    "1a3160764a3d0e245c12d213"
+  ]);
+  const seen = new Set();
+  const out = [];
+  for (const a of [...fresh, ...previous]) {
+    const sid = a?.source?.source_id || "";
+    if (retiredSourceIds.has(sid)) continue;
+    const key = sid || String(a?.titlos || "").toLowerCase().trim();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(a);
+    if (out.length >= limit) break;
+  }
+  return out;
+}
+
 const items = JSON.parse(await readFile("content/items.json", "utf8"));
+const previous = await diavaseJson("content/arthra.json", { ath: [], thes: [], global: [] });
 const ORIO_ANA_POLI = Number(process.env.ORIO_ARTHRON || 2);
 const ORIO_GLOBAL = Number(process.env.ORIO_GLOBAL || 1);
-const exodos = { ath: [], thes: [], global: [] };
+const fresh = { ath: [], thes: [], global: [] };
 const publishedNow = [];
 
 for (const poli of ["ath", "thes", "global"]) {
@@ -243,7 +267,7 @@ for (const poli of ["ath", "thes", "global"]) {
         source_id: item.id
       };
       a.generated_at = new Date().toISOString();
-      exodos[poli].push(a);
+      fresh[poli].push(a);
       if (item.id) publishedNow.push(item.id);
       console.log(`  ✓ QA PASS: ${a.titlos}`);
     } catch (e) {
@@ -252,11 +276,17 @@ for (const poli of ["ath", "thes", "global"]) {
   }
 }
 
-const synolo = exodos.ath.length + exodos.thes.length + exodos.global.length;
-if (synolo === 0) {
-  console.error("\nΚανένα άρθρο δεν πέρασε το QA. Το site μένει ως έχει.");
+const freshCount = fresh.ath.length + fresh.thes.length + fresh.global.length;
+if (freshCount === 0) {
+  console.error("\nΚανένα νέο άρθρο δεν πέρασε το QA. Το site μένει ως έχει.");
   process.exit(1);
 }
+
+const exodos = {
+  ath: mergeArticles(fresh.ath, previous.ath, 8),
+  thes: mergeArticles(fresh.thes, previous.thes, 8),
+  global: mergeArticles(fresh.global, previous.global, 6)
+};
 
 await writeFile("content/arthra.json", JSON.stringify(exodos, null, 2));
 
@@ -264,4 +294,4 @@ const history = await diavaseJson("content/history.json", { published_ids: [] })
 const deduped = [...new Set([...(history.published_ids || []), ...publishedNow])].slice(-2000);
 await writeFile("content/history.json", JSON.stringify({ published_ids: deduped, updated_at: new Date().toISOString() }, null, 2));
 
-console.log(`\n${synolo} άρθρα πέρασαν QA → content/arthra.json`);
+console.log(`\n${freshCount} νέα άρθρα πέρασαν QA. Αποθηκεύτηκαν μαζί με τα προηγούμενα QA-passed → content/arthra.json`);
