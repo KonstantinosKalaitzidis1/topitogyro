@@ -11,11 +11,13 @@ on:
       - "pitogyro/content/images.json"
       - "pitogyro/content/arthra.json"
       - "pitogyro/sources.json"
+      - "pitogyro/package.json"
       - "pitogyro/scripts/fetch.mjs"
       - "pitogyro/scripts/rank-discovery.mjs"
       - "pitogyro/scripts/resolve-publisher.mjs"
       - "pitogyro/scripts/verify.mjs"
       - "pitogyro/scripts/verify-search.mjs"
+      - "pitogyro/scripts/official-feed.mjs"
       - "pitogyro/scripts/merge-verified.mjs"
       - "pitogyro/scripts/write.mjs"
       - "pitogyro/scripts/build.mjs"
@@ -74,6 +76,13 @@ jobs:
           AI_MODEL: ${{ vars.AI_MODEL }}
           VERIFY_SEARCH_LIMIT_TOTAL: ${{ vars.VERIFY_SEARCH_LIMIT_TOTAL }}
         run: npm run verify-search
+
+      - name: Extract one low-cost event per city from official agendas
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AI_MODEL: ${{ vars.AI_MODEL }}
+          OFFICIAL_HORIZON_DAYS: ${{ vars.OFFICIAL_HORIZON_DAYS }}
+        run: npm run official-feed
 
       - name: Merge first-party verified facts into writer input
         run: npm run merge-verified
