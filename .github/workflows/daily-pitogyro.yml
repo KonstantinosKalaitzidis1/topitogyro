@@ -11,6 +11,7 @@ on:
       - "pitogyro/content/images.json"
       - "pitogyro/sources.json"
       - "pitogyro/scripts/fetch.mjs"
+      - "pitogyro/scripts/resolve-publisher.mjs"
       - "pitogyro/scripts/verify.mjs"
       - "pitogyro/scripts/verify-search.mjs"
       - "pitogyro/scripts/merge-verified.mjs"
@@ -47,6 +48,9 @@ jobs:
 
       - name: Fetch discovery radar and approved inputs
         run: npm run fetch
+
+      - name: Resolve publisher article URLs without AI
+        run: npm run resolve-publisher
 
       - name: Verify radar candidates against publisher-linked first-party pages
         env:
