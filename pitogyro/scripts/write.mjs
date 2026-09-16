@@ -1,39 +1,43 @@
-// Γράφει πρωτότυπα άρθρα στο ύφος ΠΙΤΟΓΥΡΟ πάνω σε facts από εγκεκριμένες πηγές.
+// Γράφει πρωτότυπα άρθρα στο ύφος ΠΙΤΟΓΥΡΟ πάνω αποκλειστικά σε facts από εγκεκριμένες πηγές.
 // Απαιτεί ANTHROPIC_API_KEY.
 
 import { readFile, writeFile } from "node:fs/promises";
 
 const KLEIDI = process.env.ANTHROPIC_API_KEY;
-const MONTELO = process.env.AI_MODEL || "claude-sonnet-5";
+// Φθηνότερο default για καθημερινή αυτοματοποίηση. Μπορεί να αλλάξει από GitHub variable AI_MODEL.
+const MONTELO = process.env.AI_MODEL || "claude-haiku-4-5-20251001";
 
 if (!KLEIDI) {
   console.error("Λείπει το ANTHROPIC_API_KEY. Δες το README.");
   process.exit(1);
 }
 
-const YFOS = `Γράφεις για ΤΟ ΠΙΤΟΓΥΡΟ — καθημερινή έκδοση για την πόλη, Αθήνα και Θεσσαλονίκη.
-Θέματα: street food, μουσική, εκδηλώσεις, γειτονιές, νέα ανοίγματα, νυχτερινή ζωή.
+const YFOS = `Γράφεις για ΤΟ ΠΙΤΟΓΥΡΟ — καθημερινό urban μέσο για Αθήνα και Θεσσαλονίκη.
+Θέματα: street food, junk food, burgers, smashed burgers, σουβλάκι, πίτσα, fried chicken, hot dog, tacos, kebab, late-night spots, νέα μαγαζιά και openings, pop-ups, μουσική, εκδηλώσεις, γειτονιές, street culture και νυχτερινή ζωή.
 
 ΦΩΝΗ
 - Δεύτερο πρόσωπο, καζουάλ, σαν να μιλάς σε φίλο που ρώτησε τι παίζει.
-- Μικρές προτάσεις. Καθόλου δημοσιογραφική επισημότητα, καθόλου δελτίο τύπου.
+- Μικρές προτάσεις. Καθόλου δελτίο τύπου και καθόλου δήθεν γκουρμέ ύφος.
 - Αργκό με μέτρο και μόνο όπου βγαίνει φυσικά.
 - Χωρίς επίθετα-γεμίσματα ("υπέροχο", "μοναδικό", "ξεχωριστό").
+- Για νέο μαγαζί ή street food γράφεις καθαρά τι άνοιξε/έρχεται και τι ακριβώς είναι, μόνο αν αυτά υπάρχουν στα facts.
 
 ΑΠΟΛΥΤΟΙ ΚΑΝΟΝΕΣ
-- Γράφεις ΜΟΝΟ πάνω στα facts που σου δίνονται και σε ασφαλή γενική γνώση για την πόλη.
-- ΠΟΤΕ δεν παραφράζεις ή αναπαράγεις κείμενο τρίτου.
-- ΠΟΤΕ δεν εφευρίσκεις ώρα, τιμή, διεύθυνση, όνομα, δρομολόγιο ή άλλη πρακτική λεπτομέρεια.
-- Αν λείπει στοιχείο, το παραλείπεις.
-- Καμία αρνητική κρίση για επώνυμο μαγαζί ή πρόσωπο.
-- Τίποτα για εγκλήματα, ατυχήματα, πολιτική, υγεία, δικαστικές υποθέσεις.
-- Μη γράφεις ότι "πήγαμε", "δοκιμάσαμε", "μιλήσαμε" ή ότι έχει γίνει επιτόπιο ρεπορτάζ αν δεν σου δίνεται τέτοιο fact.
+- Χρησιμοποιείς ΜΟΝΟ τα facts που δίνονται στο συγκεκριμένο input. ΟΧΙ γενική γνώση, μνήμη ή υποθέσεις.
+- ΠΟΤΕ δεν παραφράζεις ή αναπαράγεις κείμενο τρίτου. Γράφεις νέο κείμενο βασισμένο στα επιβεβαιωμένα facts.
+- ΠΟΤΕ δεν εφευρίσκεις ώρα, τιμή, διεύθυνση, γειτονιά, menu item, όνομα, ημερομηνία, δρομολόγιο, opening date ή άλλη πρακτική λεπτομέρεια.
+- Αν λείπει στοιχείο, το παραλείπεις. Δεν το συμπληρώνεις.
+- Αν τα facts δεν αρκούν για τουλάχιστον 3 ουσιαστικές μικρές παραγράφους, επέστρεψε {"publish":false,"reason":"insufficient_facts"}.
+- Αν το θέμα αφορά πολιτική, εκλογές, εγκλήματα, σοβαρά ατυχήματα, υγεία, δικαστικές/νομικές καταγγελίες ή προσωπικά δεδομένα, επέστρεψε {"publish":false,"reason":"sensitive_topic"}.
+- Καμία αρνητική κρίση ή μη τεκμηριωμένος ισχυρισμός για επώνυμο μαγαζί ή πρόσωπο.
+- Μη γράφεις ότι "πήγαμε", "δοκιμάσαμε", "μιλήσαμε" ή ότι έγινε επιτόπιο ρεπορτάζ αν δεν δίνεται τέτοιο fact.
 
 ΜΟΡΦΗ ΑΠΑΝΤΗΣΗΣ
-Μόνο JSON, χωρίς backticks:
-{"kat":"ΚΑΤΗΓΟΡΙΑ","titlos":"...","keimeno":"περίληψη 1-2 προτάσεις","soma":["παράγραφος","παράγραφος"]}
-Το soma: 5 έως 9 παράγραφοι.
-Η kat είναι μία από: ΑΠΟΨΕ, ΜΟΥΣΙΚΗ, ΦΑΓΗΤΟ, ΓΕΙΤΟΝΙΕΣ, ΝΕΟ ΑΝΟΙΓΜΑ, ΤΟΙΧΟΙ, ΝΥΧΤΑ`;
+Μόνο JSON, χωρίς backticks.
+Για δημοσιεύσιμο θέμα:
+{"publish":true,"kat":"ΚΑΤΗΓΟΡΙΑ","titlos":"...","keimeno":"περίληψη 1-2 προτάσεις","soma":["παράγραφος","παράγραφος","παράγραφος"]}
+Το soma: 3 έως 6 σύντομες παραγράφους.
+Η kat είναι μία από: ΝΕΑ ΑΦΙΞΗ, STREET FOOD, ΦΑΓΗΤΟ, ΑΠΟΨΕ, ΜΟΥΣΙΚΗ, ΓΕΙΤΟΝΙΕΣ, ΤΟΙΧΟΙ, ΝΥΧΤΑ, ΠΟΛΗ.`;
 
 async function grapse(item, poli) {
   const poliOnoma = poli === "ath" ? "Αθήνα" : "Θεσσαλονίκη";
@@ -46,11 +50,11 @@ async function grapse(item, poli) {
     },
     body: JSON.stringify({
       model: MONTELO,
-      max_tokens: 1600,
+      max_tokens: 900,
       system: YFOS,
       messages: [{
         role: "user",
-        content: `Πόλη: ${poliOnoma}\nΠηγή: ${item.pigi}\nURL πηγής: ${item.source_item_url || item.pigi_url || ""}\nΤίτλος: ${item.titlos}\nΗμερομηνία: ${item.imerominia || "άγνωστη"}\nΠρώτη ύλη (μόνο για facts, ΜΗΝ την αντιγράψεις): ${item.proti_yli}\n\nΓράψε πρωτότυπο άρθρο.`
+        content: `Πόλη: ${poliOnoma}\nΠηγή: ${item.pigi}\nURL πηγής: ${item.source_item_url || item.pigi_url || ""}\nΤίτλος: ${item.titlos}\nΗμερομηνία: ${item.imerominia || "άγνωστη"}\nΠρώτη ύλη (μόνο για facts, ΜΗΝ την αντιγράψεις): ${item.proti_yli}\n\nΑξιολόγησε αν είναι ασφαλές και αρκετά τεκμηριωμένο για δημοσίευση. Αν ναι, γράψε πρωτότυπο άρθρο.`
       }]
     })
   });
@@ -67,17 +71,24 @@ async function diavaseJson(path, fallback) {
 }
 
 const items = JSON.parse(await readFile("content/items.json", "utf8"));
-const ORIO_ANA_POLI = Number(process.env.ORIO_ARTHRON || 4);
+// Χαμηλό default για κόστος. Αλλάζει με GitHub variable ORIO_ARTHRON.
+const ORIO_ANA_POLI = Number(process.env.ORIO_ARTHRON || 2);
 const exodos = { ath: [], thes: [] };
 const publishedNow = [];
 
 for (const poli of ["ath", "thes"]) {
   const lista = (items[poli] || []).slice(0, ORIO_ANA_POLI);
-  console.log(`\n${poli.toUpperCase()}: ${lista.length} άρθρα προς συγγραφή`);
+  console.log(`\n${poli.toUpperCase()}: ${lista.length} στοιχεία προς αξιολόγηση/συγγραφή`);
 
   for (const item of lista) {
     try {
       const a = await grapse(item, poli);
+
+      if (a.publish === false) {
+        console.log(`  SKIP: ${a.reason || "not_publishable"} — "${item.titlos}"`);
+        continue;
+      }
+
       if (!a.titlos || !Array.isArray(a.soma) || a.soma.length < 3) {
         console.log(`  ΑΠΟΡΡΙΨΗ: ελλιπές άρθρο για "${item.titlos}"`);
         continue;
