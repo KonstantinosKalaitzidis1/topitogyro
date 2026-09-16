@@ -2,6 +2,7 @@
 // City stories: μόνο verified facts.
 // Global "ΒΡΩΜΙΑ ΣΠΙΤΙ": ξένο feed = έμπνευση μόνο, και παράγεται εντελώς πρωτότυπη συνταγή.
 // Τα νέα άρθρα συγχωνεύονται με τα τελευταία QA-passed ώστε recipe-only run να μη σβήνει city stories.
+// QA rejection είναι φυσιολογικό αποτέλεσμα, όχι workflow failure.
 
 import { readFile, writeFile } from "node:fs/promises";
 
@@ -78,12 +79,14 @@ const RECIPE_STYLE = `Γράφεις για ΤΟ ΠΙΤΟΓΥΡΟ, στη στή
 - Δώσε σαφείς ποσότητες για 2-4 άτομα, εύκολα υλικά, και σύντομα βήματα.
 - Επιτρέπεται playful κλείσιμο τύπου «βάλε χαρτοπετσέτες κοντά».
 - Μην ισχυρίζεσαι ότι το δοκιμάσαμε ή ότι είναι «το καλύτερο».
-- ΜΗΝ κάνεις ισχυρισμούς για πρωτεΐνη, ίνες, θερμίδες, υγεία, θρεπτική αξία ή «healthy» εκτός αν αυτό είναι απολύτως απαραίτητο — στη στήλη αυτή δεν είναι.
+- ΜΗΝ κάνεις ισχυρισμούς για πρωτεΐνη, ίνες, θερμίδες, υγεία, θρεπτική αξία ή «healthy».
 
 ΑΣΦΑΛΕΙΑ
 - Καμία επικίνδυνη τεχνική.
-- Για ωμό κρέας/κοτόπουλο δώσε ασφαλή, συμβατική οδηγία πλήρους ψησίματος χωρίς ακραίες/επισφαλείς πρακτικές.
+- Αν χρησιμοποιείται ωμό κοτόπουλο ή άλλο πουλερικό, γράψε ρητά ότι πρέπει να φτάσει τουλάχιστον 74°C στο πιο παχύ σημείο πριν σερβιριστεί. Ο χρόνος ψησίματος μπορεί να είναι μόνο ενδεικτικός και ΠΟΤΕ το μοναδικό κριτήριο ψησίματος.
+- Για άλλο ωμό κρέας δώσε ασφαλή, συμβατική οδηγία πλήρους ψησίματος χωρίς ακραίες/επισφαλείς πρακτικές.
 - Μην προτείνεις κατανάλωση ωμών αυγών ή μη παστεριωμένων επικίνδυνων υλικών.
+- Μην προτείνεις να ξαναχρησιμοποιηθεί μαρινάδα που ακούμπησε ωμό κρέας χωρίς να μαγειρευτεί επαρκώς.
 
 ΜΟΡΦΗ
 Απάντησε μόνο με ΕΝΑ πλήρες JSON:
@@ -99,7 +102,10 @@ const RECIPE_QA = `Είσαι QA editor για τη στήλη «ΒΡΩΜΙΑ Σ
 - δεν έχει σαφείς ποσότητες ή πρακτικά βήματα,
 - περιέχει προφανώς επισφαλή food-safety οδηγία,
 - περιέχει health/nutrition claims (πρωτεΐνη, ίνες, θερμίδες, healthy κ.λπ.),
-- δεν ταιριάζει ξεκάθαρα σε sauces/dips/burgers/fries/sandwich/fried/loaded/wings/tacos/hot-dogs ή αντίστοιχη street/junk/comfort βρωμιά.
+- δεν ταιριάζει ξεκάθαρα σε sauces/dips/burgers/fries/sandwich/fried/loaded/wings/tacos/hot-dogs ή αντίστοιχη street/junk/comfort βρωμιά,
+- χρησιμοποιεί ωμό κοτόπουλο/πουλερικό αλλά δεν λέει ρητά ότι η ασφαλής εσωτερική θερμοκρασία πρέπει να φτάσει τουλάχιστον 74°C στο πιο παχύ σημείο,
+- για ωμό κοτόπουλο βασίζεται μόνο σε λεπτά ψησίματος/χρώμα αντί για εσωτερική θερμοκρασία,
+- προτείνει επαναχρησιμοποίηση μαρινάδας από ωμό κρέας χωρίς επαρκές μαγείρεμα.
 Απάντησε μόνο: {"ok":true,"reason":""} ή {"ok":false,"reason":"σύντομη αιτία"}.`;
 
 function parseJson(text) {
@@ -176,7 +182,6 @@ async function grapse(item, poli, feedback = "") {
 
 async function elegxos(item, a) {
   const recipe = item.content_mode === "recipe_inspiration";
-
   return anthropic({
     model: MONTELO,
     max_tokens: 320,
@@ -198,7 +203,6 @@ async function diavaseJson(path, fallback) {
 
 function mergeArticles(fresh = [], previous = [], limit = 8) {
   const retiredSourceIds = new Set([
-    // Πρώτο recipe smoke-test: soup -> lentil pita. Αποσύρεται οριστικά.
     "1a3160764a3d0e245c12d213"
   ]);
   const seen = new Set();
@@ -221,6 +225,7 @@ const ORIO_ANA_POLI = Number(process.env.ORIO_ARTHRON || 2);
 const ORIO_GLOBAL = Number(process.env.ORIO_GLOBAL || 1);
 const fresh = { ath: [], thes: [], global: [] };
 const publishedNow = [];
+const rejectedNow = [];
 
 for (const poli of ["ath", "thes", "global"]) {
   const orio = poli === "global" ? ORIO_GLOBAL : ORIO_ANA_POLI;
@@ -231,16 +236,19 @@ for (const poli of ["ath", "thes", "global"]) {
     try {
       let a = await grapse(item, poli);
       let passed = false;
+      let rejected = false;
 
       for (let attempt = 0; attempt < 3; attempt++) {
         if (a.publish === false) {
           console.log(`  SKIP: ${a.reason || "not_publishable"} — "${item.titlos}"`);
+          rejected = true;
           break;
         }
 
         const minParas = item.content_mode === "recipe_inspiration" ? 4 : 3;
         if (!a.titlos || !Array.isArray(a.soma) || a.soma.length < minParas) {
           console.log(`  ΑΠΟΡΡΙΨΗ: ελλιπές άρθρο για "${item.titlos}"`);
+          rejected = true;
           break;
         }
 
@@ -252,6 +260,7 @@ for (const poli of ["ath", "thes", "global"]) {
 
         if (attempt === 2) {
           console.log(`  QA ΑΠΟΡΡΙΨΗ μετά από 3 drafts: ${qa.reason || "failed"} — "${item.titlos}"`);
+          rejected = true;
           break;
         }
 
@@ -259,7 +268,10 @@ for (const poli of ["ath", "thes", "global"]) {
         a = await grapse(item, poli, qa.reason || "unsupported or unclear content");
       }
 
-      if (!passed) continue;
+      if (!passed) {
+        if (rejected && item.id) rejectedNow.push(item.id);
+        continue;
+      }
 
       a.source = {
         name: item.content_mode === "recipe_inspiration" ? `Έμπνευση: ${item.pigi}` : item.pigi,
@@ -277,9 +289,21 @@ for (const poli of ["ath", "thes", "global"]) {
 }
 
 const freshCount = fresh.ath.length + fresh.thes.length + fresh.global.length;
+const history = await diavaseJson("content/history.json", { published_ids: [], rejected_ids: [] });
+const publishedIds = [...new Set([...(history.published_ids || []), ...publishedNow])].slice(-2000);
+const rejectedIds = [...new Set([...(history.rejected_ids || []), ...rejectedNow])]
+  .filter(id => !publishedIds.includes(id))
+  .slice(-2000);
+
+await writeFile("content/history.json", JSON.stringify({
+  published_ids: publishedIds,
+  rejected_ids: rejectedIds,
+  updated_at: new Date().toISOString()
+}, null, 2));
+
 if (freshCount === 0) {
-  console.error("\nΚανένα νέο άρθρο δεν πέρασε το QA. Το site μένει ως έχει.");
-  process.exit(1);
+  console.log("\nΚανένα νέο άρθρο δεν πέρασε το QA. Αυτό είναι αποδεκτό: το site μένει ως έχει και το workflow συνεχίζει ώστε να αποθηκευτούν radar/history updates.");
+  process.exit(0);
 }
 
 const exodos = {
@@ -289,9 +313,4 @@ const exodos = {
 };
 
 await writeFile("content/arthra.json", JSON.stringify(exodos, null, 2));
-
-const history = await diavaseJson("content/history.json", { published_ids: [] });
-const deduped = [...new Set([...(history.published_ids || []), ...publishedNow])].slice(-2000);
-await writeFile("content/history.json", JSON.stringify({ published_ids: deduped, updated_at: new Date().toISOString() }, null, 2));
-
 console.log(`\n${freshCount} νέα άρθρα πέρασαν QA. Αποθηκεύτηκαν μαζί με τα προηγούμενα QA-passed → content/arthra.json`);
