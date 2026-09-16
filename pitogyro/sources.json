@@ -48,31 +48,33 @@
       "rights_status": "discovery_only",
       "dikaiomata": "DISCOVERY ONLY — τίτλος/σύντομο RSS snippet ως έμπνευση. Δεν αναδημοσιεύουμε ή μεταφράζουμε τη συνταγή/κείμενο. Η παραγόμενη συνταγή είναι πρωτότυπη και εμφανίζει credit έμπνευσης.",
       "elegxthike": "2026-09-16",
-      "feed_test": "GitHub Actions RSS parse OK — 8 relevant ideas found on 2026-09-16",
+      "feed_test": "GitHub Actions RSS parse OK — tested on 2026-09-16",
       "keywords": [
         "sauce",
         "dip",
+        "condiment",
+        "aioli",
+        "mayo",
+        "hot honey",
         "burger",
         "fries",
         "sandwich",
-        "fried",
-        "loaded",
-        "chicken",
         "hot dog",
+        "wings",
+        "nachos",
+        "smash",
+        "sloppy",
+        "grilled cheese",
+        "quesadilla",
         "taco",
         "kebab",
         "wrap",
-        "cheese",
+        "enchilada",
         "pickle",
         "spicy",
         "crispy",
-        "smash",
-        "mayo",
-        "nachos",
-        "wings",
-        "sloppy",
-        "grilled cheese",
-        "quesadilla"
+        "fried",
+        "loaded"
       ]
     },
     {
@@ -85,24 +87,7 @@
       "rights_status": "discovery_only",
       "dikaiomata": "Στόχος discovery για sauces/junk/street-food ideas. Feed URL να επιβεβαιωθεί πριν ενεργοποιηθεί.",
       "elegxthike": "2026-09-16",
-      "keywords": [
-        "sauce",
-        "dip",
-        "burger",
-        "fries",
-        "sandwich",
-        "fried",
-        "loaded",
-        "chicken",
-        "hot dog",
-        "taco",
-        "wrap",
-        "pickle",
-        "spicy",
-        "crispy",
-        "nachos",
-        "wings"
-      ]
+      "keywords": ["sauce","dip","condiment","aioli","mayo","hot honey","burger","fries","sandwich","hot dog","wings","nachos","smash","grilled cheese","quesadilla","taco","wrap","pickle","spicy","crispy","fried","loaded"]
     },
     {
       "onoma": "Serious Eats",
@@ -114,21 +99,7 @@
       "rights_status": "discovery_only",
       "dikaiomata": "Στόχος discovery. Direct RSS endpoint να επιβεβαιωθεί πριν ενεργοποιηθεί.",
       "elegxthike": "2026-09-16",
-      "keywords": [
-        "sauce",
-        "burger",
-        "fries",
-        "sandwich",
-        "fried",
-        "chicken",
-        "hot dog",
-        "taco",
-        "wrap",
-        "spicy",
-        "crispy",
-        "nachos",
-        "wings"
-      ]
+      "keywords": ["sauce","dip","condiment","aioli","mayo","hot honey","burger","fries","sandwich","hot dog","wings","nachos","smash","grilled cheese","quesadilla","taco","wrap","pickle","spicy","crispy","fried","loaded"]
     }
   ]
 }
