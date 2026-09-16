@@ -20,6 +20,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: daily-pitogyro
@@ -113,3 +115,28 @@ jobs:
             echo "Main changed during this run; skipping stale generated output. A newer run will regenerate from the current main."
             exit 0
           fi
+
+  deploy:
+    needs: publish
+    if: ${{ needs.publish.result == 'success' }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload latest site artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: "pitogyro"
+
+      - name: Deploy latest main to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
