@@ -85,8 +85,32 @@
       "search_checked_at": "2026-09-16T19:40:28.071Z",
       "search_version": 1,
       "search_official_url": ""
+    },
+    "c859dd439c0becb7619e466f": {
+      "status": "not_verified",
+      "reason": "first_party_not_sufficient",
+      "checked_at": "2026-09-16T19:41:36.076Z",
+      "official_url": "",
+      "resolver_version": 2,
+      "search_status": "not_verified",
+      "search_reason": "Η σελίδα ανήκει στο Covers.com (sports betting forum), όχι σε μουσικό venue ή event στην Αθήνα. Δεν υπάρχει καμία σχέση με 'COVER 33' ως μουσικό χώρο, ούτε αναφορές σε events, συναυλίες, ημερομηνίες ή τοποθεσίες στην Αθήνα. Το SEARCH RESULT είναι λανθασμένο locator.",
+      "search_checked_at": "2026-09-16T19:41:44.053Z",
+      "search_version": 1,
+      "search_official_url": ""
+    },
+    "0a3c3738e40c39950597fb00": {
+      "status": "not_verified",
+      "reason": "no_plausible_first_party_link",
+      "checked_at": "2026-09-16T19:41:36.530Z",
+      "official_url": "",
+      "resolver_version": 2,
+      "search_status": "not_verified",
+      "search_reason": "no_search_candidate",
+      "search_checked_at": "2026-09-16T19:41:44.274Z",
+      "search_version": 1,
+      "search_official_url": ""
     }
   },
-  "updated_at": "2026-09-16T19:40:28.071Z",
+  "updated_at": "2026-09-16T19:41:44.274Z",
   "resolver_version": 2
 }

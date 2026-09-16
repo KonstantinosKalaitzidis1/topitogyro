@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-09-16T19:40:17.600Z",
+  "updated_at": "2026-09-16T19:41:23.318Z",
   "ath": [
     {
       "id": "e468f509c00d7b3c8947573c",
       "city": "ath",
       "category": "openings_food",
-      "title": "Βar 2046: Το πρώτο bar μέσα σε σινεμά μόλις άνοιξε στην Ακαδημίας - athensvoice.gr",
+      "title": "Βar 2046: Το πρώτο bar μέσα σε σινεμά μόλις άνοιξε στην Ακαδημίας - Athens Voice",
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNYmlNTExhMm5FeUpIeE1IaEZ0NUs2UzBDdzVzdHlNTVVqbkcyMnpRV2RKNzladEliRUtDeldHbjZ3SWZrUlM5WjFBZ1lsUmdLM2EwcjRvRThGQ1l0YVBrblhnakZxdGx5eVQxNTQyXzhXZmpYWEhjUzJhOGo0YkRPWEhkbHBEUU1oSkNzbFp2a0hpcGdHZnhtZExR0gGfAUFVX3lxTE52ZGxJazlkN1hKSDgzV1JnSG1RUTN2MUxxU3ZBeFRxUVdKanE3MU9TQjZlZm9LTkJJbDFseUJLeDVieHZWeXRXR2l2blc3cW8tUWRpVzRtRjBxdFh2X0RRc2ZZb2s3cGRHQ0ZmQ0VjVXlqdExpU3doX2tiQ1pkY3N0UlJEOHU3b1AxUDd0NjdTNk45bk9xcFlsSkVEQWFpSQ?oc=5",
       "source": "Athens Voice — openings & street food radar",
       "source_home": "https://www.athensvoice.gr/life/geusi/",
@@ -18,33 +18,17 @@
       "verification_candidate": true
     },
     {
-      "id": "621b73f264863c195179c5d9",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "Athens Coffee Festival 2026: Η πιο cool πρόταση για καφέ, μουσική & διασκέδαση στην πόλη - LiFO",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPYkFVMk1FZHdUMkRwbVluaTNsNHNESXRMLV9hSk85TEpHRXRaZ3lCcDF6cHJiOXY5dm1XUUhEZHRSSUZfVC1hdnNPX1I2QUJIZ0hYRTBpbXFiYVBqd2RTMEdPVHEyUjdZMkdfcnNzaHFmWkFGcUIxTVQyRVF4RDJsRjVPejdyWEp1SzZZWWQtVC1nc2xXaWUwdHhURnBQM3llZURPSkpmYzUwUXFSRjlKYVk3cFpKQdIBuwFBVV95cUxPV0h3VW5LaVV3bGpQcW52RDlzUUt0Q1Z0allwelE2ZEdsNDM0Smktd25iUHZSQWtuOGg5cmJVb2pTejNVeHVtaVpIWllfMG5UQ0x3Z29yMzE2cVdSQ190aTdkR3dJUmItNUZ2MDlVczNQczRBbFZBNWk5NWlWazFjU29UYWswZ2l3ZFJIVmZ4MDJqSHBYc0szeUpJQ1VldkpUaW1UNktDT2FfVm5hSUkwYkgyT2w4SmlqZ1Nr?oc=5",
-      "source": "LiFO — Athens openings radar",
-      "source_home": "https://www.lifo.gr/",
-      "published_at": "2026-09-16T07:48:44.000Z",
-      "status": "candidate",
-      "auto_publish": false,
-      "specificity_score": 19,
-      "entity_hint": "Athens Coffee Festival 2026",
-      "entity_kind": "colon",
-      "verification_candidate": true
-    },
-    {
       "id": "3cddcd061e0e0a5c36f7b5a9",
       "city": "ath",
       "category": "events_music_street",
-      "title": "Τεχνόπολη: Ακυρώνεται οριστικά η συναυλία-αφιέρωμα στον Μαζωνάκη - athensvoice.gr",
+      "title": "Τεχνόπολη: Ακυρώνεται οριστικά η συναυλία-αφιέρωμα στον Μαζωνάκη - Athens Voice",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQVkdpcS1USnZfcldWMTJvYUFnVEptMDg2clZJaDZTNG1UX09Yb0JYdWFIOHZaaUhNOHNEQ1pKc2paS2JtR1NGN2NpREhaWXc2WHRnc3pEVnY2MDZ1LTFlZVljNWxXUHRYS1lqeWx0SWRBaHlLTmhZQ1NBZXVtUkRlT195Ym9rdFdHdTJtMnVDOGtvZzd0bUtuVnA5a09vdVJPMWxLejF0cXg4SEJLQml5MUxMMVphZ1NkWFIzMNIBwgFBVV95cUxPa1JwalEwcEFiR2hjTlBtZDc3VVE5aVZaWDcxMXNnUGswNjl6dUNJREhYeGpsUFZ0Y081TFdkWjFZS0pQeldUa09JQUdzM212SXNyRmhNRENHME5IcEhtcHRuRnhSM0RZZzQwMW5MN01KYkpFOF9YdmZhUVo0UTBITmh6NkpXcHpIY0h1cmNFLTB6aGtsdHNuTHB2bGR2X081WTd0WkNOd3JqWlF5bkU1WlpYbWtaY0huTzVwZUxYc1RCZw?oc=5",
       "source": "Athens Voice — events/music/street radar",
       "source_home": "https://www.athensvoice.gr/politismos/",
       "published_at": "2026-09-16T14:19:00.000Z",
       "status": "candidate",
       "auto_publish": false,
-      "specificity_score": 18,
+      "specificity_score": 13,
       "entity_hint": "Τεχνόπολη",
       "entity_kind": "colon",
       "verification_candidate": true
@@ -53,14 +37,14 @@
       "id": "c859dd439c0becb7619e466f",
       "city": "ath",
       "category": "events_music_street",
-      "title": "COVER 33: 24 graffiti artists δημιουργούν πάνω σε λευκά εξώφυλλα βινυλίου - athensvoice.gr",
+      "title": "COVER 33: 24 graffiti artists δημιουργούν πάνω σε λευκά εξώφυλλα βινυλίου - Athens Voice",
       "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQZzZ3OTc0TnhzS0F4ODF3QlI0U2dCNlJjVjMxbTV4ZDgyc3lkU0Y4bWdOX2xlSVZXenN5VlpEZVNjTGpvRXhGbVgyZHJvelJsdEJRWTU0WGt4SmgzWEo2ZDFLYS1TZFBQbFJOSTBQTzVHOVhsampuS1FvdUtQM0RyRE5CT0JMaFJoYVJSQ3gwTDRKcVhRMkFZNWZFdEJPOWVEZ2RVN3lZdzZzMkFOaVo1b2dXdHh0NF80UTlZ0gHAAUFVX3lxTE9NWEJEX2xkS1VXNjdvenFDYnMyM3ZuczRtdzNORkpQNHRaY29TbGw3UC1KbEFZa0IwNkduamp2Ym1PRHpLb0ZMMnpnQ2xMMGlka0pKeTFtakFCRm82T0lza2o2UGJQeXd0cllYZVZkUW9wTl9saF9GQ0FhYXJIZnJweWhwZGMwbEcwU1VTYmFwM2V3WHY0VlNVOTFqTW00UEM2Y29YQUtaVW9YWFJpYXdRU3A1NEhhaDFKNmFQUDJGXw?oc=5",
       "source": "Athens Voice — events/music/street radar",
       "source_home": "https://www.athensvoice.gr/politismos/",
       "published_at": "2026-09-15T05:22:00.000Z",
       "status": "candidate",
       "auto_publish": false,
-      "specificity_score": 18,
+      "specificity_score": 13,
       "entity_hint": "COVER 33",
       "entity_kind": "colon",
       "verification_candidate": true
@@ -69,14 +53,14 @@
       "id": "3f2cf93caccdb11232e0a290",
       "city": "ath",
       "category": "events_music_street",
-      "title": "H εναρκτήρια συναυλία της ΚΟΑ στο Μέγαρο Μουσικής Αθηνών - athensvoice.gr",
+      "title": "H εναρκτήρια συναυλία της ΚΟΑ στο Μέγαρο Μουσικής Αθηνών - Athens Voice",
       "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPVUZuSEttNjhfQlNvcnJ0UUtjajJWWlFyT3R5akt2amZvdmtXTHFmTnIxN3RLNHlKODNRNk5ZT2d0MDRsWjBSSjdINkR4WjB6MVp3cF9ERWVsM0R6b2x2MFRqU0YwVmRGSUJFX2cwTHhIMlE3WDJfcTg1bVYxa0JBNE5GcThfZ1F3bUhmeVJidUdXc2hmYkttTUYta0tUMGE0WFRNODBfQlNBZEU1ZUE?oc=5",
       "source": "Athens Voice — events/music/street radar",
       "source_home": "https://www.athensvoice.gr/politismos/",
       "published_at": "2026-09-15T09:58:51.000Z",
       "status": "candidate",
       "auto_publish": false,
-      "specificity_score": 14,
+      "specificity_score": 9,
       "entity_hint": "H εναρκτήρια συναυλία της ΚΟΑ",
       "entity_kind": "verb",
       "verification_candidate": true
@@ -85,44 +69,20 @@
       "id": "f161f826f23d77a14eb04e10",
       "city": "ath",
       "category": "openings_food",
-      "title": "Τα Μπαρ Μπεε Κιου πάνε Burger Fest και φέρνουν μαζί τους ένα… Holy Sheep! - athensvoice.gr",
+      "title": "Τα Μπαρ Μπεε Κιου πάνε Burger Fest και φέρνουν μαζί τους ένα… Holy Sheep! - Athens Voice",
       "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNbEtjUEZYYk95RFpuTXFYNlJQS20wbVo3T09ueTRzN2xKUzMyaEtiRFR5VXJLc1hqRDZUNWoyME5MVHZSYmxCbUNzc2dPSER5UnhfbUxLMU1rVEJtOHNMdVhCTW5ySTBpTVZHd1JXaXpMYlQ1ZVUwZ1RiZlc1WGtvZXEyY1NId1JSdFJFd3QyM1dhYVdJRGNYbWxTTzN2RFZvZVA3blFCb1RiWVVONGhGSDBpSG43T1lIWlNQSjVMZ2jSAcYBQVVfeXFMT3ItZ2hjeWk2cndIWHFIc1VDWV9iQTBGdmotOGFlbGtwWHlfc2p0aHFpUWVRRVVwOXVQVlJ2M0NiN2Q0eGhmNmY5eEcwVTZJYXQ3dHl3UExqdGJhN2V0eGhkM3ZtS3d5MXh1Y2VxMWhUQTFFSmNGWEctSGx6ekVaeGJHRHptaFkyMU1QZ1F1Q3d4LWpxdFV3a1VYRGJPY0xpZjRndTN1bEdyYTFaOF84cE1MTnEtV2hIQUVHRUVkSUdtRTBUbG1B?oc=5",
       "source": "Athens Voice — openings & street food radar",
       "source_home": "https://www.athensvoice.gr/life/geusi/",
       "published_at": "2026-09-10T16:38:00.000Z",
       "status": "candidate",
       "auto_publish": false,
-      "specificity_score": 14,
+      "specificity_score": 9,
       "entity_hint": "Τα Μπαρ Μπεε Κιου",
       "entity_kind": "verb",
       "verification_candidate": true
     }
   ],
   "thes": [
-    {
-      "id": "9783ad691aa5e3dfa2d6b8bf",
-      "city": "thes",
-      "category": "events_music_street",
-      "title": "ΕΙΚΟΝΕΣ-Θεσσαλονίκη: Τεράστιο πλήθος στη συναυλία του Ρέμου - Parallaxi",
-      "url": "https://parallaximag.gr/thessaloniki-news/thessaloniki-adiachorito-stin-paralia-kai-kleistoi-dromoi-gia-ta-30-chronia-toy-antoni-remoy",
-      "source": "Parallaxi — Thessaloniki culture/street radar",
-      "source_home": "https://parallaximag.gr/",
-      "published_at": "2026-09-12T20:26:06.000Z",
-      "status": "candidate",
-      "auto_publish": false,
-      "specificity_score": 18,
-      "entity_hint": "ΕΙΚΟΝΕΣ-Θεσσαλονίκη",
-      "entity_kind": "colon",
-      "verification_candidate": true,
-      "discovery_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNNTNOeDhLRzBzc0JCcFZHelpWdC1TSlU0YnlhUV85dlhOY3FOM3VqU1pxVWFLTGJGVnpZZXp4WmlYNWs3QVlEd09xcFJZdmpnSi1DYmpzZlRVZERLV09FN3BFX2QxdnlSdWN2eFlUZ0VmcU4xSV9GSFIxUDZtb3ZZbGZJSWNnTkRnZXhtbkh6WXJqM1dmeF80SEJUc2U0RGxKa2k5YjV5Y2FUM2tDaF8wbDNTMWJIQlJmTzhwaVRBTTJIUXJ1T0dmZDlOUGFXUmc?oc=5",
-      "publisher_url": "https://parallaximag.gr/thessaloniki-news/thessaloniki-adiachorito-stin-paralia-kai-kleistoi-dromoi-gia-ta-30-chronia-toy-antoni-remoy",
-      "publisher_resolution": {
-        "method": "wordpress_search_api",
-        "entity": "ΕΙΚΟΝΕΣ-Θεσσαλονίκη",
-        "score": 23,
-        "resolved_at": "2026-09-16T19:40:22.049Z"
-      }
-    },
     {
       "id": "0a3c3738e40c39950597fb00",
       "city": "thes",
@@ -144,55 +104,15 @@
         "method": "wordpress_search_api",
         "entity": "Αντώνης Ρέμος",
         "score": 34,
-        "resolved_at": "2026-09-16T19:40:22.208Z"
+        "resolved_at": "2026-09-16T19:41:27.290Z"
       }
-    },
-    {
-      "id": "3da738eba2472dfe280a4926",
-      "city": "thes",
-      "category": "events_music_street",
-      "title": "ΕΙΚΟΝΕΣ: Λαοθάλασσα στην τεράστια συναυλία του Αντώνη Ρέμου στη Θεσσαλονίκη - Parallaxi",
-      "url": "https://parallaximag.gr/thessaloniki-news/eikones-laothalassa-stin-terastia-synaylia-toy-antoni-remoy-sti-thessaloniki",
-      "source": "Parallaxi — Thessaloniki culture/street radar",
-      "source_home": "https://parallaximag.gr/",
-      "published_at": "2026-09-13T05:30:09.000Z",
-      "status": "candidate",
-      "auto_publish": false,
-      "specificity_score": 14,
-      "entity_hint": "ΕΙΚΟΝΕΣ: Λαοθάλασσα",
-      "entity_kind": "verb",
-      "verification_candidate": true,
-      "discovery_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPa1BEMUp0UkJBeHlxdnpWaFFYZk5fZnloN3VqQjRmT0FLODlGdXlYUVhKYmplUzAwSmt2a05OTmxsWlZySGs1TnNBVTJNQ0JlUHFDZHA5M3FnTnM5eWZESXlENVlrWWY3cTlSWkxWSk0xLUYyQ0dHYmhLRzZRalZVNDdrcGNKcklOdEk1eG1BX2ZWSmhsTVp4eHRsUC1mN01xeFNkXzY4VUtuUzZTMmlSc1hOenhzRFJXTmc?oc=5",
-      "publisher_url": "https://parallaximag.gr/thessaloniki-news/eikones-laothalassa-stin-terastia-synaylia-toy-antoni-remoy-sti-thessaloniki",
-      "publisher_resolution": {
-        "method": "wordpress_search_api",
-        "entity": "ΕΙΚΟΝΕΣ",
-        "score": 25,
-        "resolved_at": "2026-09-16T19:40:22.372Z"
-      }
-    },
-    {
-      "id": "acb9d16c4aa5e596fdf76e9d",
-      "city": "thes",
-      "category": "events_music_street",
-      "title": "Θεσσαλονίκη: Ένταση και μια προσαγωγή στο πάρκο Ξαρχάκου για τη συναυλία του Ρέμου - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNRzhfVkJFUkVpUFlqRzlXY3ZTb2Y2VnEtbk51V011QWM1Y1ktYk44UmdnOE1Rb3RMYTlRLXotaGU2WFV2Z0J0dmNwQVZyZFB2MDFZYlhZQTkzYktqUWR1OW5LUEI3YXNLa3RISmNnUGd3VVpaQzN6NWd6Ympsd1FESXlUTXR2VzJiTHp6Y2MzZTJKNWJ1SER4Z3cxSVB5cjFSMkpWNGU1N1R4RmNsZm9VR0NxeUdNcGZyN0o0Nlh0STFEa0U?oc=5",
-      "source": "Parallaxi — Thessaloniki culture/street radar",
-      "source_home": "https://parallaximag.gr/",
-      "published_at": "2026-09-12T16:47:48.000Z",
-      "status": "candidate",
-      "auto_publish": false,
-      "specificity_score": 14,
-      "entity_hint": "Θεσσαλονίκη: Ένταση και μια προσαγωγή",
-      "entity_kind": "verb",
-      "verification_candidate": true
     },
     {
       "id": "4e0e8dcd22eaf9cccb739381",
       "city": "thes",
       "category": "events_music_street",
       "title": "Καταιγίδες στη Θεσσαλονίκη, καμία ενημέρωση για τη συναυλία Ρέμου - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPeVV6R3dCTW5rcGpFdEtDOGhFU1hBX0NlU0VxOHFhRnlsMmtfcGdidDZ0M1ZpbDZjTkljR3ZrLUZWTU0xamdEVnpqRHlUeEhzUDJsbVl1UUtVRjZCUVhlbWpnSGlXSUZOaExjeG9IMUlLdF9TZ2hTZ0ZOT05kSWhHbjRpZFpNN25IaDBXM0NFem92a3pzMlpUSmVmWkRFeWNwQTdMT0o4VzI4TEE?oc=5",
+      "url": "https://parallaximag.gr/thessaloniki-news/kataigides-sti-thessaloniki-kamia-enimerosi-gia-ti-synaylia-remoy",
       "source": "Parallaxi — Thessaloniki culture/street radar",
       "source_home": "https://parallaximag.gr/",
       "published_at": "2026-09-12T15:36:51.000Z",
@@ -201,7 +121,15 @@
       "specificity_score": 14,
       "entity_hint": "Καταιγίδες",
       "entity_kind": "verb",
-      "verification_candidate": true
+      "verification_candidate": true,
+      "discovery_url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPeVV6R3dCTW5rcGpFdEtDOGhFU1hBX0NlU0VxOHFhRnlsMmtfcGdidDZ0M1ZpbDZjTkljR3ZrLUZWTU0xamdEVnpqRHlUeEhzUDJsbVl1UUtVRjZCUVhlbWpnSGlXSUZOaExjeG9IMUlLdF9TZ2hTZ0ZOT05kSWhHbjRpZFpNN25IaDBXM0NFem92a3pzMlpUSmVmWkRFeWNwQTdMT0o4VzI4TEE?oc=5",
+      "publisher_url": "https://parallaximag.gr/thessaloniki-news/kataigides-sti-thessaloniki-kamia-enimerosi-gia-ti-synaylia-remoy",
+      "publisher_resolution": {
+        "method": "wordpress_search_api",
+        "entity": "Καταιγίδες",
+        "score": 23,
+        "resolved_at": "2026-09-16T19:41:27.414Z"
+      }
     },
     {
       "id": "bfbae4c8d17ba64ab0d056ec",
@@ -253,41 +181,47 @@
     }
   ],
   "ranking": {
-    "updated_at": "2026-09-16T19:40:21.324Z",
+    "updated_at": "2026-09-16T19:41:26.542Z",
     "ath": {
-      "input": 13,
-      "kept": 6,
-      "rejected": 7,
+      "input": 14,
+      "kept": 5,
+      "rejected": 9,
       "sample_rejected": [
         {
           "id": "79f99a637ae18798b4d0f99a",
-          "title": "Όλα τα καινούργια εστιατόρια που μόλις άνοιξαν στην Αθήνα - athensvoice.gr",
+          "title": "Όλα τα καινούργια εστιατόρια που μόλις άνοιξαν στην Αθήνα - Athens Voice",
           "reason": "generic_headline",
           "score": -9
         },
         {
           "id": "f896ae8679f79f1883e74ac4",
-          "title": "Μα πού πήγαν τα παλιά, καλά τοστ; - athensvoice.gr",
+          "title": "Μα πού πήγαν τα παλιά, καλά τοστ; - Athens Voice",
           "reason": "no_food_opening_signal",
           "score": -99
         },
         {
           "id": "b9b9f31a18fb916ff82e51c1",
-          "title": "Ο freddo της Αθήνας κάνει τον γύρο του κόσμου - athensvoice.gr",
+          "title": "Ο freddo της Αθήνας κάνει τον γύρο του κόσμου - Athens Voice",
           "reason": "generic_headline",
           "score": -9
         },
         {
           "id": "166d97574a520265d7e24d80",
-          "title": "Κάνε πως είσαι ακόμα διακοπές σε αυτά τα 10 αθηναϊκά εστιατόρια - athensvoice.gr",
+          "title": "Κάνε πως είσαι ακόμα διακοπές σε αυτά τα 10 αθηναϊκά εστιατόρια - Athens Voice",
           "reason": "generic_headline",
           "score": -9
         },
         {
           "id": "5f551bd27ef7144dab51fa30",
-          "title": "Μεντιλίμπαρ: «Φεύγω περήφανος που βοήθησα τον Ολυμπιακό να γίνει ακόμη μεγαλύτερος» - athensvoice.gr",
+          "title": "Μεντιλίμπαρ: «Φεύγω περήφανος που βοήθησα τον Ολυμπιακό να γίνει ακόμη μεγαλύτερος» - Athens Voice",
           "reason": "sensitive_political_or_sports",
           "score": -99
+        },
+        {
+          "id": "621b73f264863c195179c5d9",
+          "title": "Athens Coffee Festival 2026: Η πιο cool πρόταση για καφέ, μουσική & διασκέδαση στην πόλη - LiFO",
+          "reason": "no_named_entity",
+          "score": 2
         },
         {
           "id": "a451bdb22cada63dd1089a02",
@@ -300,13 +234,19 @@
           "title": "Ο ελληνικός freddo απέκτησε κάψουλα Nespresso και κάνει διεθνή καριέρα - LiFO",
           "reason": "no_food_opening_signal",
           "score": -99
+        },
+        {
+          "id": "5df91e15acdf374632f187e1",
+          "title": "25 φούρνοι νέας γενιάς που αγαπάμε στην Αθήνα τώρα - LiFO",
+          "reason": "no_food_opening_signal",
+          "score": -99
         }
       ]
     },
     "thes": {
       "input": 21,
-      "kept": 8,
-      "rejected": 13,
+      "kept": 5,
+      "rejected": 16,
       "sample_rejected": [
         {
           "id": "f333962af221537d2288152e",
@@ -357,14 +297,14 @@
           "score": 5
         },
         {
-          "id": "37d7a37935a8710063460ba0",
-          "title": "Kανονικά θα πραγματοποιηθεί η συναυλία του Ρέμου στη Θεσσαλονίκη - Parallaxi",
+          "id": "acb9d16c4aa5e596fdf76e9d",
+          "title": "Θεσσαλονίκη: Ένταση και μια προσαγωγή στο πάρκο Ξαρχάκου για τη συναυλία του Ρέμου - Parallaxi",
           "reason": "no_named_entity",
           "score": 1
         },
         {
-          "id": "b9461bc54d7b5ab4765e5a3c",
-          "title": "Θεσσαλονίκη: Χωρίς το Ροναλντίνιο η συναυλία του Αντώνη Ρέμου - Parallaxi",
+          "id": "3da738eba2472dfe280a4926",
+          "title": "ΕΙΚΟΝΕΣ: Λαοθάλασσα στην τεράστια συναυλία του Αντώνη Ρέμου στη Θεσσαλονίκη - Parallaxi",
           "reason": "no_named_entity",
           "score": 1
         }
@@ -372,9 +312,9 @@
     }
   },
   "publisher_resolution": {
-    "attempted": 6,
-    "resolved": 3,
+    "attempted": 5,
+    "resolved": 2,
     "max_per_source": 3,
-    "updated_at": "2026-09-16T19:40:24.526Z"
+    "updated_at": "2026-09-16T19:41:29.361Z"
   }
 }
