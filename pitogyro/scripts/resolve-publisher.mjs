@@ -3,7 +3,8 @@
 
 import { readFile, writeFile } from "node:fs/promises";
 
-const HTTP_TIMEOUT_MS = Number(process.env.RESOLVE_HTTP_TIMEOUT_MS || 10000);
+const HTTP_TIMEOUT_MS = Number(process.env.RESOLVE_HTTP_TIMEOUT_MS || 7000);
+const MAX_PER_SOURCE = Number(process.env.RESOLVE_MAX_PER_SOURCE || 3);
 
 async function readJson(path, fallback) {
   try { return JSON.parse(await readFile(path, "utf8")); }
@@ -98,12 +99,16 @@ async function resolveOne(candidate) {
 const discovery = await readJson("content/discovery.json", {ath:[],thes:[]});
 let resolved = 0;
 let attempted = 0;
+const sourceAttempts = new Map();
 
 for (const city of ["ath","thes"]) {
   for (const c of discovery[city] || []) {
     const d = domainOf(c.source_home);
     if (!new Set(["biscotto.gr","parallaximag.gr"]).has(d)) continue;
     if (c.publisher_url && domainOf(c.publisher_url) === d) continue;
+    const n = sourceAttempts.get(d) || 0;
+    if (n >= MAX_PER_SOURCE) continue;
+    sourceAttempts.set(d, n + 1);
     attempted++;
     const hit = await resolveOne(c);
     if (!hit) continue;
@@ -116,6 +121,6 @@ for (const city of ["ath","thes"]) {
   }
 }
 
-discovery.publisher_resolution = { attempted, resolved, updated_at:new Date().toISOString() };
+discovery.publisher_resolution = { attempted, resolved, max_per_source:MAX_PER_SOURCE, updated_at:new Date().toISOString() };
 await writeFile("content/discovery.json", JSON.stringify(discovery,null,2));
 console.log(`PUBLISHER RESOLVE DONE: ${resolved}/${attempted} WordPress candidates resolved.`);
