@@ -107,7 +107,8 @@ async function pigi(p) {
         };
       })
       .filter(i => i.titlos)
-      .filter(i => !recipe || i.inspiration_score > 0);
+      // 8+ σημαίνει σαφές dirty-food signal στον τίτλο. Π.χ. σκέτο “enchilada” (7) δεν αρκεί.
+      .filter(i => !recipe || i.inspiration_score >= 8);
 
     if (recipe) items.sort((a,b) => b.inspiration_score - a.inspiration_score);
     return items;
@@ -149,8 +150,8 @@ function dedupeCurrent(items, max = 40) {
 
 const pigis = JSON.parse(await readFile("sources.json", "utf8"));
 const queue = await diavaseJson("content/verified-queue.json", { ath: [], thes: [] });
-const history = await diavaseJson("content/history.json", { published_ids: [] });
-const published = new Set(history.published_ids || []);
+const history = await diavaseJson("content/history.json", { published_ids: [], rejected_ids: [] });
+const handled = new Set([...(history.published_ids || []), ...(history.rejected_ids || [])]);
 
 const apotelesma = { ath: [], thes: [], global: [] };
 const discovery = { updated_at: new Date().toISOString(), ath: [], thes: [] };
@@ -189,7 +190,7 @@ for (const poli of ["ath", "thes"]) {
 
   const runSeen = new Set();
   apotelesma[poli] = publishable.filter(i => {
-    if (published.has(i.id)) return false;
+    if (handled.has(i.id)) return false;
     const k = (i.source_item_url || i.titlos).toLowerCase().trim();
     if (runSeen.has(k)) return false;
     runSeen.add(k);
@@ -210,7 +211,7 @@ console.log("\nGLOBAL / ΒΡΩΜΙΑ ΣΠΙΤΙ");
   ola.sort((a,b) => (b.inspiration_score || 0) - (a.inspiration_score || 0));
   const runSeen = new Set();
   apotelesma.global = ola.filter(i => {
-    if (published.has(i.id)) return false;
+    if (handled.has(i.id)) return false;
     const k = (i.source_item_url || i.titlos).toLowerCase().trim();
     if (runSeen.has(k)) return false;
     runSeen.add(k);
