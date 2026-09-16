@@ -1,6 +1,18 @@
 {
-  "updated_at": "2026-09-16T15:58:59.407Z",
+  "updated_at": "2026-09-16T16:02:01.050Z",
   "ath": [
+    {
+      "id": "e468f509c00d7b3c8947573c",
+      "city": "ath",
+      "category": "openings_food",
+      "title": "Βar 2046: Το πρώτο bar μέσα σε σινεμά μόλις άνοιξε στην Ακαδημίας - Athens Voice",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNYmlNTExhMm5FeUpIeE1IaEZ0NUs2UzBDdzVzdHlNTVVqbkcyMnpRV2RKNzladEliRUtDeldHbjZ3SWZrUlM5WjFBZ1lsUmdLM2EwcjRvRThGQ1l0YVBrblhnakZxdGx5eVQxNTQyXzhXZmpYWEhjUzJhOGo0YkRPWEhkbHBEUU1oSkNzbFp2a0hpcGdHZnhtZExR0gGfAUFVX3lxTE52ZGxJazlkN1hKSDgzV1JnSG1RUTN2MUxxU3ZBeFRxUVdKanE3MU9TQjZlZm9LTkJJbDFseUJLeDVieHZWeXRXR2l2blc3cW8tUWRpVzRtRjBxdFh2X0RRc2ZZb2s3cGRHQ0ZmQ0VjVXlqdExpU3doX2tiQ1pkY3N0UlJEOHU3b1AxUDd0NjdTNk45bk9xcFlsSkVEQWFpSQ?oc=5",
+      "source": "Athens Voice — openings & street food radar",
+      "source_home": "https://www.athensvoice.gr/life/geusi/",
+      "published_at": "2026-09-16T13:51:00.000Z",
+      "status": "candidate",
+      "auto_publish": false
+    },
     {
       "id": "f161f826f23d77a14eb04e10",
       "city": "ath",
@@ -22,18 +34,6 @@
       "source": "Athens Voice — openings & street food radar",
       "source_home": "https://www.athensvoice.gr/life/geusi/",
       "published_at": "2026-09-16T13:00:16.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "f1c552f74581f67b0bd82336",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "Βar 2046: Το πρώτο bar μέσα σε σινεμά μόλις άνοιξε στην Ακαδημίας - Athens Voice",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOdmRsSWs5ZDdYSkg4M1dSZ0htUVEzdjFMcVN2QXhUcVFXSmpxNzFPU0I2ZWZvS05CSWwxbHlCS3g1Ynh2Vnl0V0dpdm5XN3FvLVFkaVc0bUYwcXRYdl9EUXNmWW9rN3BkR0NGZkNFY1V5anRMaVN3aF9rYkNaZGNzdFJSRDh1N29QMVA3dDY3UzZOOW5PcXBZbEpFREFhaUnSAZ8BQVVfeXFMTnZkbElrOWQ3WEpIODNXUmdIbVFRM3YxTHFTdkF4VHFRV0pqcTcxT1NCNmVmb0tOQklsMWx5Qkt4NWJ4dlZ5dFdHaXZuVzdxby1RZGlXNG1GMHF0WHZfRFFzZllvazdwZEdDRmZDRWNVeWp0TGlTd2hfa2JDWmRjc3RSUkQ4dTdvUDFQN3Q2N1M2TjluT3FwWWxKRURBYWlJ?oc=5",
-      "source": "Athens Voice — openings & street food radar",
-      "source_home": "https://www.athensvoice.gr/life/geusi/",
-      "published_at": "2026-09-16T13:51:00.000Z",
       "status": "candidate",
       "auto_publish": false
     },
