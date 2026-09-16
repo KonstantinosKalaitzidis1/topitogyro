@@ -31,7 +31,7 @@
       "energi": true,
       "rights_status": "discovery_only",
       "category": "openings_food",
-      "query": "site:athensvoice.gr Αθήνα street food νέο μαγαζί νέα άφιξη burger pizza döner σουβλάκι",
+      "query": "site:athensvoice.gr Αθήνα (\"street food\" OR \"νέο μαγαζί\" OR \"νέα άφιξη\" OR άνοιξε OR burger OR pizza OR döner OR σουβλάκι) when:30d",
       "dikaiomata": "DISCOVERY ONLY — αποθηκεύεται μόνο τίτλος/link/ημερομηνία ως candidate. Δεν αναδημοσιεύεται κείμενο ή φωτογραφία και δεν περνάει στον writer χωρίς verification.",
       "elegxthike": "2026-09-16"
     },
@@ -43,7 +43,7 @@
       "energi": true,
       "rights_status": "discovery_only",
       "category": "openings_food",
-      "query": "site:lifo.gr Αθήνα άνοιξε νέο εστιατόριο street food burger bar καφέ",
+      "query": "site:lifo.gr Αθήνα (άνοιξε OR νέο OR εστιατόριο OR \"street food\" OR burger OR bar OR καφέ) when:30d",
       "dikaiomata": "DISCOVERY ONLY — metadata candidate, όχι αναδημοσίευση/παράφραση άρθρου.",
       "elegxthike": "2026-09-16"
     },
@@ -55,7 +55,7 @@
       "energi": true,
       "rights_status": "discovery_only",
       "category": "events_music_street",
-      "query": "site:athensvoice.gr Αθήνα συναυλία live festival έκθεση graffiti street art popup",
+      "query": "site:athensvoice.gr Αθήνα (συναυλία OR live OR festival OR έκθεση OR graffiti OR \"street art\" OR popup) when:30d",
       "dikaiomata": "DISCOVERY ONLY — metadata candidate, όχι αναδημοσίευση/παράφραση άρθρου.",
       "elegxthike": "2026-09-16"
     }
@@ -80,7 +80,7 @@
       "energi": true,
       "rights_status": "discovery_only",
       "category": "openings_food",
-      "query": "site:biscotto.gr Θεσσαλονίκη νέο μαγαζί νέα άφιξη street food burger pizza φαγητό",
+      "query": "site:biscotto.gr Θεσσαλονίκη (\"νέο μαγαζί\" OR \"νέα άφιξη\" OR \"street food\" OR burger OR pizza OR φαγητό OR άνοιξε) when:30d",
       "dikaiomata": "DISCOVERY ONLY — τίτλος/link/ημερομηνία candidate, χωρίς αντιγραφή περιεχομένου.",
       "elegxthike": "2026-09-16"
     },
@@ -92,7 +92,7 @@
       "energi": true,
       "rights_status": "discovery_only",
       "category": "events_music_street",
-      "query": "site:biscotto.gr Θεσσαλονίκη live συναυλία festival event έκθεση party street art",
+      "query": "site:biscotto.gr Θεσσαλονίκη (live OR συναυλία OR festival OR event OR έκθεση OR party OR \"street art\") when:30d",
       "dikaiomata": "DISCOVERY ONLY — τίτλος/link/ημερομηνία candidate, χωρίς αντιγραφή περιεχομένου.",
       "elegxthike": "2026-09-16"
     },
@@ -104,7 +104,7 @@
       "energi": true,
       "rights_status": "discovery_only",
       "category": "openings_food",
-      "query": "site:parallaximag.gr Θεσσαλονίκη φαγητό νέο μαγαζί άνοιξε street food εστιατόριο burger",
+      "query": "site:parallaximag.gr Θεσσαλονίκη (φαγητό OR \"νέο μαγαζί\" OR άνοιξε OR \"street food\" OR εστιατόριο OR burger) when:30d",
       "dikaiomata": "DISCOVERY ONLY — metadata candidate, όχι αναδημοσίευση/παράφραση άρθρου.",
       "elegxthike": "2026-09-16"
     },
@@ -116,7 +116,7 @@
       "energi": true,
       "rights_status": "discovery_only",
       "category": "events_music_street",
-      "query": "site:parallaximag.gr Θεσσαλονίκη μουσική συναυλία festival graffiti street art έκθεση popup",
+      "query": "site:parallaximag.gr Θεσσαλονίκη (μουσική OR συναυλία OR festival OR graffiti OR \"street art\" OR έκθεση OR popup) when:30d",
       "dikaiomata": "DISCOVERY ONLY — metadata candidate, όχι αναδημοσίευση/παράφραση άρθρου.",
       "elegxthike": "2026-09-16"
     }
