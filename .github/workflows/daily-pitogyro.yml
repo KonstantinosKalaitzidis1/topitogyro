@@ -8,6 +8,7 @@ on:
     branches: ["main"]
     paths:
       - "pitogyro/content/verified-queue.json"
+      - "pitogyro/content/images.json"
       - "pitogyro/sources.json"
       - "pitogyro/scripts/fetch.mjs"
       - "pitogyro/scripts/write.mjs"
