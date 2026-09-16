@@ -1,5 +1,5 @@
-// Τραβάει ενεργές, εγκεκριμένες πηγές Tier 1 + verified queue και βγάζει content/items.json.
-// Κρατά μόνο σύντομη πρώτη ύλη/metadata για παραγωγή πρωτότυπου άρθρου.
+// Τραβάει ενεργές, εγκεκριμένες city πηγές + verified queue + διεθνές discovery για original "ΒΡΩΜΙΑ ΣΠΙΤΙ".
+// Για τρίτες διεθνείς πηγές κρατά μόνο τίτλο/σύντομο snippet ως έμπνευση — ποτέ πλήρη συνταγή.
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
@@ -34,16 +34,33 @@ function einaiProsfato(dateString) {
   return ageMs <= MAX_AGE_DAYS * 24 * 60 * 60 * 1000;
 }
 
+function pernaeiKeywords(text, keywords = []) {
+  if (!keywords.length) return true;
+  const t = String(text || "").toLowerCase();
+  return keywords.some(k => t.includes(String(k).toLowerCase()));
+}
+
 async function pigi(p) {
   if (!p.energi) return [];
-  if (p.tier !== 1) {
-    console.log(`  ΠΑΡΑΛΕΙΨΗ ${p.onoma}: tier ${p.tier}, μόνο tier 1 τρέχει αυτόματα`);
-    return [];
+
+  const inspiration = p.mode === "recipe_inspiration";
+
+  if (inspiration) {
+    if (p.rights_status !== "discovery_only") {
+      console.log(`  ΠΑΡΑΛΕΙΨΗ ${p.onoma}: recipe inspiration χρειάζεται rights_status=discovery_only`);
+      return [];
+    }
+  } else {
+    if (p.tier !== 1) {
+      console.log(`  ΠΑΡΑΛΕΙΨΗ ${p.onoma}: tier ${p.tier}, μόνο tier 1 τρέχει αυτόματα`);
+      return [];
+    }
+    if (p.rights_status !== "approved") {
+      console.log(`  ΠΑΡΑΛΕΙΨΗ ${p.onoma}: rights_status=${p.rights_status || "missing"}`);
+      return [];
+    }
   }
-  if (p.rights_status !== "approved") {
-    console.log(`  ΠΑΡΑΛΕΙΨΗ ${p.onoma}: rights_status=${p.rights_status || "missing"}`);
-    return [];
-  }
+
   if (!p.feed) {
     console.log(`  ΠΑΡΑΛΕΙΨΗ ${p.onoma}: δεν έχει feed URL`);
     return [];
@@ -52,23 +69,27 @@ async function pigi(p) {
   try {
     const f = await parser.parseURL(p.feed);
     return (f.items || [])
-      .slice(0, 30)
+      .slice(0, 40)
       .filter(i => einaiProsfato(i.isoDate || i.pubDate || ""))
       .map(i => {
         const titlos = katharise(i.title);
         const itemUrl = i.link || "";
         const imerominia = i.isoDate || i.pubDate || "";
+        const snippet = katharise(i.contentSnippet || i.content || i.summary || "");
         return {
           id: kleidi(p.onoma, i.guid || i.id || itemUrl || titlos, imerominia),
           pigi: p.onoma,
           pigi_url: p.url || "",
           source_item_url: itemUrl,
           titlos,
-          proti_yli: katharise(i.contentSnippet || i.content || i.summary || "").slice(0, 600),
-          imerominia
+          proti_yli: snippet.slice(0, inspiration ? 500 : 600),
+          imerominia,
+          content_mode: inspiration ? "recipe_inspiration" : "facts",
+          global: inspiration
         };
       })
-      .filter(i => i.titlos);
+      .filter(i => i.titlos)
+      .filter(i => !inspiration || pernaeiKeywords(`${i.titlos} ${i.proti_yli}`, p.keywords || []));
   } catch (e) {
     console.log(`  ΣΦΑΛΜΑ ${p.onoma}: ${e.message}`);
     return [];
@@ -86,7 +107,8 @@ function verifiedItems(queue, poli) {
       titlos: katharise(i.titlos),
       proti_yli: katharise(i.proti_yli).slice(0, 1800),
       imerominia: i.imerominia || new Date().toISOString(),
-      verified: true
+      verified: true,
+      content_mode: i.content_mode || "facts"
     }));
 }
 
@@ -94,7 +116,7 @@ const pigis = JSON.parse(await readFile("sources.json", "utf8"));
 const queue = await diavaseJson("content/verified-queue.json", { ath: [], thes: [] });
 const history = await diavaseJson("content/history.json", { published_ids: [] });
 const seen = new Set(history.published_ids || []);
-const apotelesma = {};
+const apotelesma = { ath: [], thes: [], global: [] };
 
 for (const poli of ["ath", "thes"]) {
   console.log(`\n${poli.toUpperCase()}`);
@@ -120,11 +142,30 @@ for (const poli of ["ath", "thes"]) {
   });
 }
 
+console.log("\nGLOBAL / ΒΡΩΜΙΑ ΣΠΙΤΙ");
+{
+  const ola = [];
+  for (const p of pigis.global || []) {
+    const items = await pigi(p);
+    if (items.length) console.log(`  ${p.onoma}: ${items.length} ιδέες`);
+    ola.push(...items);
+  }
+
+  const runSeen = new Set();
+  apotelesma.global = ola.filter(i => {
+    if (seen.has(i.id)) return false;
+    const k = (i.source_item_url || i.titlos).toLowerCase().trim();
+    if (runSeen.has(k)) return false;
+    runSeen.add(k);
+    return true;
+  });
+}
+
 await writeFile("content/items.json", JSON.stringify(apotelesma, null, 2));
 
 const synolo = Object.values(apotelesma).reduce((a, b) => a + b.length, 0);
 console.log(`\nΣύνολο νέων στοιχείων: ${synolo} → content/items.json`);
 
 if (synolo === 0) {
-  console.log("Καμία νέα εγκεκριμένη πηγή/ιστορία. Το site θα μείνει ως έχει.");
+  console.log("Καμία νέα εγκεκριμένη πηγή/ιστορία/ιδέα. Το site θα μείνει ως έχει.");
 }
