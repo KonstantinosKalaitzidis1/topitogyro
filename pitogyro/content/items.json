@@ -3,18 +3,6 @@
   "thes": [],
   "global": [
     {
-      "id": "078171da0cece24d0b7b89ce",
-      "pigi": "The Kitchn",
-      "pigi_url": "https://www.thekitchn.com/",
-      "source_item_url": "https://www.thekitchn.com/dining-haul-graza-garlic-aioli-23842596?utm_source=RSS&utm_medium=feed&utm_campaign=Category%2FChannel%3A+main",
-      "titlos": "I Never Bread Chicken with Flour or Egg Anymore — I Use This Condiment to Get It Perfectly Moist",
-      "proti_yli": "It’s an ingredient and a dip. READ MORE...",
-      "imerominia": "2026-09-14T18:30:00.000Z",
-      "content_mode": "recipe_inspiration",
-      "global": true,
-      "inspiration_score": 10
-    },
-    {
       "id": "6378300d242d6310154626dc",
       "pigi": "The Kitchn",
       "pigi_url": "https://www.thekitchn.com/",
@@ -22,6 +10,7 @@
       "titlos": "Enchilada Black Beans",
       "proti_yli": "Just to get out in front of it: There aren’t technically any real enchiladas in these one-pan enchilada beans. Nothing is wrapped in a cozy, lightly fried tortilla to perfection. This is a saucy, sloppy (in a good way) skillet of beans simmered in red enchilada sauce and spices until they’re just thick enough to spoon into warm tortillas — and that’s when you cover it in cheese and pop it under the broiler. READ MORE...",
       "imerominia": "2026-09-15T17:00:00.000Z",
+      "category": "",
       "content_mode": "recipe_inspiration",
       "global": true,
       "inspiration_score": 7
