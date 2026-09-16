@@ -8,7 +8,7 @@ const MONTELO = process.env.AI_MODEL || "claude-haiku-4-5-20251001";
 const LIMIT_TOTAL = Number(process.env.VERIFY_LIMIT_TOTAL || 2);
 const RETRY_DAYS = Number(process.env.VERIFY_RETRY_DAYS || 7);
 const HTTP_TIMEOUT_MS = Number(process.env.VERIFY_HTTP_TIMEOUT_MS || 12000);
-const RESOLVER_VERSION = 2;
+const RESOLVER_VERSION = 3;
 
 if (!KLEIDI) {
   console.log("VERIFY: λείπει ANTHROPIC_API_KEY — παραλείπεται η αυτόματη επαλήθευση.");
@@ -152,6 +152,11 @@ function entityHint(title = "") {
   return "";
 }
 
+function entityFromCandidate(candidate) {
+  const ranked = cleanText(candidate?.entity_hint || "");
+  return ranked || entityHint(candidate?.title || "");
+}
+
 const STOP = new Set("το η οι τα ο του της των και με για σε στη στην στο στον από απο που ένα ενα μια νέο νεο νέα νεα στην αθήνα αθηνα θεσσαλονίκη θεσσαλονικη athens voice lifo biscotto parallaxi".split(/\s+/));
 function tokens(s = "") {
   return norm(s).split(" ").filter(x => x.length >= 3 && !STOP.has(x));
@@ -162,11 +167,11 @@ function sourceArticleScore(link, candidate, sourceDomain) {
   const hay = norm(`${link.text} ${link.url}`);
   if (/\/tag\/|\/category\/|\/author\/|\/search|newsletter|privacy|terms/i.test(link.url)) return -10;
   const tks = [...new Set(tokens(stripSource(candidate.title)))].slice(0, 10);
-  const entity = tokens(entityHint(candidate.title));
+  const entity = tokens(entityFromCandidate(candidate));
   let score = 0;
   for (const t of tks) if (hay.includes(t)) score += 2;
   for (const t of entity) if (hay.includes(t)) score += 3;
-  if (link.text && norm(link.text).includes(norm(entityHint(candidate.title)))) score += 5;
+  if (link.text && norm(link.text).includes(norm(entityFromCandidate(candidate)))) score += 5;
   return score;
 }
 
@@ -208,15 +213,13 @@ async function resolveDiscoveryArticle(candidate) {
     if (extracted) return { ok:true, url:extracted, via:"google_markup" };
   }
 
-  // Fallback 1: source category/home page. Recent radar items are often linked there.
   const home = await fetchHtml(candidate.source_home);
   if (home) {
     const hit = bestPublisherLink(home.html, home.url, candidate, sourceDomain);
     if (hit) return { ok:true, url:hit, via:"source_home" };
   }
 
-  // Fallback 2: publisher's own search page. No external search-engine scraping.
-  const entity = entityHint(candidate.title);
+  const entity = entityFromCandidate(candidate);
   if (entity) {
     const searchUrl = sourceSearchUrl(sourceDomain, candidate.source_home, entity);
     const search = searchUrl ? await fetchHtml(searchUrl) : null;
@@ -279,7 +282,7 @@ function internalUsefulLinks(html, pageUrl) {
     .slice(0, 2);
 }
 
-async function officialBundle(link) {
+async function officialBundle(link, includeExtras = true) {
   const first = await fetchHtml(link.url);
   if (!first) return null;
   const finalUrl = canonicalFromHtml(first.html, first.url) || first.url;
@@ -287,7 +290,7 @@ async function officialBundle(link) {
   if (!host) return null;
   const social = SOCIAL_DOMAINS.some(d => host === d || host.endsWith(`.${d}`));
   const pages = [{ url:finalUrl, text:firstPartyText(first.html) }];
-  if (!social) {
+  if (includeExtras && !social) {
     for (const extra of internalUsefulLinks(first.html, finalUrl)) {
       const p = await fetchHtml(extra.url);
       if (p) pages.push({ url:p.url, text:firstPartyText(p.html) });
@@ -300,7 +303,7 @@ async function anthropicJson(system, user) {
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method:"POST",
     headers:{ "content-type":"application/json", "x-api-key":KLEIDI, "anthropic-version":"2023-06-01" },
-    body:JSON.stringify({ model:MONTELO, max_tokens:800, temperature:0, system, messages:[{role:"user",content:user}] })
+    body:JSON.stringify({ model:MONTELO, max_tokens:850, temperature:0, system, messages:[{role:"user",content:user}] })
   });
   if (!r.ok) throw new Error(`Anthropic ${r.status}: ${await r.text()}`);
   const d = await r.json();
@@ -311,12 +314,16 @@ async function anthropicJson(system, user) {
   return JSON.parse(text.slice(first,last+1));
 }
 
-const VERIFIER = `Είσαι αυστηρός verifier για το ΠΙΤΟΓΥΡΟ.\n- Το DISCOVERY TITLE είναι μόνο lead, ΟΧΙ πηγή facts.\n- Χρησιμοποίησε facts ΜΟΝΟ από το FIRST-PARTY PAGE TEXT.\n- Επιβεβαίωσε ότι η επίσημη σελίδα ανήκει στο ίδιο μαγαζί/event/venue και αφορά τη ζητούμενη πόλη.\n- Food/opening: χρειάζεται ταυτότητα + πόλη/διεύθυνση ή σαφής τοποθεσία + τουλάχιστον ένα πρακτικό fact (menu/concept/ωράριο/event).\n- Event/music/street: χρειάζεται ταυτότητα + πόλη/venue + συγκεκριμένη ημερομηνία ή πρόγραμμα.\n- Αν λείπει πόλη, η σελίδα είναι ασαφής/social login shell ή τα facts δεν αρκούν: verified=false.\n- Μην συμπεραίνεις opening date, ποιότητα, αυθεντικότητα ή γεύση.\n- facts = σύντομες αυτοτελείς παραφράσεις του first-party meaning.\nΑπάντησε ΜΟΝΟ JSON: {"verified":true|false,"reason":"...","title":"ουδέτερος ελληνικός τίτλος","facts":["..."],"entity":"..."}`;
+const VERIFIER = `Είσαι αυστηρός verifier για το ΠΙΤΟΓΥΡΟ.\n- Το DISCOVERY TITLE είναι μόνο lead, ΟΧΙ πηγή facts.\n- Χρησιμοποίησε facts ΜΟΝΟ από το FIRST-PARTY PAGE TEXT.\n- Επιβεβαίωσε ότι η επίσημη σελίδα ανήκει στο ίδιο named μαγαζί/event/venue και αφορά τη ζητούμενη πόλη.\n- Food/opening: χρειάζεται ταυτότητα + πόλη/διεύθυνση ή σαφής τοποθεσία + τουλάχιστον ένα πρακτικό fact (menu/concept/ωράριο/event).\n- Event/music: χρειάζεται ταυτότητα + πόλη/venue + συγκεκριμένη ημερομηνία/ημερομηνίες ή σαφές πρόγραμμα.\n- Street-art feature: μπορεί να επαληθευτεί χωρίς event date μόνο αν υπάρχουν σαφής artist/work + location/city από την first-party πηγή.\n- ΚΡΑΤΑ μόνο facts που αφορούν ΑΜΕΣΑ το named entity/event του lead. Μην βάζεις άλλο event, άλλο πρωτάθλημα, παλιότερη/μελλοντική δράση ή γενικό site content επειδή εμφανίζεται στην ίδια σελίδα.\n- Για event/music, date_scope_ok=true ΜΟΝΟ αν όλες οι ημερομηνίες που κρατάς αφορούν καθαρά το ίδιο named event και δεν υπάρχει χρονική σύγκρουση. Αν δεν μπορείς να απομονώσεις με βεβαιότητα το σωστό date scope, verified=false.\n- Αν λείπει πόλη, η σελίδα είναι ασαφής/social login shell ή τα facts δεν αρκούν: verified=false.\n- Μην συμπεραίνεις opening date, ποιότητα, αυθεντικότητα ή γεύση.\n- facts = σύντομες αυτοτελείς παραφράσεις του first-party meaning.\nΑπάντησε ΜΟΝΟ JSON: {"verified":true|false,"reason":"...","title":"ουδέτερος ελληνικός τίτλος","facts":["..."],"entity":"...","event_dates":["..."],"date_scope_ok":true|false}`;
 
 function cityName(code) { return code === "ath" ? "Αθήνα" : "Θεσσαλονίκη"; }
+function isStreetFeature(candidate) {
+  const t = norm(candidate?.title || "");
+  return ["graffiti","street art","τοιχογραφ","illustrator","mural"].some(x => t.includes(norm(x)));
+}
 
 async function verifyCandidate(candidate) {
-  const entity = entityHint(candidate.title);
+  const entity = entityFromCandidate(candidate);
   if (!entity) return { verified:false, reason:"generic_or_no_entity" };
 
   const resolved = await resolveDiscoveryArticle(candidate);
@@ -329,19 +336,25 @@ async function verifyCandidate(candidate) {
   const links = plausibleOfficialLinks(article.html, article.url, entity, sourceDomain);
   if (!links.length) return { verified:false, reason:"no_plausible_first_party_link" };
 
+  const eventMode = candidate.category === "events_music_street";
+  const streetFeature = isStreetFeature(candidate);
   for (const link of links) {
-    const bundle = await officialBundle(link);
+    const bundle = await officialBundle(link, !eventMode);
     if (!bundle) continue;
     const text = bundle.pages.map((p,i) => `PAGE ${i+1}: ${p.url}\n${p.text}`).join("\n\n").slice(0,24000);
     if (text.length < 180) continue;
     const result = await anthropicJson(VERIFIER,
       `CITY: ${cityName(candidate.city)}\nCATEGORY: ${candidate.category}\nENTITY HINT: ${entity}\nDISCOVERY TITLE (lead only, NOT facts): ${candidate.title}\nFIRST-PARTY URL: ${bundle.official_url}\n\nFIRST-PARTY PAGE TEXT:\n${text}`
     );
-    if (result?.verified === true && Array.isArray(result.facts) && result.facts.length >= 2) {
+    const factsOk = result?.verified === true && Array.isArray(result.facts) && result.facts.length >= 2;
+    const dateOk = !eventMode || (
+      result?.date_scope_ok === true && (streetFeature || (Array.isArray(result.event_dates) && result.event_dates.length >= 1))
+    );
+    if (factsOk && dateOk) {
       return { ...result, official_url:bundle.official_url, discovery_article_url:article.url, resolver_via:resolved.via };
     }
   }
-  return { verified:false, reason:"first_party_not_sufficient" };
+  return { verified:false, reason:"first_party_not_sufficient_or_date_scope_unclear" };
 }
 
 function recentlyChecked(entry) {
@@ -365,6 +378,7 @@ for (const city of ["ath","thes"]) {
     const prev = verificationHistory.checks[c.id];
     if (prev?.status === "verified" || recentlyChecked(prev)) continue;
     if (genericCandidate(c.title)) continue;
+    if (!entityFromCandidate(c)) continue;
     pool.push(c);
   }
 }
@@ -389,6 +403,7 @@ for (const candidate of ordered) {
 
   const now = new Date().toISOString();
   verificationHistory.checks[candidate.id] = {
+    ...(verificationHistory.checks[candidate.id] || {}),
     status:result.verified ? "verified" : "not_verified",
     reason:result.reason || "",
     checked_at:now,
@@ -406,13 +421,21 @@ for (const candidate of ordered) {
     id:`auto-${candidate.id}`,
     original_candidate_id:candidate.id,
     verified:true,
-    pigi:`Επίσημη πηγή — ${result.entity || entityHint(candidate.title)}`,
+    pigi:`Επίσημη πηγή — ${result.entity || entityFromCandidate(candidate)}`,
     pigi_url:result.official_url,
     source_item_url:result.official_url,
     titlos:cleanText(result.title || candidate.title),
     imerominia:now,
     proti_yli:`Επιβεβαιωμένα facts από first-party πηγή: ${facts.join(" ")} Μην προσθέσεις μη επιβεβαιωμένες λεπτομέρειες, αξιολογικές κρίσεις ή πληροφορίες από το discovery article.`,
-    verification:{ method:"first_party_page", official_url:result.official_url, discovery_article_url:result.discovery_article_url || "", resolver_via:result.resolver_via || "", verified_at:now }
+    verification:{
+      method:"first_party_page",
+      official_url:result.official_url,
+      discovery_article_url:result.discovery_article_url || "",
+      resolver_via:result.resolver_via || "",
+      event_dates:Array.isArray(result.event_dates) ? result.event_dates.slice(0,8) : [],
+      date_scope_ok:result.date_scope_ok === true,
+      verified_at:now
+    }
   };
   const list=autoVerified[candidate.city];
   if (!list.some(x => x.id===record.id)) list.unshift(record);
