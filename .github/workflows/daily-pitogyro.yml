@@ -48,7 +48,7 @@ jobs:
         id: new_content
         shell: bash
         run: |
-          COUNT=$(node -e "const x=require('./content/items.json'); console.log((x.ath?.length||0)+(x.thes?.length||0))")
+          COUNT=$(node -e "const x=require('./content/items.json'); console.log((x.ath?.length||0)+(x.thes?.length||0)+(x.global?.length||0))")
           echo "count=$COUNT" >> "$GITHUB_OUTPUT"
           echo "New source items: $COUNT"
 
@@ -58,6 +58,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           AI_MODEL: ${{ vars.AI_MODEL }}
           ORIO_ARTHRON: ${{ vars.ORIO_ARTHRON }}
+          ORIO_GLOBAL: ${{ vars.ORIO_GLOBAL }}
         run: npm run write
 
       - name: Rebuild site
