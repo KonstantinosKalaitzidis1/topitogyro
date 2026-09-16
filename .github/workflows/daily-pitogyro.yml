@@ -4,6 +4,14 @@ on:
   schedule:
     - cron: "15 4 * * *" # 07:15 Europe/Athens during EEST; UTC schedule shifts vs winter time
   workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "pitogyro/content/verified-queue.json"
+      - "pitogyro/sources.json"
+      - "pitogyro/scripts/fetch.mjs"
+      - "pitogyro/scripts/write.mjs"
+      - "pitogyro/scripts/build.mjs"
 
 permissions:
   contents: write
@@ -21,19 +29,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "24"
           cache: npm
           cache-dependency-path: pitogyro/package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Fetch approved feeds
+      - name: Fetch approved feeds and verified queue
         run: npm run fetch
 
       - name: Check whether there is new content
