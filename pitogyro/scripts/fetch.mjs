@@ -1,17 +1,19 @@
-// Τραβάει ενεργές, εγκεκριμένες city πηγές + verified queue + διεθνές discovery για original "ΒΡΩΜΙΑ ΣΠΙΤΙ".
-// Για τρίτες διεθνείς πηγές κρατά μόνο τίτλο/σύντομο snippet ως έμπνευση — ποτέ πλήρη συνταγή.
+// Τραβάει 3 διαφορετικές ροές:
+// 1) εγκεκριμένες city πηγές για auto-publish,
+// 2) city discovery radar (metadata μόνο, ΠΟΤΕ auto-publish),
+// 3) διεθνές recipe inspiration για πρωτότυπο «ΒΡΩΜΙΑ ΣΠΙΤΙ».
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import Parser from "rss-parser";
 
-const parser = new Parser({ timeout: 15000 });
+const parser = new Parser({ timeout: 20000 });
 const MAX_AGE_DAYS = Number(process.env.MAX_ITEM_AGE_DAYS || 30);
 
 await mkdir("content", { recursive: true });
 
 function katharise(s = "") {
-  return String(s).replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  return String(s).replace(/<[^>]*>/g, " ").replace(/&nbsp;/gi, " ").replace(/\s+/g, " ").trim();
 }
 
 function kleidi(...parts) {
@@ -19,29 +21,24 @@ function kleidi(...parts) {
 }
 
 async function diavaseJson(path, fallback) {
-  try {
-    return JSON.parse(await readFile(path, "utf8"));
-  } catch {
-    return fallback;
-  }
+  try { return JSON.parse(await readFile(path, "utf8")); }
+  catch { return fallback; }
 }
 
 function einaiProsfato(dateString) {
   if (!dateString || !MAX_AGE_DAYS) return true;
   const d = new Date(dateString);
   if (Number.isNaN(d.getTime())) return true;
-  const ageMs = Date.now() - d.getTime();
-  return ageMs <= MAX_AGE_DAYS * 24 * 60 * 60 * 1000;
+  return Date.now() - d.getTime() <= MAX_AGE_DAYS * 24 * 60 * 60 * 1000;
 }
 
 function inspirationScore(title = "", keywords = []) {
   const t = String(title).toLowerCase();
   const weights = {
-    "sauce": 10, "dip": 10, "condiment": 10, "aioli": 10, "mayo": 10, "hot honey": 10,
-    "burger": 9, "fries": 9, "sandwich": 9, "hot dog": 9, "wings": 9, "nachos": 9,
-    "smash": 9, "sloppy": 8, "grilled cheese": 8, "quesadilla": 8, "taco": 8,
-    "kebab": 8, "wrap": 8, "enchilada": 7, "pickle": 7, "spicy": 6, "crispy": 6,
-    "fried": 6, "loaded": 6
+    sauce:10, dip:10, condiment:10, aioli:10, mayo:10, "hot honey":10,
+    burger:9, fries:9, sandwich:9, "hot dog":9, wings:9, nachos:9, smash:9,
+    sloppy:8, "grilled cheese":8, quesadilla:8, taco:8, kebab:8, wrap:8,
+    enchilada:7, pickle:7, spicy:6, crispy:6, fried:6, loaded:6
   };
   return keywords.reduce((score, k) => {
     const key = String(k).toLowerCase();
@@ -49,14 +46,23 @@ function inspirationScore(title = "", keywords = []) {
   }, 0);
 }
 
+function feedUrl(p) {
+  if (p.typos === "google_news") {
+    const q = encodeURIComponent(p.query || "");
+    return `https://news.google.com/rss/search?q=${q}&hl=el&gl=GR&ceid=GR:el`;
+  }
+  return p.feed || "";
+}
+
 async function pigi(p) {
   if (!p.energi) return [];
 
-  const inspiration = p.mode === "recipe_inspiration";
+  const recipe = p.mode === "recipe_inspiration";
+  const discovery = p.mode === "city_discovery";
 
-  if (inspiration) {
+  if (recipe || discovery) {
     if (p.rights_status !== "discovery_only") {
-      console.log(`  ΠΑΡΑΛΕΙΨΗ ${p.onoma}: recipe inspiration χρειάζεται rights_status=discovery_only`);
+      console.log(`  ΠΑΡΑΛΕΙΨΗ ${p.onoma}: discovery mode χρειάζεται rights_status=discovery_only`);
       return [];
     }
   } else {
@@ -70,15 +76,17 @@ async function pigi(p) {
     }
   }
 
-  if (!p.feed) {
-    console.log(`  ΠΑΡΑΛΕΙΨΗ ${p.onoma}: δεν έχει feed URL`);
+  const feed = feedUrl(p);
+  if (!feed) {
+    console.log(`  ΠΑΡΑΛΕΙΨΗ ${p.onoma}: δεν έχει feed/query`);
     return [];
   }
 
   try {
-    const f = await parser.parseURL(p.feed);
+    const f = await parser.parseURL(feed);
+    const limit = discovery ? 20 : 40;
     const items = (f.items || [])
-      .slice(0, 40)
+      .slice(0, limit)
       .filter(i => einaiProsfato(i.isoDate || i.pubDate || ""))
       .map(i => {
         const titlos = katharise(i.title);
@@ -91,19 +99,18 @@ async function pigi(p) {
           pigi_url: p.url || "",
           source_item_url: itemUrl,
           titlos,
-          proti_yli: snippet.slice(0, inspiration ? 500 : 600),
+          proti_yli: discovery ? "" : snippet.slice(0, recipe ? 500 : 600),
           imerominia,
-          content_mode: inspiration ? "recipe_inspiration" : "facts",
-          global: inspiration,
-          inspiration_score: inspiration ? inspirationScore(titlos, p.keywords || []) : 0
+          category: p.category || "",
+          content_mode: recipe ? "recipe_inspiration" : discovery ? "city_discovery" : "facts",
+          global: recipe,
+          inspiration_score: recipe ? inspirationScore(titlos, p.keywords || []) : 0
         };
       })
       .filter(i => i.titlos)
-      // Για ΒΡΩΜΙΑ ΣΠΙΤΙ μετράει μόνο ο ΤΙΤΛΟΣ. Έτσι ένα άσχετο soup/cake
-      // δεν περνάει επειδή το snippet περιέχει τυχαία λέξεις όπως loaded/cheese/chicken.
-      .filter(i => !inspiration || i.inspiration_score > 0);
+      .filter(i => !recipe || i.inspiration_score > 0);
 
-    if (inspiration) items.sort((a, b) => b.inspiration_score - a.inspiration_score);
+    if (recipe) items.sort((a,b) => b.inspiration_score - a.inspiration_score);
     return items;
   } catch (e) {
     console.log(`  ΣΦΑΛΜΑ ${p.onoma}: ${e.message}`);
@@ -127,34 +134,69 @@ function verifiedItems(queue, poli) {
     }));
 }
 
+function dedupeCurrent(items, max = 40) {
+  const seen = new Set();
+  const out = [];
+  for (const i of items) {
+    const key = String(i.titlos || i.source_item_url || "").toLowerCase().replace(/\s+/g," ").trim();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(i);
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
 const pigis = JSON.parse(await readFile("sources.json", "utf8"));
 const queue = await diavaseJson("content/verified-queue.json", { ath: [], thes: [] });
 const history = await diavaseJson("content/history.json", { published_ids: [] });
-const seen = new Set(history.published_ids || []);
+const published = new Set(history.published_ids || []);
+
 const apotelesma = { ath: [], thes: [], global: [] };
+const discovery = { updated_at: new Date().toISOString(), ath: [], thes: [] };
 
 for (const poli of ["ath", "thes"]) {
   console.log(`\n${poli.toUpperCase()}`);
-  const ola = [];
+  const publishable = [];
+  const candidates = [];
 
   for (const p of pigis[poli] || []) {
     const items = await pigi(p);
-    if (items.length) console.log(`  ${p.onoma}: ${items.length} νέα/πρόσφατα στοιχεία`);
-    ola.push(...items);
+    if (!items.length) continue;
+    if (p.mode === "city_discovery") {
+      console.log(`  RADAR ${p.onoma}: ${items.length} candidates`);
+      candidates.push(...items.map(i => ({
+        id: i.id,
+        city: poli,
+        category: i.category,
+        title: i.titlos,
+        url: i.source_item_url,
+        source: i.pigi,
+        source_home: i.pigi_url,
+        published_at: i.imerominia,
+        status: "candidate",
+        auto_publish: false
+      })));
+    } else {
+      console.log(`  ${p.onoma}: ${items.length} νέα/πρόσφατα στοιχεία`);
+      publishable.push(...items);
+    }
   }
 
   const verified = verifiedItems(queue, poli);
   if (verified.length) console.log(`  VERIFIED QUEUE: ${verified.length} στοιχεία`);
-  ola.push(...verified);
+  publishable.push(...verified);
 
   const runSeen = new Set();
-  apotelesma[poli] = ola.filter(i => {
-    if (seen.has(i.id)) return false;
+  apotelesma[poli] = publishable.filter(i => {
+    if (published.has(i.id)) return false;
     const k = (i.source_item_url || i.titlos).toLowerCase().trim();
     if (runSeen.has(k)) return false;
     runSeen.add(k);
     return true;
   });
+
+  discovery[poli] = dedupeCurrent(candidates, 50);
 }
 
 console.log("\nGLOBAL / ΒΡΩΜΙΑ ΣΠΙΤΙ");
@@ -165,11 +207,10 @@ console.log("\nGLOBAL / ΒΡΩΜΙΑ ΣΠΙΤΙ");
     if (items.length) console.log(`  ${p.onoma}: ${items.length} στοχευμένες ιδέες`);
     ola.push(...items);
   }
-
-  ola.sort((a, b) => (b.inspiration_score || 0) - (a.inspiration_score || 0));
+  ola.sort((a,b) => (b.inspiration_score || 0) - (a.inspiration_score || 0));
   const runSeen = new Set();
   apotelesma.global = ola.filter(i => {
-    if (seen.has(i.id)) return false;
+    if (published.has(i.id)) return false;
     const k = (i.source_item_url || i.titlos).toLowerCase().trim();
     if (runSeen.has(k)) return false;
     runSeen.add(k);
@@ -178,10 +219,10 @@ console.log("\nGLOBAL / ΒΡΩΜΙΑ ΣΠΙΤΙ");
 }
 
 await writeFile("content/items.json", JSON.stringify(apotelesma, null, 2));
+await writeFile("content/discovery.json", JSON.stringify(discovery, null, 2));
 
-const synolo = Object.values(apotelesma).reduce((a, b) => a + b.length, 0);
-console.log(`\nΣύνολο νέων στοιχείων: ${synolo} → content/items.json`);
+const synolo = Object.values(apotelesma).reduce((a,b) => a + b.length, 0);
+console.log(`\nPublishable/inspiration νέα στοιχεία: ${synolo} → content/items.json`);
+console.log(`Discovery radar: ATH ${discovery.ath.length} / THES ${discovery.thes.length} → content/discovery.json`);
 
-if (synolo === 0) {
-  console.log("Καμία νέα εγκεκριμένη πηγή/ιστορία/ιδέα. Το site θα μείνει ως έχει.");
-}
+if (synolo === 0) console.log("Καμία νέα publishable ιστορία/recipe idea. Το site μένει ως έχει, αλλά το radar ενημερώθηκε.");
