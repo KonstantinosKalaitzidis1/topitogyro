@@ -1,5 +1,5 @@
 // Παίρνει τα άρθρα και ξαναφτιάχνει το index.html από το template.
-// Αν δεν υπάρχουν νέα άρθρα, κρατάει το template ως έχει.
+// Αν δεν υπάρχουν νέα άρθρα, χρησιμοποιεί το τελευταίο content/arthra.json.
 
 import { readFile, writeFile } from "node:fs/promises";
 
@@ -9,7 +9,7 @@ let arthra = null;
 try {
   arthra = JSON.parse(await readFile("content/arthra.json", "utf8"));
 } catch {
-  console.log("Δεν βρέθηκαν νέα άρθρα. Το site βγαίνει με το υπάρχον περιεχόμενο.");
+  console.log("Δεν βρέθηκαν παραγόμενα άρθρα. Το site βγαίνει με το υπάρχον template.");
   await writeFile("index.html", template);
   process.exit(0);
 }
@@ -65,7 +65,20 @@ let neaDedomena = paliaDedomena;
 neaDedomena = antikatastasi(neaDedomena, "ath", arthra.ath);
 neaDedomena = antikatastasi(neaDedomena, "thes", arthra.thes);
 
-const selida = template.slice(0, arxi) + neaDedomena + template.slice(telos);
+let selida = template.slice(0, arxi) + neaDedomena + template.slice(telos);
+
+// Launch-safe mode: τα prototype events/τιμές/Θεσσαλονίκη παραμένουν στο template
+// μόνο για μελλοντική ενεργοποίηση, αλλά δεν εμφανίζονται δημόσια μέχρι να
+// τροφοδοτούνται από verified production data.
+const launchSafeCss = `
+<style id="launch-safe">
+  #deiktis{display:none!important}
+  #apopse aside{display:none!important}
+  #apopse{grid-template-columns:minmax(0,1fr)!important}
+  .diakoptis button[data-poli="thes"]{display:none!important}
+  #roi:has(#roi-grid:empty){display:none!important}
+</style>`;
+selida = selida.replace("</head>", `${launchSafeCss}\n</head>`);
 
 const js = selida.split("<script>")[1].split("</scr" + "ipt>")[0];
 try {
@@ -79,4 +92,4 @@ try {
 await writeFile("index.html", selida);
 
 const synolo = (arthra.ath?.length || 0) + (arthra.thes?.length || 0);
-console.log(`index.html ενημερώθηκε με ${synolo} άρθρα.`);
+console.log(`index.html ενημερώθηκε με ${synolo} verified άρθρα σε launch-safe mode.`);
