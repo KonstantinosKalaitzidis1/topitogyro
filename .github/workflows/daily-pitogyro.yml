@@ -12,6 +12,7 @@ on:
       - "pitogyro/sources.json"
       - "pitogyro/scripts/fetch.mjs"
       - "pitogyro/scripts/verify.mjs"
+      - "pitogyro/scripts/verify-search.mjs"
       - "pitogyro/scripts/merge-verified.mjs"
       - "pitogyro/scripts/write.mjs"
       - "pitogyro/scripts/build.mjs"
@@ -47,13 +48,20 @@ jobs:
       - name: Fetch discovery radar and approved inputs
         run: npm run fetch
 
-      - name: Verify radar candidates against first-party pages
+      - name: Verify radar candidates against publisher-linked first-party pages
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           AI_MODEL: ${{ vars.AI_MODEL }}
           VERIFY_LIMIT_TOTAL: ${{ vars.VERIFY_LIMIT_TOTAL }}
           VERIFY_RETRY_DAYS: ${{ vars.VERIFY_RETRY_DAYS }}
         run: npm run verify
+
+      - name: Search for first-party source when publisher link is insufficient
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AI_MODEL: ${{ vars.AI_MODEL }}
+          VERIFY_SEARCH_LIMIT_TOTAL: ${{ vars.VERIFY_SEARCH_LIMIT_TOTAL }}
+        run: npm run verify-search
 
       - name: Merge first-party verified facts into writer input
         run: npm run merge-verified
