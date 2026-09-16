@@ -9,10 +9,11 @@
     "resolve-publisher": "node scripts/resolve-publisher.mjs",
     "verify": "node scripts/verify.mjs",
     "verify-search": "node scripts/verify-search.mjs",
+    "official-feed": "node scripts/official-feed.mjs",
     "merge-verified": "node scripts/merge-verified.mjs",
     "write": "node scripts/write.mjs",
     "build": "node scripts/build.mjs",
-    "imera": "npm run fetch && npm run rank-discovery && npm run resolve-publisher && npm run verify && npm run verify-search && npm run merge-verified && npm run write && npm run build"
+    "imera": "npm run fetch && npm run rank-discovery && npm run resolve-publisher && npm run verify && npm run verify-search && npm run official-feed && npm run merge-verified && npm run write && npm run build"
   },
   "dependencies": {
     "rss-parser": "^3.13.0"
