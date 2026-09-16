@@ -11,6 +11,8 @@ on:
       - "pitogyro/content/images.json"
       - "pitogyro/sources.json"
       - "pitogyro/scripts/fetch.mjs"
+      - "pitogyro/scripts/verify.mjs"
+      - "pitogyro/scripts/merge-verified.mjs"
       - "pitogyro/scripts/write.mjs"
       - "pitogyro/scripts/build.mjs"
 
@@ -42,8 +44,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Fetch approved feeds and verified queue
+      - name: Fetch discovery radar and approved inputs
         run: npm run fetch
+
+      - name: Verify radar candidates against first-party pages
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          AI_MODEL: ${{ vars.AI_MODEL }}
+          VERIFY_LIMIT_TOTAL: ${{ vars.VERIFY_LIMIT_TOTAL }}
+          VERIFY_RETRY_DAYS: ${{ vars.VERIFY_RETRY_DAYS }}
+        run: npm run verify
+
+      - name: Merge first-party verified facts into writer input
+        run: npm run merge-verified
 
       - name: Check whether there is new content
         id: new_content
@@ -51,7 +64,7 @@ jobs:
         run: |
           COUNT=$(node -e "const x=require('./content/items.json'); console.log((x.ath?.length||0)+(x.thes?.length||0)+(x.global?.length||0))")
           echo "count=$COUNT" >> "$GITHUB_OUTPUT"
-          echo "New source items: $COUNT"
+          echo "New verified/inspiration items: $COUNT"
 
       - name: Generate original articles
         if: steps.new_content.outputs.count != '0'
@@ -70,7 +83,13 @@ jobs:
         run: |
           git config user.name "pitogyro-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add index.html content/items.json content/discovery.json content/arthra.json content/history.json
+          git add index.html \
+            content/items.json \
+            content/discovery.json \
+            content/auto-verified.json \
+            content/verification-history.json \
+            content/arthra.json \
+            content/history.json
           if git diff --cached --quiet; then
             echo "No generated changes to commit."
             exit 0
