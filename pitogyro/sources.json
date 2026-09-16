@@ -1,6 +1,5 @@
 {
-  "_odigies": "Kathe pigi prepei na exei tier. Tier 1 = dimosios foreas / xoros pou dimosievei to diko tou programma. MONO tier 1 fevgei automata. Elegxe ta dikaiomata prin prostheseis pigi kai grapse imerominia elegxou.",
-
+  "_odigies": "City auto-publish: μόνο ενεργές Tier 1 πηγές με rights_status=approved. Global recipe discovery: επιτρέπονται μόνο πηγές με mode=recipe_inspiration και rights_status=discovery_only. Εκεί κρατάμε τίτλο/σύντομο snippet μόνο ως έμπνευση και το ΠΙΤΟΓΥΡΟ δημιουργεί εντελώς πρωτότυπη συνταγή· δεν αντιγράφει/μεταφράζει recipe text.",
   "ath": [
     {
       "onoma": "Τεχνόπολη Δήμου Αθηναίων",
@@ -9,6 +8,7 @@
       "typos": "rss",
       "tier": 1,
       "energi": false,
+      "rights_status": "unchecked",
       "dikaiomata": "ΔΕΝ ΕΛΕΓΧΘΗΚΕ — δοκίμασε /feed, /rss, ?format=feed πριν ενεργοποιήσεις",
       "elegxthike": ""
     },
@@ -19,11 +19,11 @@
       "typos": "rss",
       "tier": 1,
       "energi": false,
+      "rights_status": "unchecked",
       "dikaiomata": "ΔΕΝ ΕΛΕΓΧΘΗΚΕ",
       "elegxthike": ""
     }
   ],
-
   "thes": [
     {
       "onoma": "Δήμος Θεσσαλονίκης",
@@ -32,8 +32,102 @@
       "typos": "rss",
       "tier": 1,
       "energi": false,
+      "rights_status": "unchecked",
       "dikaiomata": "ΔΕΝ ΕΛΕΓΧΘΗΚΕ",
       "elegxthike": ""
+    }
+  ],
+  "global": [
+    {
+      "onoma": "The Kitchn",
+      "url": "https://www.thekitchn.com/",
+      "feed": "https://www.thekitchn.com/main.rss",
+      "typos": "rss",
+      "mode": "recipe_inspiration",
+      "energi": true,
+      "rights_status": "discovery_only",
+      "dikaiomata": "DISCOVERY ONLY — τίτλος/σύντομο RSS snippet ως έμπνευση. Δεν αναδημοσιεύουμε ή μεταφράζουμε τη συνταγή/κείμενο. Η παραγόμενη συνταγή είναι πρωτότυπη και εμφανίζει credit έμπνευσης.",
+      "elegxthike": "2026-09-16",
+      "keywords": [
+        "sauce",
+        "dip",
+        "burger",
+        "fries",
+        "sandwich",
+        "fried",
+        "loaded",
+        "chicken",
+        "hot dog",
+        "taco",
+        "kebab",
+        "wrap",
+        "cheese",
+        "pickle",
+        "spicy",
+        "crispy",
+        "smash",
+        "mayo",
+        "nachos",
+        "wings",
+        "sloppy",
+        "grilled cheese",
+        "quesadilla"
+      ]
+    },
+    {
+      "onoma": "Delish",
+      "url": "https://www.delish.com/cooking/recipe-ideas/",
+      "feed": "",
+      "typos": "rss",
+      "mode": "recipe_inspiration",
+      "energi": false,
+      "rights_status": "discovery_only",
+      "dikaiomata": "Στόχος discovery για sauces/junk/street-food ideas. Feed URL να επιβεβαιωθεί πριν ενεργοποιηθεί.",
+      "elegxthike": "2026-09-16",
+      "keywords": [
+        "sauce",
+        "dip",
+        "burger",
+        "fries",
+        "sandwich",
+        "fried",
+        "loaded",
+        "chicken",
+        "hot dog",
+        "taco",
+        "wrap",
+        "pickle",
+        "spicy",
+        "crispy",
+        "nachos",
+        "wings"
+      ]
+    },
+    {
+      "onoma": "Serious Eats",
+      "url": "https://www.seriouseats.com/",
+      "feed": "",
+      "typos": "rss",
+      "mode": "recipe_inspiration",
+      "energi": false,
+      "rights_status": "discovery_only",
+      "dikaiomata": "Στόχος discovery. Direct RSS endpoint να επιβεβαιωθεί πριν ενεργοποιηθεί.",
+      "elegxthike": "2026-09-16",
+      "keywords": [
+        "sauce",
+        "burger",
+        "fries",
+        "sandwich",
+        "fried",
+        "chicken",
+        "hot dog",
+        "taco",
+        "wrap",
+        "spicy",
+        "crispy",
+        "nachos",
+        "wings"
+      ]
     }
   ]
 }
