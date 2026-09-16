@@ -1,19 +1,5 @@
 {
   "ath": [],
   "thes": [],
-  "global": [
-    {
-      "id": "6378300d242d6310154626dc",
-      "pigi": "The Kitchn",
-      "pigi_url": "https://www.thekitchn.com/",
-      "source_item_url": "https://www.thekitchn.com/enchilada-black-beans-recipe-23843171?utm_source=RSS&utm_medium=feed&utm_campaign=Category%2FChannel%3A+main",
-      "titlos": "Enchilada Black Beans",
-      "proti_yli": "Just to get out in front of it: There aren’t technically any real enchiladas in these one-pan enchilada beans. Nothing is wrapped in a cozy, lightly fried tortilla to perfection. This is a saucy, sloppy (in a good way) skillet of beans simmered in red enchilada sauce and spices until they’re just thick enough to spoon into warm tortillas — and that’s when you cover it in cheese and pop it under the broiler. READ MORE...",
-      "imerominia": "2026-09-15T17:00:00.000Z",
-      "category": "",
-      "content_mode": "recipe_inspiration",
-      "global": true,
-      "inspiration_score": 7
-    }
-  ]
+  "global": []
 }
