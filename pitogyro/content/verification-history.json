@@ -15,9 +15,9 @@
     "bfbae4c8d17ba64ab0d056ec": {
       "status": "not_verified",
       "reason": "publisher_article_unresolved",
-      "checked_at": "2026-09-16T16:02:14.583Z",
+      "checked_at": "2026-09-16T19:47:03.730Z",
       "official_url": "",
-      "resolver_version": 2,
+      "resolver_version": 3,
       "search_status": "not_verified",
       "search_reason": "no_search_candidate",
       "search_checked_at": "2026-09-16T16:05:22.313Z",
@@ -88,10 +88,10 @@
     },
     "c859dd439c0becb7619e466f": {
       "status": "not_verified",
-      "reason": "first_party_not_sufficient",
-      "checked_at": "2026-09-16T19:41:36.076Z",
+      "reason": "first_party_not_sufficient_or_date_scope_unclear",
+      "checked_at": "2026-09-16T19:47:02.292Z",
       "official_url": "",
-      "resolver_version": 2,
+      "resolver_version": 3,
       "search_status": "not_verified",
       "search_reason": "Η σελίδα ανήκει στο Covers.com (sports betting forum), όχι σε μουσικό venue ή event στην Αθήνα. Δεν υπάρχει καμία σχέση με 'COVER 33' ως μουσικό χώρο, ούτε αναφορές σε events, συναυλίες, ημερομηνίες ή τοποθεσίες στην Αθήνα. Το SEARCH RESULT είναι λανθασμένο locator.",
       "search_checked_at": "2026-09-16T19:41:44.053Z",
@@ -123,8 +123,22 @@
       "search_checked_at": "2026-09-16T19:42:55.566Z",
       "search_version": 1,
       "search_official_url": ""
+    },
+    "2f97686c2ddf5b2f4fc21651": {
+      "search_status": "not_verified",
+      "search_reason": "no_search_candidate",
+      "search_checked_at": "2026-09-16T19:47:04.399Z",
+      "search_version": 1,
+      "search_official_url": ""
+    },
+    "ffb1e653d98dba24b468c250": {
+      "search_status": "not_verified",
+      "search_reason": "no_search_candidate",
+      "search_checked_at": "2026-09-16T19:47:04.673Z",
+      "search_version": 1,
+      "search_official_url": ""
     }
   },
-  "updated_at": "2026-09-16T19:42:55.566Z",
+  "updated_at": "2026-09-16T19:47:04.673Z",
   "resolver_version": 3
 }
