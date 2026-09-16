@@ -56,7 +56,6 @@ function feedUrl(p) {
 
 async function pigi(p) {
   if (!p.energi) return [];
-
   const recipe = p.mode === "recipe_inspiration";
   const discovery = p.mode === "city_discovery";
 
@@ -138,7 +137,8 @@ function dedupeCurrent(items, max = 40) {
   const seen = new Set();
   const out = [];
   for (const i of items) {
-    const key = String(i.titlos || i.source_item_url || "").toLowerCase().replace(/\s+/g," ").trim();
+    const rawKey = i.title || i.titlos || i.url || i.source_item_url || "";
+    const key = String(rawKey).toLowerCase().replace(/\s+/g," ").trim();
     if (!key || seen.has(key)) continue;
     seen.add(key);
     out.push(i);
