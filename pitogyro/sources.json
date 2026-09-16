@@ -1,5 +1,5 @@
 {
-  "_odigies": "City auto-publish: μόνο ενεργές Tier 1 πηγές με rights_status=approved. Global recipe discovery: επιτρέπονται μόνο πηγές με mode=recipe_inspiration και rights_status=discovery_only. Εκεί κρατάμε τίτλο/σύντομο snippet μόνο ως έμπνευση και το ΠΙΤΟΓΥΡΟ δημιουργεί εντελώς πρωτότυπη συνταγή· δεν αντιγράφει/μεταφράζει recipe text.",
+  "_odigies": "City auto-publish: μόνο ενεργές Tier 1 πηγές με rights_status=approved. City discovery: mode=city_discovery + rights_status=discovery_only, κρατάμε μόνο metadata/τίτλο/link ως ραντάρ και ΔΕΝ δημοσιεύεται αυτόματα. Global recipe discovery: mode=recipe_inspiration + discovery_only, τίτλος/σύντομο snippet μόνο ως έμπνευση για πρωτότυπη συνταγή.",
   "ath": [
     {
       "onoma": "Τεχνόπολη Δήμου Αθηναίων",
@@ -9,8 +9,8 @@
       "tier": 1,
       "energi": false,
       "rights_status": "unchecked",
-      "dikaiomata": "ΔΕΝ ΕΛΕΓΧΘΗΚΕ — δοκίμασε /feed, /rss, ?format=feed πριν ενεργοποιήσεις",
-      "elegxthike": ""
+      "dikaiomata": "Δεν ενεργοποιείται για auto-publish μέχρι να υπάρχει σαφής άδεια/κατάλληλο feed ή API.",
+      "elegxthike": "2026-09-16"
     },
     {
       "onoma": "Δήμος Αθηναίων",
@@ -20,8 +20,44 @@
       "tier": 1,
       "energi": false,
       "rights_status": "unchecked",
-      "dikaiomata": "ΔΕΝ ΕΛΕΓΧΘΗΚΕ",
-      "elegxthike": ""
+      "dikaiomata": "Δεν ενεργοποιείται για auto-publish μέχρι να υπάρχει σαφής άδεια/κατάλληλο feed ή API.",
+      "elegxthike": "2026-09-16"
+    },
+    {
+      "onoma": "Athens Voice — openings & street food radar",
+      "url": "https://www.athensvoice.gr/life/geusi/",
+      "typos": "google_news",
+      "mode": "city_discovery",
+      "energi": true,
+      "rights_status": "discovery_only",
+      "category": "openings_food",
+      "query": "site:athensvoice.gr Αθήνα street food νέο μαγαζί νέα άφιξη burger pizza döner σουβλάκι",
+      "dikaiomata": "DISCOVERY ONLY — αποθηκεύεται μόνο τίτλος/link/ημερομηνία ως candidate. Δεν αναδημοσιεύεται κείμενο ή φωτογραφία και δεν περνάει στον writer χωρίς verification.",
+      "elegxthike": "2026-09-16"
+    },
+    {
+      "onoma": "LiFO — Athens openings radar",
+      "url": "https://www.lifo.gr/",
+      "typos": "google_news",
+      "mode": "city_discovery",
+      "energi": true,
+      "rights_status": "discovery_only",
+      "category": "openings_food",
+      "query": "site:lifo.gr Αθήνα άνοιξε νέο εστιατόριο street food burger bar καφέ",
+      "dikaiomata": "DISCOVERY ONLY — metadata candidate, όχι αναδημοσίευση/παράφραση άρθρου.",
+      "elegxthike": "2026-09-16"
+    },
+    {
+      "onoma": "Athens Voice — events/music/street radar",
+      "url": "https://www.athensvoice.gr/politismos/",
+      "typos": "google_news",
+      "mode": "city_discovery",
+      "energi": true,
+      "rights_status": "discovery_only",
+      "category": "events_music_street",
+      "query": "site:athensvoice.gr Αθήνα συναυλία live festival έκθεση graffiti street art popup",
+      "dikaiomata": "DISCOVERY ONLY — metadata candidate, όχι αναδημοσίευση/παράφραση άρθρου.",
+      "elegxthike": "2026-09-16"
     }
   ],
   "thes": [
@@ -33,8 +69,56 @@
       "tier": 1,
       "energi": false,
       "rights_status": "unchecked",
-      "dikaiomata": "ΔΕΝ ΕΛΕΓΧΘΗΚΕ",
-      "elegxthike": ""
+      "dikaiomata": "Οι δημόσιες event pages είναι χρήσιμες για cross-check, αλλά οι όροι του site δεν είναι κατάλληλοι για αυτόματο reuse περιεχομένου. Παραμένει ανενεργό για auto-publish.",
+      "elegxthike": "2026-09-16"
+    },
+    {
+      "onoma": "Biscotto — Thessaloniki openings & street food radar",
+      "url": "https://biscotto.gr/",
+      "typos": "google_news",
+      "mode": "city_discovery",
+      "energi": true,
+      "rights_status": "discovery_only",
+      "category": "openings_food",
+      "query": "site:biscotto.gr Θεσσαλονίκη νέο μαγαζί νέα άφιξη street food burger pizza φαγητό",
+      "dikaiomata": "DISCOVERY ONLY — τίτλος/link/ημερομηνία candidate, χωρίς αντιγραφή περιεχομένου.",
+      "elegxthike": "2026-09-16"
+    },
+    {
+      "onoma": "Biscotto — Thessaloniki events/music radar",
+      "url": "https://biscotto.gr/agenda-simera/",
+      "typos": "google_news",
+      "mode": "city_discovery",
+      "energi": true,
+      "rights_status": "discovery_only",
+      "category": "events_music_street",
+      "query": "site:biscotto.gr Θεσσαλονίκη live συναυλία festival event έκθεση party street art",
+      "dikaiomata": "DISCOVERY ONLY — τίτλος/link/ημερομηνία candidate, χωρίς αντιγραφή περιεχομένου.",
+      "elegxthike": "2026-09-16"
+    },
+    {
+      "onoma": "Parallaxi — Thessaloniki food/openings radar",
+      "url": "https://parallaximag.gr/geysi",
+      "typos": "google_news",
+      "mode": "city_discovery",
+      "energi": true,
+      "rights_status": "discovery_only",
+      "category": "openings_food",
+      "query": "site:parallaximag.gr Θεσσαλονίκη φαγητό νέο μαγαζί άνοιξε street food εστιατόριο burger",
+      "dikaiomata": "DISCOVERY ONLY — metadata candidate, όχι αναδημοσίευση/παράφραση άρθρου.",
+      "elegxthike": "2026-09-16"
+    },
+    {
+      "onoma": "Parallaxi — Thessaloniki culture/street radar",
+      "url": "https://parallaximag.gr/",
+      "typos": "google_news",
+      "mode": "city_discovery",
+      "energi": true,
+      "rights_status": "discovery_only",
+      "category": "events_music_street",
+      "query": "site:parallaximag.gr Θεσσαλονίκη μουσική συναυλία festival graffiti street art έκθεση popup",
+      "dikaiomata": "DISCOVERY ONLY — metadata candidate, όχι αναδημοσίευση/παράφραση άρθρου.",
+      "elegxthike": "2026-09-16"
     }
   ],
   "global": [
@@ -49,33 +133,7 @@
       "dikaiomata": "DISCOVERY ONLY — τίτλος/σύντομο RSS snippet ως έμπνευση. Δεν αναδημοσιεύουμε ή μεταφράζουμε τη συνταγή/κείμενο. Η παραγόμενη συνταγή είναι πρωτότυπη και εμφανίζει credit έμπνευσης.",
       "elegxthike": "2026-09-16",
       "feed_test": "GitHub Actions RSS parse OK — tested on 2026-09-16",
-      "keywords": [
-        "sauce",
-        "dip",
-        "condiment",
-        "aioli",
-        "mayo",
-        "hot honey",
-        "burger",
-        "fries",
-        "sandwich",
-        "hot dog",
-        "wings",
-        "nachos",
-        "smash",
-        "sloppy",
-        "grilled cheese",
-        "quesadilla",
-        "taco",
-        "kebab",
-        "wrap",
-        "enchilada",
-        "pickle",
-        "spicy",
-        "crispy",
-        "fried",
-        "loaded"
-      ]
+      "keywords": ["sauce","dip","condiment","aioli","mayo","hot honey","burger","fries","sandwich","hot dog","wings","nachos","smash","sloppy","grilled cheese","quesadilla","taco","kebab","wrap","enchilada","pickle","spicy","crispy","fried","loaded"]
     },
     {
       "onoma": "Delish",
