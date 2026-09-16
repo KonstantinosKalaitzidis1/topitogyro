@@ -61,8 +61,32 @@
       "search_checked_at": "2026-09-16T16:17:25.031Z",
       "search_version": 1,
       "search_official_url": ""
+    },
+    "3cddcd061e0e0a5c36f7b5a9": {
+      "status": "not_verified",
+      "reason": "no_plausible_first_party_link",
+      "checked_at": "2026-09-16T19:40:26.189Z",
+      "official_url": "",
+      "resolver_version": 2,
+      "search_status": "not_verified",
+      "search_reason": "no_search_candidate",
+      "search_checked_at": "2026-09-16T19:40:27.666Z",
+      "search_version": 1,
+      "search_official_url": ""
+    },
+    "9783ad691aa5e3dfa2d6b8bf": {
+      "status": "not_verified",
+      "reason": "no_plausible_first_party_link",
+      "checked_at": "2026-09-16T19:40:27.125Z",
+      "official_url": "",
+      "resolver_version": 2,
+      "search_status": "not_verified",
+      "search_reason": "no_search_candidate",
+      "search_checked_at": "2026-09-16T19:40:28.071Z",
+      "search_version": 1,
+      "search_official_url": ""
     }
   },
-  "updated_at": "2026-09-16T16:17:25.031Z",
+  "updated_at": "2026-09-16T19:40:28.071Z",
   "resolver_version": 2
 }

@@ -1,18 +1,5 @@
 {
-  "ath": [
-    {
-      "id": "auto-621b73f264863c195179c5d9",
-      "pigi": "Επίσημη πηγή — Athens Coffee Festival 2026",
-      "pigi_url": "https://athenscoffeefestival.gr/ekthetes/",
-      "source_item_url": "https://athenscoffeefestival.gr/ekthetes/",
-      "titlos": "Athens Coffee Festival 2026",
-      "proti_yli": "Επιβεβαιωμένα facts από first-party πηγή: Φεστιβάλ καφέ στην Αθήνα (Άγιος Δημήτριος, Λ. Βουλιαγμένης 328) Ημερομηνίες: 26-28 Σεπτεμβρίου 2026 Περιλαμβάνει ομιλίες Coffee Matters με θέματα βιωσιμότητας, specialty coffee και τάσεις της αγοράς Φιλοξενεί το 9ο Πανελλήνιο Πρωτάθλημα AeroPress (28 Αυγούστου 2026) Παράλληλα events: Dance Floor, Stand-Up Comedy, Πρωταθλήματα Roasting & Cezve/Ibrik Συμμετέχουν δεκάδες brands καφέ, roasters, εξοπλισμού και αναλωσίμων Εισιτήρια διαθέσιμα με 3€ Επαγγελματικό περιβάλλον για παραγωγούς, roasters, baristas και επιχειρηματίες Μην προσθέσεις μη επιβεβαιωμένες λεπτομέρειες, αξιολογικές κρίσεις ή πληροφορίες από το discovery article.",
-      "imerominia": "2026-09-16T16:17:22.949Z",
-      "verified": true,
-      "verification_method": "first_party_page",
-      "content_mode": "facts"
-    }
-  ],
+  "ath": [],
   "thes": [],
   "global": []
 }
