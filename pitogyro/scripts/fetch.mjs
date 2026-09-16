@@ -1,4 +1,4 @@
-// Τραβάει ενεργές, εγκεκριμένες πηγές Tier 1 και βγάζει content/items.json.
+// Τραβάει ενεργές, εγκεκριμένες πηγές Tier 1 + verified queue και βγάζει content/items.json.
 // Κρατά μόνο σύντομη πρώτη ύλη/metadata για παραγωγή πρωτότυπου άρθρου.
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -64,8 +64,6 @@ async function pigi(p) {
           pigi_url: p.url || "",
           source_item_url: itemUrl,
           titlos,
-          // Μέχρι 600 χαρακτήρες μόνο ως πρώτη ύλη για εξαγωγή facts.
-          // Δεν δημοσιεύεται αυτούσιο.
           proti_yli: katharise(i.contentSnippet || i.content || i.summary || "").slice(0, 600),
           imerominia
         };
@@ -77,7 +75,23 @@ async function pigi(p) {
   }
 }
 
+function verifiedItems(queue, poli) {
+  return (queue[poli] || [])
+    .filter(i => i && i.verified === true && i.titlos && i.proti_yli)
+    .map(i => ({
+      id: i.id || kleidi("verified", poli, i.titlos, i.source_item_url || ""),
+      pigi: i.pigi || "Verified source",
+      pigi_url: i.pigi_url || "",
+      source_item_url: i.source_item_url || i.pigi_url || "",
+      titlos: katharise(i.titlos),
+      proti_yli: katharise(i.proti_yli).slice(0, 1800),
+      imerominia: i.imerominia || new Date().toISOString(),
+      verified: true
+    }));
+}
+
 const pigis = JSON.parse(await readFile("sources.json", "utf8"));
+const queue = await diavaseJson("content/verified-queue.json", { ath: [], thes: [] });
 const history = await diavaseJson("content/history.json", { published_ids: [] });
 const seen = new Set(history.published_ids || []);
 const apotelesma = {};
@@ -92,7 +106,10 @@ for (const poli of ["ath", "thes"]) {
     ola.push(...items);
   }
 
-  // Αφαίρεση ήδη δημοσιευμένων και διπλότυπων τρέχοντος run.
+  const verified = verifiedItems(queue, poli);
+  if (verified.length) console.log(`  VERIFIED QUEUE: ${verified.length} στοιχεία`);
+  ola.push(...verified);
+
   const runSeen = new Set();
   apotelesma[poli] = ola.filter(i => {
     if (seen.has(i.id)) return false;
