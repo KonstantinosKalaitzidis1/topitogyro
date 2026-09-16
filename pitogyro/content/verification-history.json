@@ -115,7 +115,12 @@
       "search_reason": "no_search_candidate",
       "search_checked_at": "2026-09-16T19:42:55.277Z",
       "search_version": 1,
-      "search_official_url": ""
+      "search_official_url": "",
+      "status": "not_verified",
+      "reason": "no_plausible_first_party_link",
+      "checked_at": "2026-09-16T19:50:49.106Z",
+      "official_url": "",
+      "resolver_version": 3
     },
     "4e0e8dcd22eaf9cccb739381": {
       "search_status": "not_verified",
@@ -129,7 +134,12 @@
       "search_reason": "no_search_candidate",
       "search_checked_at": "2026-09-16T19:47:04.399Z",
       "search_version": 1,
-      "search_official_url": ""
+      "search_official_url": "",
+      "status": "not_verified",
+      "reason": "no_plausible_first_party_link",
+      "checked_at": "2026-09-16T19:50:52.195Z",
+      "official_url": "",
+      "resolver_version": 3
     },
     "ffb1e653d98dba24b468c250": {
       "search_status": "not_verified",
@@ -139,6 +149,6 @@
       "search_official_url": ""
     }
   },
-  "updated_at": "2026-09-16T19:47:04.673Z",
+  "updated_at": "2026-09-16T19:50:52.388Z",
   "resolver_version": 3
 }

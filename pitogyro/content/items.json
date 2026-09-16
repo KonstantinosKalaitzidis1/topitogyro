@@ -1,5 +1,31 @@
 {
-  "ath": [],
-  "thes": [],
+  "ath": [
+    {
+      "id": "official-1809919a823879f1b8cbdf75",
+      "pigi": "Στέγη Ιδρύματος Ωνάση — What's On — official first-party agenda",
+      "pigi_url": "https://www.onassis.org/whats-on",
+      "source_item_url": "https://www.onassis.org/whats-on",
+      "titlos": "Borderline Festival",
+      "proti_yli": "Επιβεβαιωμένα facts από επίσημη first-party agenda. Ημερομηνία: 2026-10-09. Τοποθεσία: Onassis Ready, Αθήνα. Το Borderline Festival πραγματοποιείται στις 9 Οκτωβρίου 2026 στο Onassis Ready Είναι μουσικό event που διοργανώνεται από τη Στέγη Ιδρύματος Ωνάση Το festival ανήκει στο πρόγραμμα What's On της Onassis Foundation Μην προσθέσεις άλλες ημερομηνίες, τιμές, ώρες, πρόσωπα ή αξιολογικές κρίσεις που δεν περιλαμβάνονται στα παραπάνω facts.",
+      "imerominia": "2026-09-16T19:50:57.266Z",
+      "verified": true,
+      "verification_method": "first_party_page",
+      "content_mode": "facts"
+    }
+  ],
+  "thes": [
+    {
+      "id": "official-850ef41296cb28cab330683d",
+      "pigi": "MOMus — Εκδηλώσεις — official first-party agenda",
+      "pigi_url": "https://www.momus.gr/events",
+      "source_item_url": "https://www.momus.gr/events",
+      "titlos": "Αντικειμενική Πραγματικότητα: αβεβαιότητα και σκληρές αλήθειες",
+      "proti_yli": "Επιβεβαιωμένα facts από επίσημη first-party agenda. Ημερομηνία: 2026-09-21. Τοποθεσία: Μουσείο Σύγχρονης Τέχνης. Post Opening Event στο Μουσείο Σύγχρονης Τέχνης της Θεσσαλονίκης. Εκδήλωση που σχετίζεται με σύγχρονη τέχνη και εικαστικές πρακτικές. Διοργανώνεται από το MOMus, το κύριο μουσειακό δίκτυο της πόλης. Μην προσθέσεις άλλες ημερομηνίες, τιμές, ώρες, πρόσωπα ή αξιολογικές κρίσεις που δεν περιλαμβάνονται στα παραπάνω facts.",
+      "imerominia": "2026-09-16T19:51:02.719Z",
+      "verified": true,
+      "verification_method": "first_party_page",
+      "content_mode": "facts"
+    }
+  ],
   "global": []
 }
