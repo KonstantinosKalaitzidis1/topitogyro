@@ -6,9 +6,10 @@
   "scripts": {
     "fetch": "node scripts/fetch.mjs",
     "verify": "node scripts/verify.mjs",
+    "merge-verified": "node scripts/merge-verified.mjs",
     "write": "node scripts/write.mjs",
     "build": "node scripts/build.mjs",
-    "imera": "npm run fetch && npm run verify && npm run fetch && npm run write && npm run build"
+    "imera": "npm run fetch && npm run verify && npm run merge-verified && npm run write && npm run build"
   },
   "dependencies": {
     "rss-parser": "^3.13.0"
