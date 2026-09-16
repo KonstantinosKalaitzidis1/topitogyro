@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-16T13:55:33.726Z",
+  "updated_at": "2026-09-16T15:58:59.407Z",
   "ath": [
     {
       "id": "f161f826f23d77a14eb04e10",
@@ -14,18 +14,6 @@
       "auto_publish": false
     },
     {
-      "id": "eb16665d7389883561c3469a",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "Super Berlin Döner: Το αυθεντικό Βερολινέζικο street food μόλις προσγειώθηκε στην Αθήνα - Athens Voice",
-      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxOSDBWUmx0SXpHX3V1b1c3bll1RmFRWmx1aE04aC16cWplcWprWFRTUFJuUVM1a1E5VFp5cVZKZkNtdjNIb2RuQjB2eUVHdDdtLU1GWFFZWWZuVnZBRVVORnZfOWhTOHpEeDZ4aXFHbkVOeEpLeERyTlk0TlJacGFqUU8zU1lBTjJxNmdBcTVYQ3BFaWJtVVZQaUgwVU00LTFtZnZIYzV3TFp4LS1XYjhaZlBPWi1sR1ZkWm5aRHF0RVdIVDNrd2llRlQ5NmFWSUZfQXp1WGdXSTRXQdIB3wFBVV95cUxPS0UycGxCdVV0Y05FYXQwWC1RVE5EQ2s0aVJONXFPQkp2U2R6T0JVTmhtYnBvNVh4aElxZE9iQngxRU54UnB0ZUtUYktSUVozanNaZUNqT2NYeUtjQ3AyN3lEb25rbUhITlgxYUxISkJ4a3RDeHp6Qk45dVNjQXBkZl9NdXZjZ0dnbXJZYWhLN3BOU29VRWt4aG95YWJoQkhLc2tiUHlWOEFJanBLUVYzR1luYTBpRTU5VzRwYWJIdkdDbXNJSl9mLXRoYlFXTnNkRnluaG5ZUVF1bjZydlJB?oc=5",
-      "source": "Athens Voice — openings & street food radar",
-      "source_home": "https://www.athensvoice.gr/life/geusi/",
-      "published_at": "2026-09-09T15:11:16.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
       "id": "fa5183ef2d43249745ca3119",
       "city": "ath",
       "category": "openings_food",
@@ -34,6 +22,18 @@
       "source": "Athens Voice — openings & street food radar",
       "source_home": "https://www.athensvoice.gr/life/geusi/",
       "published_at": "2026-09-16T13:00:16.000Z",
+      "status": "candidate",
+      "auto_publish": false
+    },
+    {
+      "id": "f1c552f74581f67b0bd82336",
+      "city": "ath",
+      "category": "openings_food",
+      "title": "Βar 2046: Το πρώτο bar μέσα σε σινεμά μόλις άνοιξε στην Ακαδημίας - Athens Voice",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOdmRsSWs5ZDdYSkg4M1dSZ0htUVEzdjFMcVN2QXhUcVFXSmpxNzFPU0I2ZWZvS05CSWwxbHlCS3g1Ynh2Vnl0V0dpdm5XN3FvLVFkaVc0bUYwcXRYdl9EUXNmWW9rN3BkR0NGZkNFY1V5anRMaVN3aF9rYkNaZGNzdFJSRDh1N29QMVA3dDY3UzZOOW5PcXBZbEpFREFhaUnSAZ8BQVVfeXFMTnZkbElrOWQ3WEpIODNXUmdIbVFRM3YxTHFTdkF4VHFRV0pqcTcxT1NCNmVmb0tOQklsMWx5Qkt4NWJ4dlZ5dFdHaXZuVzdxby1RZGlXNG1GMHF0WHZfRFFzZllvazdwZEdDRmZDRWNVeWp0TGlTd2hfa2JDWmRjc3RSUkQ4dTdvUDFQN3Q2N1M2TjluT3FwWWxKRURBYWlJ?oc=5",
+      "source": "Athens Voice — openings & street food radar",
+      "source_home": "https://www.athensvoice.gr/life/geusi/",
+      "published_at": "2026-09-16T13:51:00.000Z",
       "status": "candidate",
       "auto_publish": false
     },
@@ -70,6 +70,18 @@
       "source": "Athens Voice — openings & street food radar",
       "source_home": "https://www.athensvoice.gr/life/geusi/",
       "published_at": "2026-09-11T12:47:47.000Z",
+      "status": "candidate",
+      "auto_publish": false
+    },
+    {
+      "id": "5f551bd27ef7144dab51fa30",
+      "city": "ath",
+      "category": "openings_food",
+      "title": "Μεντιλίμπαρ: «Φεύγω περήφανος που βοήθησα τον Ολυμπιακό να γίνει ακόμη μεγαλύτερος» - Athens Voice",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxORjFFa01uTmthbUJGdFdEU19WLXBHVlZtUDFybnotem5nT1hLTUZkZzVXUVA0dVYyWGs2Nld5cTBzTnNpSWVpMjRrX0ZLXzRhTmoxRThtdHF0TXczakQwbnZlZ053NU9Ldl9BdXpLYW82STFlQ1ZFa2JzaUEtV0k5bWdtMFowQmZCSXF2Z0w1d1pZMFhRNTBFbzcwZHI2LUF2WVlHTnNjSTUyX2d4WTZOSVZPZ25iYVBDYXlmeXZSSWVsRTRxVG83akVwN3FyR0p6YjdWX9IB2gFBVV95cUxOam5odGdMNDVGZmdZWEo1OVl3NWlfbGw2a3UwSlZNb2hfc0tJSFdGcHlnNnpsbmtLM05iTjlLell6MFVNX0dsYUllRG0wbUdFZWF2QVdMNHhYM2NVUHF4b3RoUGxKNWUtU08yQ2VMbnFVX0dVelE2Ym05R1NyT2ZLbjRiR0Y0dllqYUR5TmoxOVcxMkRlbkNHUnRxbHNzaEFhUWVyRTJjdFhhblJzdjZLcFlkZXdQRGtEYUdiRVFMU2NlOFh0VDlSTzdEb090NHNuQ3E0S0dWZHdDdw?oc=5",
+      "source": "Athens Voice — openings & street food radar",
+      "source_home": "https://www.athensvoice.gr/life/geusi/",
+      "published_at": "2026-09-10T12:55:44.000Z",
       "status": "candidate",
       "auto_publish": false
     },
@@ -130,6 +142,18 @@
       "source": "Athens Voice — events/music/street radar",
       "source_home": "https://www.athensvoice.gr/politismos/",
       "published_at": "2026-09-15T05:22:00.000Z",
+      "status": "candidate",
+      "auto_publish": false
+    },
+    {
+      "id": "3cddcd061e0e0a5c36f7b5a9",
+      "city": "ath",
+      "category": "events_music_street",
+      "title": "Τεχνόπολη: Ακυρώνεται οριστικά η συναυλία-αφιέρωμα στον Μαζωνάκη - Athens Voice",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQVkdpcS1USnZfcldWMTJvYUFnVEptMDg2clZJaDZTNG1UX09Yb0JYdWFIOHZaaUhNOHNEQ1pKc2paS2JtR1NGN2NpREhaWXc2WHRnc3pEVnY2MDZ1LTFlZVljNWxXUHRYS1lqeWx0SWRBaHlLTmhZQ1NBZXVtUkRlT195Ym9rdFdHdTJtMnVDOGtvZzd0bUtuVnA5a09vdVJPMWxLejF0cXg4SEJLQml5MUxMMVphZ1NkWFIzMNIBwgFBVV95cUxPa1JwalEwcEFiR2hjTlBtZDc3VVE5aVZaWDcxMXNnUGswNjl6dUNJREhYeGpsUFZ0Y081TFdkWjFZS0pQeldUa09JQUdzM212SXNyRmhNRENHME5IcEhtcHRuRnhSM0RZZzQwMW5MN01KYkpFOF9YdmZhUVo0UTBITmh6NkpXcHpIY0h1cmNFLTB6aGtsdHNuTHB2bGR2X081WTd0WkNOd3JqWlF5bkU1WlpYbWtaY0huTzVwZUxYc1RCZw?oc=5",
+      "source": "Athens Voice — events/music/street radar",
+      "source_home": "https://www.athensvoice.gr/politismos/",
+      "published_at": "2026-09-16T14:19:00.000Z",
       "status": "candidate",
       "auto_publish": false
     },
@@ -232,14 +256,14 @@
       "auto_publish": false
     },
     {
-      "id": "bdfc015e82bf9f6dbfe2be73",
+      "id": "53c6aec7822485cbef278e04",
       "city": "thes",
       "category": "events_music_street",
       "title": "Σήμερα η πρεμιέρα του Reworks – Η Θεσσαλονίκη στο επίκεντρο της ηλεκτρονικής μουσικής - biscotto",
       "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQazhSRlFSRHoyMWMyVUtpRmVLa214Qk5MN0FOeGtZTGNscml6dFdXYVRFaGhIWFZFZ1g1M2Y2YkxJdUNPbEhXazFwM3hHcFVwdmhDTV9uV1JObnlkaGlrZm9BYzExbXBaODRIV1pyOFNhdEhaZk5UV2hQQU9BQTUzZmMtQVRBUUo5Y25HTW5mX0FWeWJiZW9BOW5qY09UZ1BpQVNKdVRhY1o?oc=5",
       "source": "Biscotto — Thessaloniki events/music radar",
       "source_home": "https://biscotto.gr/agenda-simera/",
-      "published_at": "2026-09-16T08:14:14.000Z",
+      "published_at": "2026-09-16T10:12:35.000Z",
       "status": "candidate",
       "auto_publish": false
     },
@@ -280,18 +304,6 @@
       "auto_publish": false
     },
     {
-      "id": "3da738eba2472dfe280a4926",
-      "city": "thes",
-      "category": "events_music_street",
-      "title": "ΕΙΚΟΝΕΣ: Λαοθάλασσα στην τεράστια συναυλία του Αντώνη Ρέμου στη Θεσσαλονίκη - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPa1BEMUp0UkJBeHlxdnpWaFFYZk5fZnloN3VqQjRmT0FLODlGdXlYUVhKYmplUzAwSmt2a05OTmxsWlZySGs1TnNBVTJNQ0JlUHFDZHA5M3FnTnM5eWZESXlENVlrWWY3cTlSWkxWSk0xLUYyQ0dHYmhLRzZRalZVNDdrcGNKcklOdEk1eG1BX2ZWSmhsTVp4eHRsUC1mN01xeFNkXzY4VUtuUzZTMmlSc1hOenhzRFJXTmc?oc=5",
-      "source": "Parallaxi — Thessaloniki culture/street radar",
-      "source_home": "https://parallaximag.gr/",
-      "published_at": "2026-09-13T05:30:09.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
       "id": "cb5dbdbe237360347c7c11ec",
       "city": "thes",
       "category": "events_music_street",
@@ -300,6 +312,18 @@
       "source": "Parallaxi — Thessaloniki culture/street radar",
       "source_home": "https://parallaximag.gr/",
       "published_at": "2026-09-16T11:41:16.000Z",
+      "status": "candidate",
+      "auto_publish": false
+    },
+    {
+      "id": "3da738eba2472dfe280a4926",
+      "city": "thes",
+      "category": "events_music_street",
+      "title": "ΕΙΚΟΝΕΣ: Λαοθάλασσα στην τεράστια συναυλία του Αντώνη Ρέμου στη Θεσσαλονίκη - Parallaxi",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPa1BEMUp0UkJBeHlxdnpWaFFYZk5fZnloN3VqQjRmT0FLODlGdXlYUVhKYmplUzAwSmt2a05OTmxsWlZySGs1TnNBVTJNQ0JlUHFDZHA5M3FnTnM5eWZESXlENVlrWWY3cTlSWkxWSk0xLUYyQ0dHYmhLRzZRalZVNDdrcGNKcklOdEk1eG1BX2ZWSmhsTVp4eHRsUC1mN01xeFNkXzY4VUtuUzZTMmlSc1hOenhzRFJXTmc?oc=5",
+      "source": "Parallaxi — Thessaloniki culture/street radar",
+      "source_home": "https://parallaximag.gr/",
+      "published_at": "2026-09-13T05:30:09.000Z",
       "status": "candidate",
       "auto_publish": false
     },
@@ -340,18 +364,6 @@
       "auto_publish": false
     },
     {
-      "id": "37d7a37935a8710063460ba0",
-      "city": "thes",
-      "category": "events_music_street",
-      "title": "Kανονικά θα πραγματοποιηθεί η συναυλία του Ρέμου στη Θεσσαλονίκη - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOQmF6OHhIOHQ5dldLSVhjX093RUd2SzA3MWFvenJKTXZVNW5uWE04VXprY2NKZDF4aGEwUXZjakhmbV9FTW9JLW5SRUh3UzZ3elBXSEx2cktYNjljb09lZ3pucGtQdGJLTFNqR2prZGI0V0plTXRKbTRIWGdaYWpHQ2JWWFZpZF9VNXRHbnRPZTZERVlKR1p4bnI2Yy1CVGRxNVZRcHEydHBkZElkclE?oc=5",
-      "source": "Parallaxi — Thessaloniki culture/street radar",
-      "source_home": "https://parallaximag.gr/",
-      "published_at": "2026-09-12T23:55:58.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
       "id": "0a3c3738e40c39950597fb00",
       "city": "thes",
       "category": "events_music_street",
@@ -360,6 +372,18 @@
       "source": "Parallaxi — Thessaloniki culture/street radar",
       "source_home": "https://parallaximag.gr/",
       "published_at": "2026-09-12T05:59:34.000Z",
+      "status": "candidate",
+      "auto_publish": false
+    },
+    {
+      "id": "37d7a37935a8710063460ba0",
+      "city": "thes",
+      "category": "events_music_street",
+      "title": "Kανονικά θα πραγματοποιηθεί η συναυλία του Ρέμου στη Θεσσαλονίκη - Parallaxi",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOQmF6OHhIOHQ5dldLSVhjX093RUd2SzA3MWFvenJKTXZVNW5uWE04VXprY2NKZDF4aGEwUXZjakhmbV9FTW9JLW5SRUh3UzZ3elBXSEx2cktYNjljb09lZ3pucGtQdGJLTFNqR2prZGI0V0plTXRKbTRIWGdaYWpHQ2JWWFZpZF9VNXRHbnRPZTZERVlKR1p4bnI2Yy1CVGRxNVZRcHEydHBkZElkclE?oc=5",
+      "source": "Parallaxi — Thessaloniki culture/street radar",
+      "source_home": "https://parallaximag.gr/",
+      "published_at": "2026-09-12T23:55:58.000Z",
       "status": "candidate",
       "auto_publish": false
     },
@@ -384,6 +408,18 @@
       "source": "Parallaxi — Thessaloniki culture/street radar",
       "source_home": "https://parallaximag.gr/",
       "published_at": "2026-09-11T10:00:40.000Z",
+      "status": "candidate",
+      "auto_publish": false
+    },
+    {
+      "id": "8a18f9ec6b1b9e86d1b2afbf",
+      "city": "thes",
+      "category": "events_music_street",
+      "title": "Μεγάλο παραδοσιακό πανηγύρι με 25 μουσικούς και ελεύθερη είσοδο σε μια εμβληματική πλατεία της Θεσσαλονίκης - Parallaxi",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPbHJwVm1TYThFblRNLWl2QTlNU2xvNFZtdFdBMnhiaWZxZm13V1VYTXZPbnNpRnliUDkzRUlKZzRmWnN4MzhIRDBqTmFjSGZ3TlZKTzlUbk5la1F2bUViRGxTSGRDV2VXdF9Od1pVeWFPbVF3ZU1JMjFSeHR2eGlQNnpGWDFZYkZwbVl5VENwQk9vR1dDZmF0bF9CTVAwWEZhWmZaaXZBMF84aUFYSk9LaEZsczNfSVNUWmRVUEtBb3FZal9URlNfRTdad1lqTXFvRGxUZE53NVpHMUZNWEp0QnpFY0hUUQ?oc=5",
+      "source": "Parallaxi — Thessaloniki culture/street radar",
+      "source_home": "https://parallaximag.gr/",
+      "published_at": "2026-09-16T06:10:59.000Z",
       "status": "candidate",
       "auto_publish": false
     }

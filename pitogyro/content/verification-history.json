@@ -1,0 +1,17 @@
+{
+  "checks": {
+    "f161f826f23d77a14eb04e10": {
+      "status": "not_verified",
+      "reason": "generic_or_no_entity",
+      "checked_at": "2026-09-16T15:59:02.890Z",
+      "official_url": ""
+    },
+    "bfbae4c8d17ba64ab0d056ec": {
+      "status": "not_verified",
+      "reason": "publisher_article_unresolved",
+      "checked_at": "2026-09-16T15:59:03.149Z",
+      "official_url": ""
+    }
+  },
+  "updated_at": "2026-09-16T15:59:03.149Z"
+}
