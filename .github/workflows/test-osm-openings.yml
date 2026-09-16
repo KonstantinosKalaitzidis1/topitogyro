@@ -1,0 +1,34 @@
+name: Test OSM food openings
+
+on:
+  push:
+    paths:
+      - ".github/workflows/test-osm-openings.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query recent food places with opening dates
+        shell: bash
+        run: |
+          set -euo pipefail
+          QUERY='[out:json][timeout:30];(nwr["amenity"~"^(fast_food|restaurant|cafe)$"]["opening_date"](37.90,23.60,38.10,23.90);nwr["amenity"~"^(fast_food|restaurant|cafe)$"]["opening_date"](40.55,22.80,40.75,23.10););out tags center;'
+          curl -sS --fail --retry 2 \
+            -H 'User-Agent: topitogyro/0.1 (GitHub Actions; city culture prototype)' \
+            --get --data-urlencode "data=$QUERY" \
+            https://overpass-api.de/api/interpreter > osm.json
+          node <<'NODE'
+          const fs=require('fs');
+          const d=JSON.parse(fs.readFileSync('osm.json','utf8'));
+          const rows=(d.elements||[])
+            .map(x=>({name:x.tags?.name||'', opening_date:x.tags?.opening_date||'', amenity:x.tags?.amenity||'', cuisine:x.tags?.cuisine||''}))
+            .filter(x=>x.name && /^202[56]/.test(x.opening_date))
+            .sort((a,b)=>String(b.opening_date).localeCompare(String(a.opening_date)));
+          console.log(`Recent dated food-place candidates: ${rows.length}`);
+          console.log(rows.slice(0,25));
+          NODE
