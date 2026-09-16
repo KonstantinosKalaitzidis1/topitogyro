@@ -47,6 +47,10 @@ const GENERIC_ENTITIES = new Set([
   "νεα", "news", "μουσικη", "music", "φαγητο", "food", "street food", "festival", "φεστιβαλ"
 ].map(norm));
 
+const GENERIC_ENTITY_PREFIXES = [
+  "εικονες ", "images ", "νεα ", "news ", "αθηνα ", "athens ", "θεσσαλονικη ", "thessaloniki "
+];
+
 const FOOD_SIGNALS = [
   "street food", "burger", "smash", "pizza", "πιτσα", "döner", "doner", "κεμπαπ", "kebab",
   "σουβλακ", "γυρο", "fried chicken", "κοτοπουλ", "taco", "hot dog", "sandwich", "σαντουιτς",
@@ -71,8 +75,7 @@ function generic(hay) { return GENERIC.some(x => hay.includes(norm(x))); }
 function meaningfulEntity(entity = "") {
   const e = norm(entity);
   if (!e || GENERIC_ENTITIES.has(e)) return false;
-  if (/^(εικονες|images|νεα|news)\b/.test(e)) return false;
-  if (e.split(" ").length === 1 && (e === "αθηνα" || e === "θεσσαλονικη")) return false;
+  if (GENERIC_ENTITY_PREFIXES.some(prefix => e.startsWith(prefix))) return false;
   return true;
 }
 
