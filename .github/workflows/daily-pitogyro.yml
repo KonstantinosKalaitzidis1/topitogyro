@@ -9,6 +9,7 @@ on:
     paths:
       - "pitogyro/content/verified-queue.json"
       - "pitogyro/content/images.json"
+      - "pitogyro/content/arthra.json"
       - "pitogyro/sources.json"
       - "pitogyro/scripts/fetch.mjs"
       - "pitogyro/scripts/rank-discovery.mjs"
@@ -18,6 +19,7 @@ on:
       - "pitogyro/scripts/merge-verified.mjs"
       - "pitogyro/scripts/write.mjs"
       - "pitogyro/scripts/build.mjs"
+      - ".github/workflows/daily-pitogyro.yml"
 
 permissions:
   contents: write
