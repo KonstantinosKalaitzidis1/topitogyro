@@ -77,8 +77,29 @@ const launchSafeCss = `
   #apopse{grid-template-columns:minmax(0,1fr)!important}
   .diakoptis button[data-poli="thes"]{display:none!important}
   #roi:has(#roi-grid:empty){display:none!important}
+
+  .poioi-eimaste{
+    border-top:2px solid var(--melani);
+    border-bottom:2px solid var(--melani);
+    padding:42px 0;
+    margin-top:24px;
+  }
+  .poioi-eimaste .mesa{max-width:760px}
+  .poioi-eimaste h2{font-size:clamp(34px,5vw,58px);margin:0 0 16px}
+  .poioi-eimaste p{font-size:clamp(18px,2.2vw,23px);line-height:1.45;margin:0;color:var(--melani-soft)}
 </style>`;
 selida = selida.replace("</head>", `${launchSafeCss}\n</head>`);
+
+const aboutSection = `
+<section class="wrap poioi-eimaste" id="poioi">
+  <div class="mesa">
+    <h2>Ποιοι είμαστε</h2>
+    <p>Είμαστε μια ομάδα ανθρώπων που περπατάει πολύ στην πόλη. Μας αρέσουν όλα τα φάσματά της — το φαγητό, η μουσική, οι δρόμοι, οι γειτονιές, οι άνθρωποι, τα μικρά μαγαζιά και κυρίως τα περίεργα που συνήθως περνάνε απαρατήρητα. Το ΠΙΤΟΓΥΡΟ είναι ο τρόπος μας να τα μαζεύουμε όλα αυτά σε ένα μέρος.</p>
+  </div>
+</section>`;
+
+selida = selida.replace("</main>", `${aboutSection}\n\n</main>`);
+selida = selida.replace('<a href="#">Ποιοι είμαστε</a>', '<a href="#poioi">Ποιοι είμαστε</a>');
 
 const js = selida.split("<script>")[1].split("</scr" + "ipt>")[0];
 try {
