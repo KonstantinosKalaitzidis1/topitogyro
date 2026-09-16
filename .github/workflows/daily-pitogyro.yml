@@ -81,6 +81,8 @@ jobs:
           ORIO_ARTHRON: ${{ vars.ORIO_ARTHRON }}
           ORIO_GLOBAL: ${{ vars.ORIO_GLOBAL }}
         run: npm run write
+      - name: Enrich verified stories with first-party images
+        run: npm run enrich-images
       - name: Production content gate
         env:
           MIN_CITY_ARTICLES: "3"
@@ -93,7 +95,7 @@ jobs:
         run: |
           git config user.name "pitogyro-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add index.html content/items.json content/discovery.json content/auto-verified.json content/verification-history.json content/arthra.json content/history.json
+          git add index.html content/items.json content/discovery.json content/auto-verified.json content/verification-history.json content/arthra.json content/history.json content/images.json
           if git diff --cached --quiet; then
             echo "No generated changes to commit."
             exit 0
