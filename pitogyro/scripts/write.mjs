@@ -4,7 +4,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 const KLEIDI = process.env.ANTHROPIC_API_KEY;
-const MONTELO = process.env.AI_MODEL || "claude-sonnet-4-6";
+const MONTELO = process.env.AI_MODEL || "claude-sonnet-5";
 
 if (!KLEIDI) {
   console.error("Λείπει το ANTHROPIC_API_KEY. Δες το README.");
@@ -50,14 +50,7 @@ async function grapse(item, poli) {
       system: YFOS,
       messages: [{
         role: "user",
-        content: `Πόλη: ${poliOnoma}
-Πηγή: ${item.pigi}
-URL πηγής: ${item.source_item_url || item.pigi_url || ""}
-Τίτλος: ${item.titlos}
-Ημερομηνία: ${item.imerominia || "άγνωστη"}
-Πρώτη ύλη (μόνο για facts, ΜΗΝ την αντιγράψεις): ${item.proti_yli}
-
-Γράψε πρωτότυπο άρθρο.`
+        content: `Πόλη: ${poliOnoma}\nΠηγή: ${item.pigi}\nURL πηγής: ${item.source_item_url || item.pigi_url || ""}\nΤίτλος: ${item.titlos}\nΗμερομηνία: ${item.imerominia || "άγνωστη"}\nΠρώτη ύλη (μόνο για facts, ΜΗΝ την αντιγράψεις): ${item.proti_yli}\n\nΓράψε πρωτότυπο άρθρο.`
       }]
     })
   });
