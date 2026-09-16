@@ -2,16 +2,27 @@
   "checks": {
     "f161f826f23d77a14eb04e10": {
       "status": "not_verified",
-      "reason": "generic_or_no_entity",
-      "checked_at": "2026-09-16T15:59:02.890Z",
-      "official_url": ""
+      "reason": "publisher_article_unresolved",
+      "checked_at": "2026-09-16T16:05:13.762Z",
+      "official_url": "",
+      "resolver_version": 2,
+      "search_status": "not_verified",
+      "search_reason": "no_search_candidate",
+      "search_checked_at": "2026-09-16T16:05:21.944Z",
+      "search_version": 1,
+      "search_official_url": ""
     },
     "bfbae4c8d17ba64ab0d056ec": {
       "status": "not_verified",
       "reason": "publisher_article_unresolved",
       "checked_at": "2026-09-16T16:02:14.583Z",
       "official_url": "",
-      "resolver_version": 2
+      "resolver_version": 2,
+      "search_status": "not_verified",
+      "search_reason": "no_search_candidate",
+      "search_checked_at": "2026-09-16T16:05:22.313Z",
+      "search_version": 1,
+      "search_official_url": ""
     },
     "e468f509c00d7b3c8947573c": {
       "status": "not_verified",
@@ -19,8 +30,15 @@
       "checked_at": "2026-09-16T16:02:07.267Z",
       "official_url": "",
       "resolver_version": 2
+    },
+    "f333962af221537d2288152e": {
+      "status": "not_verified",
+      "reason": "publisher_article_unresolved",
+      "checked_at": "2026-09-16T16:05:21.325Z",
+      "official_url": "",
+      "resolver_version": 2
     }
   },
-  "updated_at": "2026-09-16T16:02:14.583Z",
+  "updated_at": "2026-09-16T16:05:22.313Z",
   "resolver_version": 2
 }
