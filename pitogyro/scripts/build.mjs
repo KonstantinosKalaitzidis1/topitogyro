@@ -14,7 +14,6 @@ try {
   process.exit(0);
 }
 
-// Απομόνωση του μπλοκ δεδομένων μέσα στο template
 const arxi = template.indexOf("const DEDOMENA = {");
 const telos = template.indexOf("function oraAthinas(){");
 
@@ -25,8 +24,11 @@ if (arxi === -1 || telos === -1) {
 
 const paliaDedomena = template.slice(arxi, telos);
 
-// Κρατάμε τα σταθερά κομμάτια (δείκτης, εκδηλώσεις, χρώματα) και
-// αντικαθιστούμε μόνο τα άρθρα.
+function sourceLabel(a) {
+  const name = a?.source?.name?.trim();
+  return name ? `Πηγή: ${name}` : "ΤΟ ΠΙΤΟΓΥΡΟ";
+}
+
 function antikatastasi(blok, poli, nea) {
   if (!nea || !nea.length) return blok;
 
@@ -38,7 +40,7 @@ function antikatastasi(blok, poli, nea) {
       legenda:${JSON.stringify(new Date().toLocaleDateString("el-GR"))},
       titlos:${JSON.stringify(kyrio.titlos)},
       keimeno:${JSON.stringify(kyrio.keimeno || "")},
-      ypografi:"Αυτόματο άρθρο · ΤΟ ΠΙΤΟΓΥΡΟ",
+      ypografi:${JSON.stringify(sourceLabel(kyrio))},
       soma:${JSON.stringify(kyrio.soma)}
     }`;
 
@@ -46,10 +48,10 @@ function antikatastasi(blok, poli, nea) {
     kat: a.kat || "ΠΟΛΗ",
     titlos: a.titlos,
     keimeno: a.keimeno || "",
-    soma: a.soma
+    soma: a.soma,
+    ypografi: sourceLabel(a)
   })), null, 6)}`;
 
-  // αντικατάσταση μέσα στο τμήμα της συγκεκριμένης πόλης
   const dei = new RegExp(`(${poli}:\\s*\\{[\\s\\S]*?)kyrio:\\{[\\s\\S]*?\\n    \\}`, "m");
   let out = blok.replace(dei, `$1${neoKyrio}`);
 
@@ -65,7 +67,6 @@ neaDedomena = antikatastasi(neaDedomena, "thes", arthra.thes);
 
 const selida = template.slice(0, arxi) + neaDedomena + template.slice(telos);
 
-// Έλεγχος ότι το αποτέλεσμα είναι έγκυρο πριν γραφτεί
 const js = selida.split("<script>")[1].split("</scr" + "ipt>")[0];
 try {
   new Function(js);
