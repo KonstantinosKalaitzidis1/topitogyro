@@ -27,9 +27,9 @@
     "e468f509c00d7b3c8947573c": {
       "status": "not_verified",
       "reason": "no_plausible_first_party_link",
-      "checked_at": "2026-09-16T16:02:07.267Z",
+      "checked_at": "2026-09-16T19:42:53.933Z",
       "official_url": "",
-      "resolver_version": 2,
+      "resolver_version": 3,
       "search_status": "not_verified",
       "search_reason": "no_search_candidate",
       "search_checked_at": "2026-09-16T16:17:24.694Z",
@@ -101,16 +101,30 @@
     "0a3c3738e40c39950597fb00": {
       "status": "not_verified",
       "reason": "no_plausible_first_party_link",
-      "checked_at": "2026-09-16T19:41:36.530Z",
+      "checked_at": "2026-09-16T19:42:54.760Z",
       "official_url": "",
-      "resolver_version": 2,
+      "resolver_version": 3,
       "search_status": "not_verified",
       "search_reason": "no_search_candidate",
       "search_checked_at": "2026-09-16T19:41:44.274Z",
       "search_version": 1,
       "search_official_url": ""
+    },
+    "3f2cf93caccdb11232e0a290": {
+      "search_status": "not_verified",
+      "search_reason": "no_search_candidate",
+      "search_checked_at": "2026-09-16T19:42:55.277Z",
+      "search_version": 1,
+      "search_official_url": ""
+    },
+    "4e0e8dcd22eaf9cccb739381": {
+      "search_status": "not_verified",
+      "search_reason": "no_search_candidate",
+      "search_checked_at": "2026-09-16T19:42:55.566Z",
+      "search_version": 1,
+      "search_official_url": ""
     }
   },
-  "updated_at": "2026-09-16T19:41:44.274Z",
-  "resolver_version": 2
+  "updated_at": "2026-09-16T19:42:55.566Z",
+  "resolver_version": 3
 }
