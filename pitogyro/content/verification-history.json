@@ -29,7 +29,12 @@
       "reason": "no_plausible_first_party_link",
       "checked_at": "2026-09-16T16:02:07.267Z",
       "official_url": "",
-      "resolver_version": 2
+      "resolver_version": 2,
+      "search_status": "not_verified",
+      "search_reason": "no_search_candidate",
+      "search_checked_at": "2026-09-16T16:17:24.694Z",
+      "search_version": 1,
+      "search_official_url": ""
     },
     "f333962af221537d2288152e": {
       "status": "not_verified",
@@ -37,8 +42,27 @@
       "checked_at": "2026-09-16T16:05:21.325Z",
       "official_url": "",
       "resolver_version": 2
+    },
+    "621b73f264863c195179c5d9": {
+      "status": "verified",
+      "reason": "Επίσημη σελίδα του Athens Coffee Festival 2026 με πλήρη ταυτότητα (όνομα, διεύθυνση Αθήνας, τηλέφωνο), σαφή τοποθεσία (Άγιος Δημήτριος, Λ. Βουλιαγμένης 328), και συγκεκριμένα πρακτικά facts: ημερομηνίες events (26-28 Σεπτεμβρίου 2026), πρόγραμμα ομιλιών Coffee Matters, πρωταθλήματα, dance floor, stand-up comedy, λίστα εκθετών καφέ και εξοπλισμού, εισιτήρια με 3€.",
+      "checked_at": "2026-09-16T16:17:22.949Z",
+      "official_url": "https://athenscoffeefestival.gr/ekthetes/",
+      "resolver_version": 2
+    },
+    "cb5dbdbe237360347c7c11ec": {
+      "status": "not_verified",
+      "reason": "no_plausible_first_party_link",
+      "checked_at": "2026-09-16T16:17:24.099Z",
+      "official_url": "",
+      "resolver_version": 2,
+      "search_status": "not_verified",
+      "search_reason": "no_search_candidate",
+      "search_checked_at": "2026-09-16T16:17:25.031Z",
+      "search_version": 1,
+      "search_official_url": ""
     }
   },
-  "updated_at": "2026-09-16T16:05:22.313Z",
+  "updated_at": "2026-09-16T16:17:25.031Z",
   "resolver_version": 2
 }

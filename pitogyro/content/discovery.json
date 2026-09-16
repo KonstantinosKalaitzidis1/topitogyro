@@ -1,89 +1,21 @@
 {
-  "updated_at": "2026-09-16T16:05:08.090Z",
+  "updated_at": "2026-09-16T16:16:37.814Z",
   "ath": [
     {
-      "id": "f161f826f23d77a14eb04e10",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "Τα Μπαρ Μπεε Κιου πάνε Burger Fest και φέρνουν μαζί τους ένα… Holy Sheep! - Athens Voice",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNbEtjUEZYYk95RFpuTXFYNlJQS20wbVo3T09ueTRzN2xKUzMyaEtiRFR5VXJLc1hqRDZUNWoyME5MVHZSYmxCbUNzc2dPSER5UnhfbUxLMU1rVEJtOHNMdVhCTW5ySTBpTVZHd1JXaXpMYlQ1ZVUwZ1RiZlc1WGtvZXEyY1NId1JSdFJFd3QyM1dhYVdJRGNYbWxTTzN2RFZvZVA3blFCb1RiWVVONGhGSDBpSG43T1lIWlNQSjVMZ2jSAcYBQVVfeXFMT3ItZ2hjeWk2cndIWHFIc1VDWV9iQTBGdmotOGFlbGtwWHlfc2p0aHFpUWVRRVVwOXVQVlJ2M0NiN2Q0eGhmNmY5eEcwVTZJYXQ3dHl3UExqdGJhN2V0eGhkM3ZtS3d5MXh1Y2VxMWhUQTFFSmNGWEctSGx6ekVaeGJHRHptaFkyMU1QZ1F1Q3d4LWpxdFV3a1VYRGJPY0xpZjRndTN1bEdyYTFaOF84cE1MTnEtV2hIQUVHRUVkSUdtRTBUbG1B?oc=5",
-      "source": "Athens Voice — openings & street food radar",
-      "source_home": "https://www.athensvoice.gr/life/geusi/",
-      "published_at": "2026-09-10T16:38:00.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "fa5183ef2d43249745ca3119",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "Όλα τα καινούργια εστιατόρια που μόλις άνοιξαν στην Αθήνα - Athens Voice",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQSkVFRVBoUHNTYldaZXJGdFRMakRGYmlLeEltZ3RtTXV1QTAtdFZOWm03ZG8xa1g1WWx1dmtocHNzLTFhY1lieEUxQmkyeU1RWGltNmVXM1Y5Ul85bEwwYzVIb1ZtUTFhVmVYZk84akxsWjN0Z05IV3BxSzVxb2VmYzJWMmIxVnEyeUZKa0U0RUhYNE5ZME1uX0I2Z2VRZFhkcV9BbFNDVGhDZGViTnNWeVlR0gG3AUFVX3lxTE50U01DeU1hTHV0RHpRVDNRaENTOXExNF9pS0o0QkNpZVNYbUlpZXF3VlFCZEZpMmgtS2NJY1VhbWhCQ1BGVTY3bkNNRWtBOU52Tk1kU1RqUTZUaTJUOUlmdE5rSlNYZHhibG5KTUNFRmc3VjRseXVSQ0pFZW16Ul9QUlZXTWhHclZTUERTMlJUR0REamZnbUJpT1R2c1kweWh0Y2EybVhDeGNvUlpjN09qWVc5V081NA?oc=5",
-      "source": "Athens Voice — openings & street food radar",
-      "source_home": "https://www.athensvoice.gr/life/geusi/",
-      "published_at": "2026-09-16T13:00:16.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "f1c552f74581f67b0bd82336",
+      "id": "e468f509c00d7b3c8947573c",
       "city": "ath",
       "category": "openings_food",
       "title": "Βar 2046: Το πρώτο bar μέσα σε σινεμά μόλις άνοιξε στην Ακαδημίας - Athens Voice",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOdmRsSWs5ZDdYSkg4M1dSZ0htUVEzdjFMcVN2QXhUcVFXSmpxNzFPU0I2ZWZvS05CSWwxbHlCS3g1Ynh2Vnl0V0dpdm5XN3FvLVFkaVc0bUYwcXRYdl9EUXNmWW9rN3BkR0NGZkNFY1V5anRMaVN3aF9rYkNaZGNzdFJSRDh1N29QMVA3dDY3UzZOOW5PcXBZbEpFREFhaUnSAZ8BQVVfeXFMTnZkbElrOWQ3WEpIODNXUmdIbVFRM3YxTHFTdkF4VHFRV0pqcTcxT1NCNmVmb0tOQklsMWx5Qkt4NWJ4dlZ5dFdHaXZuVzdxby1RZGlXNG1GMHF0WHZfRFFzZllvazdwZEdDRmZDRWNVeWp0TGlTd2hfa2JDWmRjc3RSUkQ4dTdvUDFQN3Q2N1M2TjluT3FwWWxKRURBYWlJ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNYmlNTExhMm5FeUpIeE1IaEZ0NUs2UzBDdzVzdHlNTVVqbkcyMnpRV2RKNzladEliRUtDeldHbjZ3SWZrUlM5WjFBZ1lsUmdLM2EwcjRvRThGQ1l0YVBrblhnakZxdGx5eVQxNTQyXzhXZmpYWEhjUzJhOGo0YkRPWEhkbHBEUU1oSkNzbFp2a0hpcGdHZnhtZExR0gGfAUFVX3lxTE52ZGxJazlkN1hKSDgzV1JnSG1RUTN2MUxxU3ZBeFRxUVdKanE3MU9TQjZlZm9LTkJJbDFseUJLeDVieHZWeXRXR2l2blc3cW8tUWRpVzRtRjBxdFh2X0RRc2ZZb2s3cGRHQ0ZmQ0VjVXlqdExpU3doX2tiQ1pkY3N0UlJEOHU3b1AxUDd0NjdTNk45bk9xcFlsSkVEQWFpSQ?oc=5",
       "source": "Athens Voice — openings & street food radar",
       "source_home": "https://www.athensvoice.gr/life/geusi/",
       "published_at": "2026-09-16T13:51:00.000Z",
       "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "f896ae8679f79f1883e74ac4",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "Μα πού πήγαν τα παλιά, καλά τοστ; - Athens Voice",
-      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPbnhZWnQ3dHdQXzE2VHNnVjBkdUtUaDlQbF9ORFFSNVhyWU1vcTFpX182cVZKNG8wVkhPdVpuZzVaOUxLUTloRDBOdkcwMnQ0M0NmZUVpWVRUZ3c1enF2SVVJRUVvRGEtRHY1REtNNGJHZ1YtUkdtOWlabi14ZDB4MDg4WGJRV3pFcENRUUt30gGTAUFVX3lxTE9LZHdIOWh6UjdSbDB3ekRxU1pNYklRZGZ0bmROamJSOW1ueTVSTzlKQzVYSnVOSjFGZ1U2U2dIYmNRU2tXb05SQkhhUEJrcVktR1pTejFzbjU2Rm5YMmJ2UktwaEVlZGxibkVhZVd6S3VoQm13LVZNZm9iY0ZGeWZnT3MzR084MkRDWWsxdFhJZm5pbw?oc=5",
-      "source": "Athens Voice — openings & street food radar",
-      "source_home": "https://www.athensvoice.gr/life/geusi/",
-      "published_at": "2026-09-12T13:16:01.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "b9b9f31a18fb916ff82e51c1",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "Ο freddo της Αθήνας κάνει τον γύρο του κόσμου - Athens Voice",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxORmhNRmQxQnUzU2tkalFzTHV5bVFPSmZhR3pUZUYxZ05CV21HMTN5dUpRdDFHMTcxQmRoY2lzUUxvaGVNSy0xTmo1RWVBUE1tZlk2QUI1d3ZGaGlRdlJVYzltTXpPWGhwd1EwVFp5TTVHMnBERHptWldKdEg1MjJYclJvLXFZa1UxWXJYSXMtemJOdzU3RFhtLWdEdWpFYjJ0eFHSAacBQVVfeXFMUC0yYjAtSnloa0VDVy1FaE1pZEpaM2F1N0Z4YWVhVmF4c3hLU1dpcEwwUmtYaEJQeVJrcFRmWERKTlJZVVE0WEp0emZaVnVERm1RaWxjYk40UnRINkp0Qzh6U25kVDZSQ0puMHMwZEFrYTNMSnM2azJ2UWY2NkxPdU1mRm0xY1lkMEZIV1VmNmk4VS0tVUtTMF9CZlZCODFrS3daaWxjTlE?oc=5",
-      "source": "Athens Voice — openings & street food radar",
-      "source_home": "https://www.athensvoice.gr/life/geusi/",
-      "published_at": "2026-09-14T16:15:54.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "166d97574a520265d7e24d80",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "Κάνε πως είσαι ακόμα διακοπές σε αυτά τα 10 αθηναϊκά εστιατόρια - Athens Voice",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOMTJhX1pVeXNOalVBZ3V0M3hpbzRfSjZwX05JNkJBajRXay0wb2R4MU1taDlaeGtzRlYtUnM2NTBPRTE1TGdyRjA3Y1JiQXVFMUt6ZGEtNHgyZ2xLOS1IejBMSElIaWhkT1J3bmFlb0xBd3paNU91eTZPNXJiTHpxZUhkQUJoTEhFQlp4NktoNjF3UlRzcGkzd3pHTVZHM19yOUVPSVNnOHRsOTZ1VzRKSnQ5Yk5IR3hkMFHSAb8BQVVfeXFMUDc2T0JOMVQzcVdWeXFWOTYyalNFX3JJWnEtRm9hN3ZiWGp1bjcwM0NZN1FydlcwVGpuaGZtUTJMTXE1X1o1ZnBGSkg5VTBuR3JmZElaWEpKRVVvS3pZcW0wYmRwSnRYNW9iTjgxbUFya0dHeHZYOUd4blhkeURGbXd0U2p4eDFKYWZHVXJXZkxoV3Fzc3hIaWd6Yy01MWxxYjVjcGxrZnRyVVFEWWxMTlhRLVAwZU41VkJuRXY2S1U?oc=5",
-      "source": "Athens Voice — openings & street food radar",
-      "source_home": "https://www.athensvoice.gr/life/geusi/",
-      "published_at": "2026-09-11T12:47:47.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "5f551bd27ef7144dab51fa30",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "Μεντιλίμπαρ: «Φεύγω περήφανος που βοήθησα τον Ολυμπιακό να γίνει ακόμη μεγαλύτερος» - Athens Voice",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxORjFFa01uTmthbUJGdFdEU19WLXBHVlZtUDFybnotem5nT1hLTUZkZzVXUVA0dVYyWGs2Nld5cTBzTnNpSWVpMjRrX0ZLXzRhTmoxRThtdHF0TXczakQwbnZlZ053NU9Ldl9BdXpLYW82STFlQ1ZFa2JzaUEtV0k5bWdtMFowQmZCSXF2Z0w1d1pZMFhRNTBFbzcwZHI2LUF2WVlHTnNjSTUyX2d4WTZOSVZPZ25iYVBDYXlmeXZSSWVsRTRxVG83akVwN3FyR0p6YjdWX9IB2gFBVV95cUxOam5odGdMNDVGZmdZWEo1OVl3NWlfbGw2a3UwSlZNb2hfc0tJSFdGcHlnNnpsbmtLM05iTjlLell6MFVNX0dsYUllRG0wbUdFZWF2QVdMNHhYM2NVUHF4b3RoUGxKNWUtU08yQ2VMbnFVX0dVelE2Ym05R1NyT2ZLbjRiR0Y0dllqYUR5TmoxOVcxMkRlbkNHUnRxbHNzaEFhUWVyRTJjdFhhblJzdjZLcFlkZXdQRGtEYUdiRVFMU2NlOFh0VDlSTzdEb090NHNuQ3E0S0dWZHdDdw?oc=5",
-      "source": "Athens Voice — openings & street food radar",
-      "source_home": "https://www.athensvoice.gr/life/geusi/",
-      "published_at": "2026-09-10T12:55:44.000Z",
-      "status": "candidate",
-      "auto_publish": false
+      "auto_publish": false,
+      "specificity_score": 19,
+      "entity_hint": "Bar 2046",
+      "entity_kind": "colon",
+      "verification_candidate": true
     },
     {
       "id": "621b73f264863c195179c5d9",
@@ -95,55 +27,11 @@
       "source_home": "https://www.lifo.gr/",
       "published_at": "2026-09-16T07:48:44.000Z",
       "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "a451bdb22cada63dd1089a02",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "Οι πρώτες εικόνες από το Cinobo Όπερα & Bar 2046 - LiFO",
-      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQaGFmNmVlSG1MT0ZuLUc5Z2pWSFJWWHZvSVl5NlN0ZzVreUl3bUx0UUVDSGg4Z3VyS19uTHVvcU9XRDB5Rk9QMm9OSE9PRGt0UnNjbnlVd1dsbWRCSzBNUTl2b3lnZkZSS01Vck01Y09RWVhsWVJSQmJBUzJhbmY4MtIBhgFBVV95cUxQNW9ENTVXdUJ4bzRESV9nbzRac25QZ29pcURNTGNPV0hGaTRpTnNhTEdDelV0cHE2dmJmRlJTb2hLNzdJU25LZGZxbHpIampxOXBGNDAtSHp3SDFicFY4SVpGZE1NdFppTHk4QzRabU9KV1RzNmZBdktVc2lkQVJzT0QyamhPdw?oc=5",
-      "source": "LiFO — Athens openings radar",
-      "source_home": "https://www.lifo.gr/",
-      "published_at": "2026-09-15T04:00:03.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "3c220d15012508630c8d7ad5",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "Ο ελληνικός freddo απέκτησε κάψουλα Nespresso και κάνει διεθνή καριέρα - LiFO",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNb0RTbEpCb25UQVd3SGtoQ3RCaVFvcVJfaDhwTVZDVTJtd1BUbDR5bEt1dHcteURpaFFiZWFOemNEd24teFNRRkpvOENzUjZRY1RpaXFGOUNLcWJUQmRZdnZ2Ul9vbTcyMmJQOGg0VGxUZUMwMnV2ZVY1bmtTY09OemtIcnBPMm9JcXhkaklOVzlsRjl4Z2QxazBOVzRqb1ZaOXZzRC12dlhaX3J3VkVBbGJZRlo4Q1nSAbwBQVVfeXFMUGh4V0U1YjdudXhDRTYyWTBudWt0T3NPaFBTSzNPb2hiazJ1Ti12QmdnYWZxRURocW15Q1J4bm9UeHJHeVBNT3RmZ293bTktV3VPN2lfLU1uY2hWWjNwZjNGYktObVk4QXlpZlZPdUR1c2VCZ05jbWxCMUx4VmlieGZJcFE2VlYzTVQydVpRal90d0lHS3lQVk1Nb1RmY2w3WmxJb1UxMmhadDdxajVvOXdVNTV0cnZjeHBUcEY?oc=5",
-      "source": "LiFO — Athens openings radar",
-      "source_home": "https://www.lifo.gr/",
-      "published_at": "2026-09-16T07:31:40.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "5df91e15acdf374632f187e1",
-      "city": "ath",
-      "category": "openings_food",
-      "title": "25 φούρνοι νέας γενιάς που αγαπάμε στην Αθήνα τώρα - LiFO",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPRmM0b1A4RE0zNVBRMWllenQ1R0xfbktsMmlFLS16UjJuSFoxalRVOW93MDIxbE9jMGdDbDRLYTBTR2FObFlxMHowRzF5VGo0WXNBUld1elBoT1NJNzlUQ3JZbXhQb1FZM0ZtUW1HMlg2Y1pPQm9RRXFVTXpnaEhtMzRveFdOeWtOUnpVZUIwb2lRZVXSAZgBQVVfeXFMTXBWdkphXzNJS0FzTExwdHBKdVI1WkdyOEh6NFF1Z1Q4M3JTUnRIYnJjSU1iZ1RzSDk3VWRsTmxCclhMb09HeDBGckV6ckx5OU1BSGtfeXlWMksybW5OaW9PcF9IY2dtdDUyTWw4MGxwTXl1YWlUX0dOZ0dEWEJnbFhzdEVQR3FkMjQ0ellOQzNvN3lia3lfakY?oc=5",
-      "source": "LiFO — Athens openings radar",
-      "source_home": "https://www.lifo.gr/",
-      "published_at": "2026-09-14T04:00:04.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "c859dd439c0becb7619e466f",
-      "city": "ath",
-      "category": "events_music_street",
-      "title": "COVER 33: 24 graffiti artists δημιουργούν πάνω σε λευκά εξώφυλλα βινυλίου - Athens Voice",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQZzZ3OTc0TnhzS0F4ODF3QlI0U2dCNlJjVjMxbTV4ZDgyc3lkU0Y4bWdOX2xlSVZXenN5VlpEZVNjTGpvRXhGbVgyZHJvelJsdEJRWTU0WGt4SmgzWEo2ZDFLYS1TZFBQbFJOSTBQTzVHOVhsampuS1FvdUtQM0RyRE5CT0JMaFJoYVJSQ3gwTDRKcVhRMkFZNWZFdEJPOWVEZ2RVN3lZdzZzMkFOaVo1b2dXdHh0NF80UTlZ0gHAAUFVX3lxTE9NWEJEX2xkS1VXNjdvenFDYnMyM3ZuczRtdzNORkpQNHRaY29TbGw3UC1KbEFZa0IwNkduamp2Ym1PRHpLb0ZMMnpnQ2xMMGlka0pKeTFtakFCRm82T0lza2o2UGJQeXd0cllYZVZkUW9wTl9saF9GQ0FhYXJIZnJweWhwZGMwbEcwU1VTYmFwM2V3WHY0VlNVOTFqTW00UEM2Y29YQUtaVW9YWFJpYXdRU3A1NEhhaDFKNmFQUDJGXw?oc=5",
-      "source": "Athens Voice — events/music/street radar",
-      "source_home": "https://www.athensvoice.gr/politismos/",
-      "published_at": "2026-09-15T05:22:00.000Z",
-      "status": "candidate",
-      "auto_publish": false
+      "auto_publish": false,
+      "specificity_score": 19,
+      "entity_hint": "Athens Coffee Festival 2026",
+      "entity_kind": "colon",
+      "verification_candidate": true
     },
     {
       "id": "3cddcd061e0e0a5c36f7b5a9",
@@ -155,7 +43,27 @@
       "source_home": "https://www.athensvoice.gr/politismos/",
       "published_at": "2026-09-16T14:19:00.000Z",
       "status": "candidate",
-      "auto_publish": false
+      "auto_publish": false,
+      "specificity_score": 13,
+      "entity_hint": "Τεχνόπολη",
+      "entity_kind": "colon",
+      "verification_candidate": true
+    },
+    {
+      "id": "c859dd439c0becb7619e466f",
+      "city": "ath",
+      "category": "events_music_street",
+      "title": "COVER 33: 24 graffiti artists δημιουργούν πάνω σε λευκά εξώφυλλα βινυλίου - Athens Voice",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQZzZ3OTc0TnhzS0F4ODF3QlI0U2dCNlJjVjMxbTV4ZDgyc3lkU0Y4bWdOX2xlSVZXenN5VlpEZVNjTGpvRXhGbVgyZHJvelJsdEJRWTU0WGt4SmgzWEo2ZDFLYS1TZFBQbFJOSTBQTzVHOVhsampuS1FvdUtQM0RyRE5CT0JMaFJoYVJSQ3gwTDRKcVhRMkFZNWZFdEJPOWVEZ2RVN3lZdzZzMkFOaVo1b2dXdHh0NF80UTlZ0gHAAUFVX3lxTE9NWEJEX2xkS1VXNjdvenFDYnMyM3ZuczRtdzNORkpQNHRaY29TbGw3UC1KbEFZa0IwNkduamp2Ym1PRHpLb0ZMMnpnQ2xMMGlka0pKeTFtakFCRm82T0lza2o2UGJQeXd0cllYZVZkUW9wTl9saF9GQ0FhYXJIZnJweWhwZGMwbEcwU1VTYmFwM2V3WHY0VlNVOTFqTW00UEM2Y29YQUtaVW9YWFJpYXdRU3A1NEhhaDFKNmFQUDJGXw?oc=5",
+      "source": "Athens Voice — events/music/street radar",
+      "source_home": "https://www.athensvoice.gr/politismos/",
+      "published_at": "2026-09-15T05:22:00.000Z",
+      "status": "candidate",
+      "auto_publish": false,
+      "specificity_score": 13,
+      "entity_hint": "COVER 33",
+      "entity_kind": "colon",
+      "verification_candidate": true
     },
     {
       "id": "3f2cf93caccdb11232e0a290",
@@ -167,153 +75,101 @@
       "source_home": "https://www.athensvoice.gr/politismos/",
       "published_at": "2026-09-15T09:58:51.000Z",
       "status": "candidate",
-      "auto_publish": false
+      "auto_publish": false,
+      "specificity_score": 9,
+      "entity_hint": "H εναρκτήρια συναυλία της ΚΟΑ",
+      "entity_kind": "verb",
+      "verification_candidate": true
+    },
+    {
+      "id": "f161f826f23d77a14eb04e10",
+      "city": "ath",
+      "category": "openings_food",
+      "title": "Τα Μπαρ Μπεε Κιου πάνε Burger Fest και φέρνουν μαζί τους ένα… Holy Sheep! - Athens Voice",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNbEtjUEZYYk95RFpuTXFYNlJQS20wbVo3T09ueTRzN2xKUzMyaEtiRFR5VXJLc1hqRDZUNWoyME5MVHZSYmxCbUNzc2dPSER5UnhfbUxLMU1rVEJtOHNMdVhCTW5ySTBpTVZHd1JXaXpMYlQ1ZVUwZ1RiZlc1WGtvZXEyY1NId1JSdFJFd3QyM1dhYVdJRGNYbWxTTzN2RFZvZVA3blFCb1RiWVVONGhGSDBpSG43T1lIWlNQSjVMZ2jSAcYBQVVfeXFMT3ItZ2hjeWk2cndIWHFIc1VDWV9iQTBGdmotOGFlbGtwWHlfc2p0aHFpUWVRRVVwOXVQVlJ2M0NiN2Q0eGhmNmY5eEcwVTZJYXQ3dHl3UExqdGJhN2V0eGhkM3ZtS3d5MXh1Y2VxMWhUQTFFSmNGWEctSGx6ekVaeGJHRHptaFkyMU1QZ1F1Q3d4LWpxdFV3a1VYRGJPY0xpZjRndTN1bEdyYTFaOF84cE1MTnEtV2hIQUVHRUVkSUdtRTBUbG1B?oc=5",
+      "source": "Athens Voice — openings & street food radar",
+      "source_home": "https://www.athensvoice.gr/life/geusi/",
+      "published_at": "2026-09-10T16:38:00.000Z",
+      "status": "candidate",
+      "auto_publish": false,
+      "specificity_score": 9,
+      "entity_hint": "Τα Μπαρ Μπεε Κιου",
+      "entity_kind": "verb",
+      "verification_candidate": true
     }
   ],
   "thes": [
-    {
-      "id": "bfbae4c8d17ba64ab0d056ec",
-      "city": "thes",
-      "category": "openings_food",
-      "title": "Η καντίνα «Μαμά Τερέζα», έδωσε σημεία ζωής στη νέα της διεύθυνση και το γιορτάζει με δωρεάν φαγητό - biscotto",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPYnllRTA3di1ibHNqVUExMjRnQV9uUkhzU0RtTFBzd1dSQU0yS3JOa1RDTlBhOXRYM1J6MTc2ZFVmaHN1akhaQmZyUGNwSkh0LW5yN1dHVERaN3A4X1ZxWTMzdlRSWTR0d0h4VjNndzNoSDNpZVQwSzJrbUY5czJRZDB4bS1XQjIxdzlld1FvaEZjTjViWjcwbFhWSTUxX0FGMnFFMHl3b2RVbHl1T3lnVWdtdXBfdmpT?oc=5",
-      "source": "Biscotto — Thessaloniki openings & street food radar",
-      "source_home": "https://biscotto.gr/",
-      "published_at": "2026-09-14T09:35:15.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "f333962af221537d2288152e",
-      "city": "thes",
-      "category": "openings_food",
-      "title": "New entry: Το νέο industrial bar της Λέοντος Σοφού που αξίζει το feed σου - biscotto",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNdDRicnd6QlFyR2xVM08zQ2tFZjMzUHFWUnoxRDV1ZnJCWFZ3dHRGRGY0VERGbC1uMmxyQ2VfTmFoSEFvOTJlOW9pNEZseEJ0UmV2TWlwaW9nMDg1VUFhOUItdkNZaF9DTGNIRVZGZnB0eU5BUlYyYXRwV3VySEMtWkZmR1d3NFVyUVFJbU5xb0w3NGFsM1dhMA?oc=5",
-      "source": "Biscotto — Thessaloniki openings & street food radar",
-      "source_home": "https://biscotto.gr/",
-      "published_at": "2026-09-02T15:30:18.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "602ac2a9220141a7399b47ad",
-      "city": "thes",
-      "category": "openings_food",
-      "title": "Η νέα τοιχογραφία του διεθνώς αναγνωρισμένου Πορτογάλου illustrator και street artist, Fransisco Fonseca σε σχολείο - biscotto",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQc3VzTVRmUTZkNlViUlFYeUpZdEFBRkJHSU5yMTVCSGp4UF9FMDh1U29UWndSa1RGQkRUQ2thM2JlTFpUOEpnTjl3WFRlekN4Rm9oNk9hRXhiaDNQVTc4RlpNME5oTFRLSHB0c3M0REhYSXNKdEtFSGFXSnQ3OHZPbV9SMHpUT2tfNkpQWkpud3VkYUFIMHBvTDk3dzhkUGp4UXlkZWlNQmt3aWJMZ1c3bXRRSzBfS0YtSTJwZXNJUzBGZzRPMXBCMGw2YmVEem52aVRhWA?oc=5",
-      "source": "Biscotto — Thessaloniki openings & street food radar",
-      "source_home": "https://biscotto.gr/",
-      "published_at": "2026-09-04T12:51:57.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "ffb1e653d98dba24b468c250",
-      "city": "thes",
-      "category": "openings_food",
-      "title": "Το εστιατόριο που φέρνει στο πιάτο σου τις γνώριμες γεύσεις της Μεσογείου στην πιο σύγχρονη μορφή τους - biscotto",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBkbms2b29CazRUeVFBNy1JaGhDWDZzM2hUTDFfOFZjWm9EM2NteHNCQmhteGtLaGtqR0RWZ2hjYUwtRnhpR1B3TDFRMm9NUFhV?oc=5",
-      "source": "Biscotto — Thessaloniki openings & street food radar",
-      "source_home": "https://biscotto.gr/",
-      "published_at": "2026-08-31T07:00:00.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "eedd894c3c9de5f4ef251175",
-      "city": "thes",
-      "category": "openings_food",
-      "title": "Δεν είναι απλώς ένα bar αλλά μία νησιώτικη απόδραση χωρίς να φύγεις από την Θεσσαλονίκη! - biscotto",
-      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNdHFwTFNxVHMxak0tT1JDdWhYTDg5bm52NzlXSmdtRHkyM0JmV1U0QzFRZy14M2lSckhWMHlVY2J3Nkg0VnVkd0ZkM1E1X19CWmZ1QWdLM3IzdUVlNk5TNVFheVZMcFF1bGk2WUZTOC1qN2NQMU1TUWd2T1UtSkpOTGNhVkFZMnM0RFJSNm1VWmVBb0dvb3MxT25lOTRkVk9FdEdXRTRpWUpUMnFz?oc=5",
-      "source": "Biscotto — Thessaloniki openings & street food radar",
-      "source_home": "https://biscotto.gr/",
-      "published_at": "2026-09-08T08:16:10.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "2f97686c2ddf5b2f4fc21651",
-      "city": "thes",
-      "category": "openings_food",
-      "title": "Η Περαία γιορτάζει με μπόλικη φασολάδα, σουβλάκια, νόστιμα εδέσματα και ζωντανή μουσική! - biscotto",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOXzFlTUU2OVRfbkJVR19hYnRIbGpMNnJmQ0s2SldjOHFrRV90VFdyblA5RERBZk43UlZIaDExcThtT0dFMGdCd0t3NTQzMnVfQUlObjRTcFNrejQ0ZHFaY2FOaHp2TGpIcWZWSmVyLWxlc2x6ZXVqVHBIUTJxX3pXeHFHUUtLankzbXg2U1lxbFFSdDJqbDVGTFpsVTh5c3oxbzRid0dOYmlkQQ?oc=5",
-      "source": "Biscotto — Thessaloniki openings & street food radar",
-      "source_home": "https://biscotto.gr/",
-      "published_at": "2026-09-16T09:09:11.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "53c6aec7822485cbef278e04",
-      "city": "thes",
-      "category": "events_music_street",
-      "title": "Σήμερα η πρεμιέρα του Reworks – Η Θεσσαλονίκη στο επίκεντρο της ηλεκτρονικής μουσικής - biscotto",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQazhSRlFSRHoyMWMyVUtpRmVLa214Qk5MN0FOeGtZTGNscml6dFdXYVRFaGhIWFZFZ1g1M2Y2YkxJdUNPbEhXazFwM3hHcFVwdmhDTV9uV1JObnlkaGlrZm9BYzExbXBaODRIV1pyOFNhdEhaZk5UV2hQQU9BQTUzZmMtQVRBUUo5Y25HTW5mX0FWeWJiZW9BOW5qY09UZ1BpQVNKdVRhY1o?oc=5",
-      "source": "Biscotto — Thessaloniki events/music radar",
-      "source_home": "https://biscotto.gr/agenda-simera/",
-      "published_at": "2026-09-16T10:12:35.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "937a3935f979b47d82707137",
-      "city": "thes",
-      "category": "openings_food",
-      "title": "Πόσα ξοδεύουν οι Έλληνες στο έτοιμο φαγητό; - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPQkdjczhtTEtIaVVkM3NFOFVKR2RPWlgxZEZXc1JFMUVXWTFsRmdpcExuc2FVMGJWN2JxOElSWW1lSTNscW5tVXRkWGVRUEZoUjFfbWZURnpMUVFYSktFRC1vUkV0S3FnOVBIallIaUxQVk9mSGw4V0tFQmtmTklDaWx6dFVMbWxrM00xclo5aw?oc=5",
-      "source": "Parallaxi — Thessaloniki food/openings radar",
-      "source_home": "https://parallaximag.gr/geysi",
-      "published_at": "2026-09-12T07:10:43.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "a3386caec4a89ef6f3c22efd",
-      "city": "thes",
-      "category": "openings_food",
-      "title": "Θρίλερ σε βρεφονηπιακό σταθμό: Έβαλαν απορρυπαντικό στο φαγητό αντί για ξύδι - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQV0Z3cU8wVG4yeXpvNDhlMWZKa04yQjhqcDhIUkFvYjk1SVg1LWRXUEFrZ0lfTnF1OUZmVk1vdEJiM244N1JxdU9KMVRUU2ZDTEswVkx0cGxUZFpPRXg1Q3ZRX1RCaTY1ZHFmMUdBaWNHMDN2eU81RG9vX3lnMDBWQ1ZuaTkzdE52WDVsWHlzWHF0UUprdUVzb3NsNzRZMjNrT196dE5WRC01MWdRUkhORk1mUm5zX1NweWJNOTY0TlEwOW5WSWhlNWhtU2lzUQ?oc=5",
-      "source": "Parallaxi — Thessaloniki food/openings radar",
-      "source_home": "https://parallaximag.gr/geysi",
-      "published_at": "2026-09-11T08:10:23.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "ed10be2dcd468e8ce9d7a36a",
-      "city": "thes",
-      "category": "events_music_street",
-      "title": "Η μουσική ατζέντα της εβδομάδας στη Θεσσαλονίκη από 14/9 έως 20/9 - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQOGpzLW5VbUVLYm52ZjFTblZ0NFhsbGtaT2pJUWp3TXpFWU1GeFNJRXN1aGgyUWV2REdZbG9KSnppdm9RRk9heTBCQjJkV1Z4VU0tV09IUllDaGtPSWNOd2M0cm5ybHlJU2lrSmJKdjNLWlJnTzlCTGI3OWtXTmFBcGY1SEh5YXlVclhfeFFhejRxazUyellKa1lBVW95OWtyb0JmMlc0bjJHNVREblhvQ0Z0bjk?oc=5",
-      "source": "Parallaxi — Thessaloniki culture/street radar",
-      "source_home": "https://parallaximag.gr/",
-      "published_at": "2026-09-14T05:02:16.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
     {
       "id": "cb5dbdbe237360347c7c11ec",
       "city": "thes",
       "category": "events_music_street",
       "title": "Θεσσαλονίκη: Το καλλιτεχνικό πρόγραμμα του 52ου Φεστιβάλ ΚΝΕ – Οδηγητή - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNWUhLcmxGYVpIdlpkUlNybWJvclB5ckIxSnpzSWozTXo5VGRUNG5mcnNPS20wR0VQd3NOa0lpTU52dkZBa1JBbUFxbURuRmdSUERtdXZSaEwwMWNjOWczdEhrQzNJM3JXQUxNOHZNUy03M0R6LWtDcGpXUFZVUzlKSGhCaVlHd1lUWGI2dlE3LXN0bFRNQ1c2T0dnMHYyZGVSYWVVTVVDbTJoWlVJSEV5TmZqSFp6S3hWcEE?oc=5",
+      "url": "https://parallaximag.gr/agenda-parallaxi/mousiki/thessaloniki-to-kallitechniko-programma-toy-52oy-festival-kne-odigiti",
       "source": "Parallaxi — Thessaloniki culture/street radar",
       "source_home": "https://parallaximag.gr/",
       "published_at": "2026-09-16T11:41:16.000Z",
       "status": "candidate",
-      "auto_publish": false
+      "auto_publish": false,
+      "specificity_score": 18,
+      "entity_hint": "Θεσσαλονίκη",
+      "entity_kind": "colon",
+      "verification_candidate": true,
+      "discovery_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNWUhLcmxGYVpIdlpkUlNybWJvclB5ckIxSnpzSWozTXo5VGRUNG5mcnNPS20wR0VQd3NOa0lpTU52dkZBa1JBbUFxbURuRmdSUERtdXZSaEwwMWNjOWczdEhrQzNJM3JXQUxNOHZNUy03M0R6LWtDcGpXUFZVUzlKSGhCaVlHd1lUWGI2dlE3LXN0bFRNQ1c2T0dnMHYyZGVSYWVVTVVDbTJoWlVJSEV5TmZqSFp6S3hWcEE?oc=5",
+      "publisher_url": "https://parallaximag.gr/agenda-parallaxi/mousiki/thessaloniki-to-kallitechniko-programma-toy-52oy-festival-kne-odigiti",
+      "publisher_resolution": {
+        "method": "wordpress_search_api",
+        "entity": "Θεσσαλονίκη",
+        "score": 20,
+        "resolved_at": "2026-09-16T16:16:42.819Z"
+      }
     },
     {
       "id": "3da738eba2472dfe280a4926",
       "city": "thes",
       "category": "events_music_street",
       "title": "ΕΙΚΟΝΕΣ: Λαοθάλασσα στην τεράστια συναυλία του Αντώνη Ρέμου στη Θεσσαλονίκη - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPa1BEMUp0UkJBeHlxdnpWaFFYZk5fZnloN3VqQjRmT0FLODlGdXlYUVhKYmplUzAwSmt2a05OTmxsWlZySGs1TnNBVTJNQ0JlUHFDZHA5M3FnTnM5eWZESXlENVlrWWY3cTlSWkxWSk0xLUYyQ0dHYmhLRzZRalZVNDdrcGNKcklOdEk1eG1BX2ZWSmhsTVp4eHRsUC1mN01xeFNkXzY4VUtuUzZTMmlSc1hOenhzRFJXTmc?oc=5",
+      "url": "https://parallaximag.gr/thessaloniki-news/eikones-laothalassa-stin-terastia-synaylia-toy-antoni-remoy-sti-thessaloniki",
       "source": "Parallaxi — Thessaloniki culture/street radar",
       "source_home": "https://parallaximag.gr/",
       "published_at": "2026-09-13T05:30:09.000Z",
       "status": "candidate",
-      "auto_publish": false
+      "auto_publish": false,
+      "specificity_score": 18,
+      "entity_hint": "ΕΙΚΟΝΕΣ",
+      "entity_kind": "colon",
+      "verification_candidate": true,
+      "discovery_url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPa1BEMUp0UkJBeHlxdnpWaFFYZk5fZnloN3VqQjRmT0FLODlGdXlYUVhKYmplUzAwSmt2a05OTmxsWlZySGs1TnNBVTJNQ0JlUHFDZHA5M3FnTnM5eWZESXlENVlrWWY3cTlSWkxWSk0xLUYyQ0dHYmhLRzZRalZVNDdrcGNKcklOdEk1eG1BX2ZWSmhsTVp4eHRsUC1mN01xeFNkXzY4VUtuUzZTMmlSc1hOenhzRFJXTmc?oc=5",
+      "publisher_url": "https://parallaximag.gr/thessaloniki-news/eikones-laothalassa-stin-terastia-synaylia-toy-antoni-remoy-sti-thessaloniki",
+      "publisher_resolution": {
+        "method": "wordpress_search_api",
+        "entity": "ΕΙΚΟΝΕΣ",
+        "score": 25,
+        "resolved_at": "2026-09-16T16:16:43.063Z"
+      }
+    },
+    {
+      "id": "9783ad691aa5e3dfa2d6b8bf",
+      "city": "thes",
+      "category": "events_music_street",
+      "title": "ΕΙΚΟΝΕΣ-Θεσσαλονίκη: Τεράστιο πλήθος στη συναυλία του Ρέμου - Parallaxi",
+      "url": "https://parallaximag.gr/thessaloniki-news/thessaloniki-adiachorito-stin-paralia-kai-kleistoi-dromoi-gia-ta-30-chronia-toy-antoni-remoy",
+      "source": "Parallaxi — Thessaloniki culture/street radar",
+      "source_home": "https://parallaximag.gr/",
+      "published_at": "2026-09-12T20:26:06.000Z",
+      "status": "candidate",
+      "auto_publish": false,
+      "specificity_score": 18,
+      "entity_hint": "ΕΙΚΟΝΕΣ-Θεσσαλονίκη",
+      "entity_kind": "colon",
+      "verification_candidate": true,
+      "discovery_url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNNTNOeDhLRzBzc0JCcFZHelpWdC1TSlU0YnlhUV85dlhOY3FOM3VqU1pxVWFLTGJGVnpZZXp4WmlYNWs3QVlEd09xcFJZdmpnSi1DYmpzZlRVZERLV09FN3BFX2QxdnlSdWN2eFlUZ0VmcU4xSV9GSFIxUDZtb3ZZbGZJSWNnTkRnZXhtbkh6WXJqM1dmeF80SEJUc2U0RGxKa2k5YjV5Y2FUM2tDaF8wbDNTMWJIQlJmTzhwaVRBTTJIUXJ1T0dmZDlOUGFXUmc?oc=5",
+      "publisher_url": "https://parallaximag.gr/thessaloniki-news/thessaloniki-adiachorito-stin-paralia-kai-kleistoi-dromoi-gia-ta-30-chronia-toy-antoni-remoy",
+      "publisher_resolution": {
+        "method": "wordpress_search_api",
+        "entity": "ΕΙΚΟΝΕΣ-Θεσσαλονίκη",
+        "score": 23,
+        "resolved_at": "2026-09-16T16:16:43.308Z"
+      }
     },
     {
       "id": "acb9d16c4aa5e596fdf76e9d",
@@ -325,31 +181,11 @@
       "source_home": "https://parallaximag.gr/",
       "published_at": "2026-09-12T16:47:48.000Z",
       "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "4e0e8dcd22eaf9cccb739381",
-      "city": "thes",
-      "category": "events_music_street",
-      "title": "Καταιγίδες στη Θεσσαλονίκη, καμία ενημέρωση για τη συναυλία Ρέμου - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPeVV6R3dCTW5rcGpFdEtDOGhFU1hBX0NlU0VxOHFhRnlsMmtfcGdidDZ0M1ZpbDZjTkljR3ZrLUZWTU0xamdEVnpqRHlUeEhzUDJsbVl1UUtVRjZCUVhlbWpnSGlXSUZOaExjeG9IMUlLdF9TZ2hTZ0ZOT05kSWhHbjRpZFpNN25IaDBXM0NFem92a3pzMlpUSmVmWkRFeWNwQTdMT0o4VzI4TEE?oc=5",
-      "source": "Parallaxi — Thessaloniki culture/street radar",
-      "source_home": "https://parallaximag.gr/",
-      "published_at": "2026-09-12T15:36:51.000Z",
-      "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "9783ad691aa5e3dfa2d6b8bf",
-      "city": "thes",
-      "category": "events_music_street",
-      "title": "ΕΙΚΟΝΕΣ-Θεσσαλονίκη: Τεράστιο πλήθος στη συναυλία του Ρέμου - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNNTNOeDhLRzBzc0JCcFZHelpWdC1TSlU0YnlhUV85dlhOY3FOM3VqU1pxVWFLTGJGVnpZZXp4WmlYNWs3QVlEd09xcFJZdmpnSi1DYmpzZlRVZERLV09FN3BFX2QxdnlSdWN2eFlUZ0VmcU4xSV9GSFIxUDZtb3ZZbGZJSWNnTkRnZXhtbkh6WXJqM1dmeF80SEJUc2U0RGxKa2k5YjV5Y2FUM2tDaF8wbDNTMWJIQlJmTzhwaVRBTTJIUXJ1T0dmZDlOUGFXUmc?oc=5",
-      "source": "Parallaxi — Thessaloniki culture/street radar",
-      "source_home": "https://parallaximag.gr/",
-      "published_at": "2026-09-12T20:26:06.000Z",
-      "status": "candidate",
-      "auto_publish": false
+      "auto_publish": false,
+      "specificity_score": 18,
+      "entity_hint": "Θεσσαλονίκη",
+      "entity_kind": "colon",
+      "verification_candidate": true
     },
     {
       "id": "0a3c3738e40c39950597fb00",
@@ -361,19 +197,11 @@
       "source_home": "https://parallaximag.gr/",
       "published_at": "2026-09-12T05:59:34.000Z",
       "status": "candidate",
-      "auto_publish": false
-    },
-    {
-      "id": "37d7a37935a8710063460ba0",
-      "city": "thes",
-      "category": "events_music_street",
-      "title": "Kανονικά θα πραγματοποιηθεί η συναυλία του Ρέμου στη Θεσσαλονίκη - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOQmF6OHhIOHQ5dldLSVhjX093RUd2SzA3MWFvenJKTXZVNW5uWE04VXprY2NKZDF4aGEwUXZjakhmbV9FTW9JLW5SRUh3UzZ3elBXSEx2cktYNjljb09lZ3pucGtQdGJLTFNqR2prZGI0V0plTXRKbTRIWGdaYWpHQ2JWWFZpZF9VNXRHbnRPZTZERVlKR1p4bnI2Yy1CVGRxNVZRcHEydHBkZElkclE?oc=5",
-      "source": "Parallaxi — Thessaloniki culture/street radar",
-      "source_home": "https://parallaximag.gr/",
-      "published_at": "2026-09-12T23:55:58.000Z",
-      "status": "candidate",
-      "auto_publish": false
+      "auto_publish": false,
+      "specificity_score": 18,
+      "entity_hint": "Αντώνης Ρέμος",
+      "entity_kind": "colon",
+      "verification_candidate": true
     },
     {
       "id": "b9461bc54d7b5ab4765e5a3c",
@@ -385,7 +213,11 @@
       "source_home": "https://parallaximag.gr/",
       "published_at": "2026-09-11T15:55:57.000Z",
       "status": "candidate",
-      "auto_publish": false
+      "auto_publish": false,
+      "specificity_score": 18,
+      "entity_hint": "Θεσσαλονίκη",
+      "entity_kind": "colon",
+      "verification_candidate": true
     },
     {
       "id": "a0efc53cf447a862f196108e",
@@ -397,19 +229,194 @@
       "source_home": "https://parallaximag.gr/",
       "published_at": "2026-09-11T10:00:40.000Z",
       "status": "candidate",
-      "auto_publish": false
+      "auto_publish": false,
+      "specificity_score": 18,
+      "entity_hint": "Θεσσαλονίκη",
+      "entity_kind": "colon",
+      "verification_candidate": true
     },
     {
-      "id": "8a18f9ec6b1b9e86d1b2afbf",
+      "id": "4e0e8dcd22eaf9cccb739381",
       "city": "thes",
       "category": "events_music_street",
-      "title": "Μεγάλο παραδοσιακό πανηγύρι με 25 μουσικούς και ελεύθερη είσοδο σε μια εμβληματική πλατεία της Θεσσαλονίκης - Parallaxi",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPbHJwVm1TYThFblRNLWl2QTlNU2xvNFZtdFdBMnhiaWZxZm13V1VYTXZPbnNpRnliUDkzRUlKZzRmWnN4MzhIRDBqTmFjSGZ3TlZKTzlUbk5la1F2bUViRGxTSGRDV2VXdF9Od1pVeWFPbVF3ZU1JMjFSeHR2eGlQNnpGWDFZYkZwbVl5VENwQk9vR1dDZmF0bF9CTVAwWEZhWmZaaXZBMF84aUFYSk9LaEZsczNfSVNUWmRVUEtBb3FZal9URlNfRTdad1lqTXFvRGxUZE53NVpHMUZNWEp0QnpFY0hUUQ?oc=5",
+      "title": "Καταιγίδες στη Θεσσαλονίκη, καμία ενημέρωση για τη συναυλία Ρέμου - Parallaxi",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPeVV6R3dCTW5rcGpFdEtDOGhFU1hBX0NlU0VxOHFhRnlsMmtfcGdidDZ0M1ZpbDZjTkljR3ZrLUZWTU0xamdEVnpqRHlUeEhzUDJsbVl1UUtVRjZCUVhlbWpnSGlXSUZOaExjeG9IMUlLdF9TZ2hTZ0ZOT05kSWhHbjRpZFpNN25IaDBXM0NFem92a3pzMlpUSmVmWkRFeWNwQTdMT0o4VzI4TEE?oc=5",
       "source": "Parallaxi — Thessaloniki culture/street radar",
       "source_home": "https://parallaximag.gr/",
-      "published_at": "2026-09-16T06:10:59.000Z",
+      "published_at": "2026-09-12T15:36:51.000Z",
       "status": "candidate",
-      "auto_publish": false
+      "auto_publish": false,
+      "specificity_score": 14,
+      "entity_hint": "Καταιγίδες",
+      "entity_kind": "verb",
+      "verification_candidate": true
+    },
+    {
+      "id": "bfbae4c8d17ba64ab0d056ec",
+      "city": "thes",
+      "category": "openings_food",
+      "title": "Η καντίνα «Μαμά Τερέζα», έδωσε σημεία ζωής στη νέα της διεύθυνση και το γιορτάζει με δωρεάν φαγητό - biscotto",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPYnllRTA3di1ibHNqVUExMjRnQV9uUkhzU0RtTFBzd1dSQU0yS3JOa1RDTlBhOXRYM1J6MTc2ZFVmaHN1akhaQmZyUGNwSkh0LW5yN1dHVERaN3A4X1ZxWTMzdlRSWTR0d0h4VjNndzNoSDNpZVQwSzJrbUY5czJRZDB4bS1XQjIxdzlld1FvaEZjTjViWjcwbFhWSTUxX0FGMnFFMHl3b2RVbHl1T3lnVWdtdXBfdmpT?oc=5",
+      "source": "Biscotto — Thessaloniki openings & street food radar",
+      "source_home": "https://biscotto.gr/",
+      "published_at": "2026-09-14T09:35:15.000Z",
+      "status": "candidate",
+      "auto_publish": false,
+      "specificity_score": 12,
+      "entity_hint": "Μαμά Τερέζα",
+      "entity_kind": "quoted",
+      "verification_candidate": true
+    },
+    {
+      "id": "2f97686c2ddf5b2f4fc21651",
+      "city": "thes",
+      "category": "openings_food",
+      "title": "Η Περαία γιορτάζει με μπόλικη φασολάδα, σουβλάκια, νόστιμα εδέσματα και ζωντανή μουσική! - biscotto",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOXzFlTUU2OVRfbkJVR19hYnRIbGpMNnJmQ0s2SldjOHFrRV90VFdyblA5RERBZk43UlZIaDExcThtT0dFMGdCd0t3NTQzMnVfQUlObjRTcFNrejQ0ZHFaY2FOaHp2TGpIcWZWSmVyLWxlc2x6ZXVqVHBIUTJxX3pXeHFHUUtLankzbXg2U1lxbFFSdDJqbDVGTFpsVTh5c3oxbzRid0dOYmlkQQ?oc=5",
+      "source": "Biscotto — Thessaloniki openings & street food radar",
+      "source_home": "https://biscotto.gr/",
+      "published_at": "2026-09-16T09:09:11.000Z",
+      "status": "candidate",
+      "auto_publish": false,
+      "specificity_score": 9,
+      "entity_hint": "Η Περαία",
+      "entity_kind": "verb",
+      "verification_candidate": true
+    },
+    {
+      "id": "ffb1e653d98dba24b468c250",
+      "city": "thes",
+      "category": "openings_food",
+      "title": "Το εστιατόριο που φέρνει στο πιάτο σου τις γνώριμες γεύσεις της Μεσογείου στην πιο σύγχρονη μορφή τους - biscotto",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBkbms2b29CazRUeVFBNy1JaGhDWDZzM2hUTDFfOFZjWm9EM2NteHNCQmhteGtLaGtqR0RWZ2hjYUwtRnhpR1B3TDFRMm9NUFhV?oc=5",
+      "source": "Biscotto — Thessaloniki openings & street food radar",
+      "source_home": "https://biscotto.gr/",
+      "published_at": "2026-08-31T07:00:00.000Z",
+      "status": "candidate",
+      "auto_publish": false,
+      "specificity_score": 9,
+      "entity_hint": "Το εστιατόριο που",
+      "entity_kind": "verb",
+      "verification_candidate": true
     }
-  ]
+  ],
+  "ranking": {
+    "updated_at": "2026-09-16T16:16:41.675Z",
+    "ath": {
+      "input": 14,
+      "kept": 6,
+      "rejected": 8,
+      "sample_rejected": [
+        {
+          "id": "fa5183ef2d43249745ca3119",
+          "title": "Όλα τα καινούργια εστιατόρια που μόλις άνοιξαν στην Αθήνα - Athens Voice",
+          "reason": "generic_headline",
+          "score": -7
+        },
+        {
+          "id": "f896ae8679f79f1883e74ac4",
+          "title": "Μα πού πήγαν τα παλιά, καλά τοστ; - Athens Voice",
+          "reason": "no_food_opening_signal",
+          "score": -99
+        },
+        {
+          "id": "b9b9f31a18fb916ff82e51c1",
+          "title": "Ο freddo της Αθήνας κάνει τον γύρο του κόσμου - Athens Voice",
+          "reason": "generic_headline",
+          "score": -7
+        },
+        {
+          "id": "166d97574a520265d7e24d80",
+          "title": "Κάνε πως είσαι ακόμα διακοπές σε αυτά τα 10 αθηναϊκά εστιατόρια - Athens Voice",
+          "reason": "generic_headline",
+          "score": -7
+        },
+        {
+          "id": "5f551bd27ef7144dab51fa30",
+          "title": "Μεντιλίμπαρ: «Φεύγω περήφανος που βοήθησα τον Ολυμπιακό να γίνει ακόμη μεγαλύτερος» - Athens Voice",
+          "reason": "sensitive_or_sports",
+          "score": -99
+        },
+        {
+          "id": "a451bdb22cada63dd1089a02",
+          "title": "Οι πρώτες εικόνες από το Cinobo Όπερα & Bar 2046 - LiFO",
+          "reason": "low_specificity",
+          "score": -1
+        },
+        {
+          "id": "3c220d15012508630c8d7ad5",
+          "title": "Ο ελληνικός freddo απέκτησε κάψουλα Nespresso και κάνει διεθνή καριέρα - LiFO",
+          "reason": "no_food_opening_signal",
+          "score": -99
+        },
+        {
+          "id": "5df91e15acdf374632f187e1",
+          "title": "25 φούρνοι νέας γενιάς που αγαπάμε στην Αθήνα τώρα - LiFO",
+          "reason": "no_food_opening_signal",
+          "score": -99
+        }
+      ]
+    },
+    "thes": {
+      "input": 20,
+      "kept": 11,
+      "rejected": 9,
+      "sample_rejected": [
+        {
+          "id": "f333962af221537d2288152e",
+          "title": "New entry: Το νέο industrial bar της Λέοντος Σοφού που αξίζει το feed σου - biscotto",
+          "reason": "generic_headline",
+          "score": 3
+        },
+        {
+          "id": "602ac2a9220141a7399b47ad",
+          "title": "Η νέα τοιχογραφία του διεθνώς αναγνωρισμένου Πορτογάλου illustrator και street artist, Fransisco Fonseca σε σχολείο - biscotto",
+          "reason": "no_food_opening_signal",
+          "score": -99
+        },
+        {
+          "id": "eedd894c3c9de5f4ef251175",
+          "title": "Δεν είναι απλώς ένα bar αλλά μία νησιώτικη απόδραση χωρίς να φύγεις από την Θεσσαλονίκη! - biscotto",
+          "reason": "low_specificity",
+          "score": 3
+        },
+        {
+          "id": "53c6aec7822485cbef278e04",
+          "title": "Σήμερα η πρεμιέρα του Reworks – Η Θεσσαλονίκη στο επίκεντρο της ηλεκτρονικής μουσικής - biscotto",
+          "reason": "low_specificity",
+          "score": 3
+        },
+        {
+          "id": "937a3935f979b47d82707137",
+          "title": "Πόσα ξοδεύουν οι Έλληνες στο έτοιμο φαγητό; - Parallaxi",
+          "reason": "generic_headline",
+          "score": -1
+        },
+        {
+          "id": "a3386caec4a89ef6f3c22efd",
+          "title": "Θρίλερ σε βρεφονηπιακό σταθμό: Έβαλαν απορρυπαντικό στο φαγητό αντί για ξύδι - Parallaxi",
+          "reason": "sensitive_or_sports",
+          "score": -99
+        },
+        {
+          "id": "ed10be2dcd468e8ce9d7a36a",
+          "title": "Η μουσική ατζέντα της εβδομάδας στη Θεσσαλονίκη από 14/9 έως 20/9 - Parallaxi",
+          "reason": "generic_headline",
+          "score": 5
+        },
+        {
+          "id": "37d7a37935a8710063460ba0",
+          "title": "Kανονικά θα πραγματοποιηθεί η συναυλία του Ρέμου στη Θεσσαλονίκη - Parallaxi",
+          "reason": "low_specificity",
+          "score": 3
+        }
+      ]
+    }
+  },
+  "publisher_resolution": {
+    "attempted": 6,
+    "resolved": 3,
+    "max_per_source": 3,
+    "updated_at": "2026-09-16T16:16:45.571Z"
+  }
 }
