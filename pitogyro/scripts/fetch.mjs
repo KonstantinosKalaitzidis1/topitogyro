@@ -16,6 +16,15 @@ function katharise(s = "") {
   return String(s).replace(/<[^>]*>/g, " ").replace(/&nbsp;/gi, " ").replace(/\s+/g, " ").trim();
 }
 
+function norm(s = "") {
+  return String(s)
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function kleidi(...parts) {
   return createHash("sha256").update(parts.filter(Boolean).join("|")).digest("hex").slice(0, 24);
 }
@@ -32,8 +41,69 @@ function einaiProsfato(dateString) {
   return Date.now() - d.getTime() <= MAX_AGE_DAYS * 24 * 60 * 60 * 1000;
 }
 
+function exei(text, words) {
+  return words.some(w => text.includes(norm(w)));
+}
+
+function radarRelevant(title, city, category) {
+  const t = norm(title
+    .replace(/\s+-\s+Athens Voice$/i, "")
+    .replace(/\s+-\s+LiFO$/i, "")
+    .replace(/\s+-\s+Biscotto.*$/i, "")
+    .replace(/\s+-\s+Parallaxi.*$/i, ""));
+
+  if (!t || t === "smart content") return false;
+
+  const sensitive = [
+    "πυροβολ", "δολοφον", "νεκρ", "αστυνομ", "συλληψ", "τροχαι", "ατυχη",
+    "δικασ", "εισαγγελ", "φυλακ", "εκλογ", "κυβερν", "κομμα", "βουλη",
+    "πρωθυπουργ", "πολεμ", "επιθεση", "νοσοκομ", "σεισμ", "φωτια"
+  ];
+  if (exei(t, sensitive)) return false;
+
+  if (city === "ath" && exei(t, ["θεσσαλονικ", "δεθ", "momus θεσσαλονικ", "καλαμαρια"])) return false;
+  if (city === "thes" && exei(t, ["αθηνα", "πειραι", "τεχνοπολη γκαζι", "ηρωδειο"])) return false;
+
+  if (category === "openings_food") {
+    return exei(t, [
+      "μαγαζ", "εστιατορ", "street food", "burger", "pizza", "doner", "döner",
+      "σουβλακ", "φαγητ", "γευσ", "κουζιν", "brunch", "restaurant", "food",
+      "καφε", "freddo", "bar", "μπαρ", "φουρν", "bakery", "σαντουιτς", "sandwich",
+      "taco", "kebab", "hot dog", "κοτοπουλ", "chicken", "πατατ", "toast", "τοστ",
+      "μενου", "menu", "ανοιξε", "ανοιγ", "αφιξ", "burger fest"
+    ]);
+  }
+
+  if (category === "events_music_street") {
+    const eventSignal = exei(t, [
+      "συναυλ", "live", "festival", "φεστιβαλ", "εκθεση", "party", "dj", "performance",
+      "θεατρ", "μουσικ", "graffiti", "street art", "popup", "pop-up", "vinyl", "βινυλ"
+    ]);
+    if (!eventSignal) return false;
+
+    // Street-culture stories είναι core ΠΙΤΟΓΥΡΟ και μπορούν να μείνουν candidate
+    // χωρίς venue στον τίτλο· θα επαληθευτούν αργότερα πριν τη δημοσίευση.
+    if (exei(t, ["graffiti", "street art", "skate", "bmx", "βινυλ"])) return true;
+
+    const localAth = [
+      "αθην", "γκαζ", "τεχνοπολ", "εξαρχ", "κυψελ", "κεραμεικ", "ψυρρ", "παγκρατ",
+      "κουκακ", "συνταγμα", "μοναστηρακ", "πετραλων", "κολωνακ", "νεος κοσμος",
+      "μεταξουργ", "βοτανικ", "fuzz", "gagarin", "six d.o.g.s", "romantso", "ηρωδει",
+      "στεγη", "νιαρχ", "snfcc", "λυκαβητ"
+    ];
+    const localThes = [
+      "θεσσαλονικ", "λαδαδικ", "βαλαωριτ", "τουμπ", "καλαμαρι", "ανω πολη", "ροτοντα",
+      "ναυαριν", "αριστοτελ", "δεθ", "helexpo", "μυλος", "principal", "block 33", "block33",
+      "momus", "μονη λαζαρισ", "θεατρο γης", "λιμανι"
+    ];
+    return exei(t, city === "ath" ? localAth : localThes);
+  }
+
+  return false;
+}
+
 function inspirationScore(title = "", keywords = []) {
-  const t = String(title).toLowerCase();
+  const t = norm(title);
   const weights = {
     sauce:10, dip:10, condiment:10, aioli:10, mayo:10, "hot honey":10,
     burger:9, fries:9, sandwich:9, "hot dog":9, wings:9, nachos:9, smash:9,
@@ -41,7 +111,7 @@ function inspirationScore(title = "", keywords = []) {
     enchilada:7, pickle:7, spicy:6, crispy:6, fried:6, loaded:6
   };
   return keywords.reduce((score, k) => {
-    const key = String(k).toLowerCase();
+    const key = norm(k);
     return score + (t.includes(key) ? (weights[key] || 1) : 0);
   }, 0);
 }
@@ -54,7 +124,7 @@ function feedUrl(p) {
   return p.feed || "";
 }
 
-async function pigi(p) {
+async function pigi(p, city = "") {
   if (!p.energi) return [];
   const recipe = p.mode === "recipe_inspiration";
   const discovery = p.mode === "city_discovery";
@@ -83,7 +153,7 @@ async function pigi(p) {
 
   try {
     const f = await parser.parseURL(feed);
-    const limit = discovery ? 20 : 40;
+    const limit = discovery ? 30 : 40;
     const items = (f.items || [])
       .slice(0, limit)
       .filter(i => einaiProsfato(i.isoDate || i.pubDate || ""))
@@ -107,8 +177,8 @@ async function pigi(p) {
         };
       })
       .filter(i => i.titlos)
-      // 8+ σημαίνει σαφές dirty-food signal στον τίτλο. Π.χ. σκέτο “enchilada” (7) δεν αρκεί.
-      .filter(i => !recipe || i.inspiration_score >= 8);
+      .filter(i => !recipe || i.inspiration_score >= 8)
+      .filter(i => !discovery || radarRelevant(i.titlos, city, p.category || ""));
 
     if (recipe) items.sort((a,b) => b.inspiration_score - a.inspiration_score);
     return items;
@@ -134,12 +204,12 @@ function verifiedItems(queue, poli) {
     }));
 }
 
-function dedupeCurrent(items, max = 40) {
+function dedupeCurrent(items, max = 30) {
   const seen = new Set();
   const out = [];
   for (const i of items) {
     const rawKey = i.title || i.titlos || i.url || i.source_item_url || "";
-    const key = String(rawKey).toLowerCase().replace(/\s+/g," ").trim();
+    const key = norm(rawKey);
     if (!key || seen.has(key)) continue;
     seen.add(key);
     out.push(i);
@@ -162,10 +232,10 @@ for (const poli of ["ath", "thes"]) {
   const candidates = [];
 
   for (const p of pigis[poli] || []) {
-    const items = await pigi(p);
+    const items = await pigi(p, poli);
     if (!items.length) continue;
     if (p.mode === "city_discovery") {
-      console.log(`  RADAR ${p.onoma}: ${items.length} candidates`);
+      console.log(`  RADAR ${p.onoma}: ${items.length} relevant candidates`);
       candidates.push(...items.map(i => ({
         id: i.id,
         city: poli,
@@ -191,13 +261,13 @@ for (const poli of ["ath", "thes"]) {
   const runSeen = new Set();
   apotelesma[poli] = publishable.filter(i => {
     if (handled.has(i.id)) return false;
-    const k = (i.source_item_url || i.titlos).toLowerCase().trim();
+    const k = norm(i.source_item_url || i.titlos);
     if (runSeen.has(k)) return false;
     runSeen.add(k);
     return true;
   });
 
-  discovery[poli] = dedupeCurrent(candidates, 50);
+  discovery[poli] = dedupeCurrent(candidates, 30);
 }
 
 console.log("\nGLOBAL / ΒΡΩΜΙΑ ΣΠΙΤΙ");
@@ -212,7 +282,7 @@ console.log("\nGLOBAL / ΒΡΩΜΙΑ ΣΠΙΤΙ");
   const runSeen = new Set();
   apotelesma.global = ola.filter(i => {
     if (handled.has(i.id)) return false;
-    const k = (i.source_item_url || i.titlos).toLowerCase().trim();
+    const k = norm(i.source_item_url || i.titlos);
     if (runSeen.has(k)) return false;
     runSeen.add(k);
     return true;
