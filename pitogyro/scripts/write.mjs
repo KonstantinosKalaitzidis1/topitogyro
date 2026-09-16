@@ -4,7 +4,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 const KLEIDI = process.env.ANTHROPIC_API_KEY;
-// Φθηνότερο default για καθημερινή αυτοματοποίηση. Μπορεί να αλλάξει από GitHub variable AI_MODEL.
 const MONTELO = process.env.AI_MODEL || "claude-haiku-4-5-20251001";
 
 if (!KLEIDI) {
@@ -27,17 +26,17 @@ const YFOS = `Γράφεις για ΤΟ ΠΙΤΟΓΥΡΟ — καθημεριν
 - ΠΟΤΕ δεν παραφράζεις ή αναπαράγεις κείμενο τρίτου. Γράφεις νέο κείμενο βασισμένο στα επιβεβαιωμένα facts.
 - ΠΟΤΕ δεν εφευρίσκεις ώρα, τιμή, διεύθυνση, γειτονιά, menu item, όνομα, ημερομηνία, δρομολόγιο, opening date ή άλλη πρακτική λεπτομέρεια.
 - ΠΟΤΕ δεν προσθέτεις αξιολογική κρίση, θετική ή αρνητική, αν δεν δίνεται ως fact. Απαγορεύονται συμπεράσματα τύπου «δουλεύει με σοβαρότητα», «είναι focused», «αξίζει», «καλύτερο», «τίμιο», «δυνατό».
-- ΠΟΤΕ δεν συμπεραίνεις ότι κάτι λείπει από το menu ή το concept (π.χ. «δεν έχει περιττά extras») αν δεν δίνεται ρητά.
+- ΠΟΤΕ δεν συμπεραίνεις ότι κάτι λείπει από το menu ή το concept αν δεν δίνεται ρητά.
 - Πρόσεχε τον χρόνο: αν το input λέει ότι ένα μαγαζί λειτουργεί ήδη επί μήνες, ΜΗ γράψεις ότι «ανοίγει τώρα» ή «ανοίγει τις πόρτες του».
 - Αν λείπει στοιχείο, το παραλείπεις. Δεν το συμπληρώνεις.
 - Κάθε πρόταση πρέπει να μπορεί να στηριχθεί άμεσα σε fact του input. Αν μια πρόταση υπάρχει μόνο για ύφος/εντύπωση, κόψ' την.
 - Αν τα facts δεν αρκούν για τουλάχιστον 3 ουσιαστικές μικρές παραγράφους, επέστρεψε {"publish":false,"reason":"insufficient_facts"}.
 - Αν το θέμα αφορά πολιτική, εκλογές, εγκλήματα, σοβαρά ατυχήματα, υγεία, δικαστικές/νομικές καταγγελίες ή προσωπικά δεδομένα, επέστρεψε {"publish":false,"reason":"sensitive_topic"}.
-- Μη γράφεις ότι "πήγαμε", "δοκιμάσαμε", "μιλήσαμε" ή ότι έγινε επιτόπιο ρεπορτάζ αν δεν δίνεται τέτοιο fact.
+- Μη γράφεις ότι «πήγαμε», «δοκιμάσαμε», «μιλήσαμε» ή ότι έγινε επιτόπιο ρεπορτάζ αν δεν δίνεται τέτοιο fact.
 - Το κείμενο πρέπει να είναι γραμματικά σωστό, φυσικό και κατανοητό. Καμία ακατανόητη αργκό ή κομμένη φράση.
 
 ΜΟΡΦΗ ΑΠΑΝΤΗΣΗΣ
-Μόνο JSON, χωρίς backticks.
+Απάντησε με ΕΝΑ πλήρες και έγκυρο JSON object, χωρίς backticks και χωρίς κείμενο πριν ή μετά.
 Για δημοσιεύσιμο θέμα:
 {"publish":true,"kat":"ΚΑΤΗΓΟΡΙΑ","titlos":"...","keimeno":"περίληψη 1-2 προτάσεις","soma":["παράγραφος","παράγραφος","παράγραφος"]}
 Το soma: 3 έως 5 σύντομες παραγράφους.
@@ -47,13 +46,26 @@ const QA = `Είσαι αυστηρός fact-checker και copy editor για �
 Ελέγχεις ένα draft ΜΟΝΟ απέναντι στα facts που σου δίνονται.
 Απόρριψε το draft αν:
 - περιέχει οποιαδήποτε πληροφορία, αξιολογική κρίση, σύσταση ή συμπέρασμα που δεν στηρίζεται άμεσα στα facts,
-- αλλάζει χρονικά το νόημα (π.χ. λέει ότι ανοίγει τώρα ενώ ήδη λειτουργεί),
+- αλλάζει χρονικά το νόημα,
 - περιέχει ακατανόητη/λανθασμένη φράση,
 - παρουσιάζει εμπειρία ή γνώμη σαν να προέρχεται από το μέσο,
 - αντιγράφει εμφανώς φράση της πρώτης ύλης.
-Απάντησε μόνο JSON: {"ok":true,"reason":""} ή {"ok":false,"reason":"σύντομη σαφής αιτία"}.`;
+Απάντησε μόνο με ΕΝΑ πλήρες έγκυρο JSON object: {"ok":true,"reason":""} ή {"ok":false,"reason":"σύντομη σαφής αιτία"}.`;
 
-async function anthropic(body) {
+function parseJson(text) {
+  const clean = String(text || "")
+    .replace(/```json/gi, "")
+    .replace(/```/g, "")
+    .trim();
+  const first = clean.indexOf("{");
+  const last = clean.lastIndexOf("}");
+  if (first === -1 || last <= first) return null;
+  const candidate = clean.slice(first, last + 1);
+  try { return JSON.parse(candidate); }
+  catch { return null; }
+}
+
+async function anthropicRaw(body) {
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: {
@@ -65,15 +77,34 @@ async function anthropic(body) {
   });
   if (!r.ok) throw new Error(`API ${r.status}: ${await r.text()}`);
   const d = await r.json();
-  const kathara = d.content.filter(c => c.type === "text").map(c => c.text).join("").replace(/```json|```/g, "").trim();
-  return JSON.parse(kathara);
+  return {
+    text: (d.content || []).filter(c => c.type === "text").map(c => c.text).join("").trim(),
+    stopReason: d.stop_reason || ""
+  };
+}
+
+async function anthropic(body) {
+  let raw = await anthropicRaw(body);
+  let parsed = parseJson(raw.text);
+  if (parsed) return parsed;
+
+  console.log(`  JSON RETRY: μη έγκυρο JSON${raw.stopReason ? ` (stop_reason=${raw.stopReason})` : ""}`);
+  const retryBody = {
+    ...body,
+    max_tokens: Math.max(Number(body.max_tokens || 0), 1400),
+    system: `${body.system}\n\nΚΡΙΣΙΜΟ: Η προηγούμενη απάντηση δεν ήταν parseable JSON. Αυτή τη φορά ολοκλήρωσε ολόκληρο το JSON object, κλείσε όλα τα strings/arrays/braces και μην γράψεις τίποτα εκτός JSON.`
+  };
+  raw = await anthropicRaw(retryBody);
+  parsed = parseJson(raw.text);
+  if (!parsed) throw new Error(`Μη έγκυρο JSON μετά από retry${raw.stopReason ? ` (stop_reason=${raw.stopReason})` : ""}`);
+  return parsed;
 }
 
 async function grapse(item, poli, feedback = "") {
   const poliOnoma = poli === "ath" ? "Αθήνα" : "Θεσσαλονίκη";
   return anthropic({
     model: MONTELO,
-    max_tokens: 850,
+    max_tokens: 1200,
     system: YFOS,
     messages: [{
       role: "user",
@@ -85,7 +116,7 @@ async function grapse(item, poli, feedback = "") {
 async function elegxos(item, a) {
   return anthropic({
     model: MONTELO,
-    max_tokens: 180,
+    max_tokens: 260,
     system: QA,
     messages: [{
       role: "user",
