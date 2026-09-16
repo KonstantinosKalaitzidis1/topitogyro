@@ -3,18 +3,6 @@
   "thes": [],
   "global": [
     {
-      "id": "c0a2211590ca0f9a9dbf10f2",
-      "pigi": "The Kitchn",
-      "pigi_url": "https://www.thekitchn.com/",
-      "source_item_url": "https://www.thekitchn.com/momofuku-new-sauces-review-23843199?utm_source=RSS&utm_medium=feed&utm_campaign=Category%2FChannel%3A+main",
-      "titlos": "Momofuku Just Dropped the Most Delicious New Sauces — We Tried and Ranked Them All",
-      "proti_yli": "Drizzle the winner on everything. READ MORE...",
-      "imerominia": "2026-09-15T16:30:00.000Z",
-      "content_mode": "recipe_inspiration",
-      "global": true,
-      "inspiration_score": 10
-    },
-    {
       "id": "c4f3f370c3ae0eb55303dceb",
       "pigi": "The Kitchn",
       "pigi_url": "https://www.thekitchn.com/",
@@ -24,7 +12,7 @@
       "imerominia": "2026-09-15T14:30:00.000Z",
       "content_mode": "recipe_inspiration",
       "global": true,
-      "inspiration_score": 1
+      "inspiration_score": 10
     },
     {
       "id": "078171da0cece24d0b7b89ce",
@@ -36,31 +24,19 @@
       "imerominia": "2026-09-14T18:30:00.000Z",
       "content_mode": "recipe_inspiration",
       "global": true,
-      "inspiration_score": 1
+      "inspiration_score": 10
     },
     {
-      "id": "d88e30f24297f85a7c779f87",
+      "id": "6378300d242d6310154626dc",
       "pigi": "The Kitchn",
       "pigi_url": "https://www.thekitchn.com/",
-      "source_item_url": "https://www.thekitchn.com/apple-cream-cheese-coffee-cake-recipe-23841445?utm_source=RSS&utm_medium=feed&utm_campaign=Category%2FChannel%3A+main",
-      "titlos": "Apple Cream Cheese Coffee Cake",
-      "proti_yli": "Apple picking season remains one of my most treasured times of year. When I was a kid, it meant going to the pick-your-own farm with my family, watching my little brother try to stack as many apples on his head as possible (à la Dr. Seuss’ Ten Apples Up on Top!), and thinking about the pie I was going to help my dad make with our bounty. READ MORE...",
-      "imerominia": "2026-09-14T14:00:00.000Z",
+      "source_item_url": "https://www.thekitchn.com/enchilada-black-beans-recipe-23843171?utm_source=RSS&utm_medium=feed&utm_campaign=Category%2FChannel%3A+main",
+      "titlos": "Enchilada Black Beans",
+      "proti_yli": "Just to get out in front of it: There aren’t technically any real enchiladas in these one-pan enchilada beans. Nothing is wrapped in a cozy, lightly fried tortilla to perfection. This is a saucy, sloppy (in a good way) skillet of beans simmered in red enchilada sauce and spices until they’re just thick enough to spoon into warm tortillas — and that’s when you cover it in cheese and pop it under the broiler. READ MORE...",
+      "imerominia": "2026-09-15T17:00:00.000Z",
       "content_mode": "recipe_inspiration",
       "global": true,
-      "inspiration_score": 1
-    },
-    {
-      "id": "032a927d6a1b7b93d53d6201",
-      "pigi": "The Kitchn",
-      "pigi_url": "https://www.thekitchn.com/",
-      "source_item_url": "https://www.thekitchn.com/carla-hall-chicken-pot-pie-pop-tarts-recipe-review-23842949?utm_source=RSS&utm_medium=feed&utm_campaign=Category%2FChannel%3A+main",
-      "titlos": "Carla Hall’s Chicken Pot Pie Pop Tarts",
-      "proti_yli": "Pot pie, but make it handheld. READ MORE...",
-      "imerominia": "2026-09-13T18:00:00.000Z",
-      "content_mode": "recipe_inspiration",
-      "global": true,
-      "inspiration_score": 1
+      "inspiration_score": 7
     }
   ]
 }
