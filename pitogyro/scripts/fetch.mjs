@@ -34,10 +34,19 @@ function einaiProsfato(dateString) {
   return ageMs <= MAX_AGE_DAYS * 24 * 60 * 60 * 1000;
 }
 
-function pernaeiKeywords(text, keywords = []) {
-  if (!keywords.length) return true;
-  const t = String(text || "").toLowerCase();
-  return keywords.some(k => t.includes(String(k).toLowerCase()));
+function inspirationScore(title = "", keywords = []) {
+  const t = String(title).toLowerCase();
+  const weights = {
+    "sauce": 10, "dip": 10, "condiment": 10, "aioli": 10, "mayo": 10, "hot honey": 10,
+    "burger": 9, "fries": 9, "sandwich": 9, "hot dog": 9, "wings": 9, "nachos": 9,
+    "smash": 9, "sloppy": 8, "grilled cheese": 8, "quesadilla": 8, "taco": 8,
+    "kebab": 8, "wrap": 8, "enchilada": 7, "pickle": 7, "spicy": 6, "crispy": 6,
+    "fried": 6, "loaded": 6
+  };
+  return keywords.reduce((score, k) => {
+    const key = String(k).toLowerCase();
+    return score + (t.includes(key) ? (weights[key] || 1) : 0);
+  }, 0);
 }
 
 async function pigi(p) {
@@ -68,7 +77,7 @@ async function pigi(p) {
 
   try {
     const f = await parser.parseURL(p.feed);
-    return (f.items || [])
+    const items = (f.items || [])
       .slice(0, 40)
       .filter(i => einaiProsfato(i.isoDate || i.pubDate || ""))
       .map(i => {
@@ -85,11 +94,17 @@ async function pigi(p) {
           proti_yli: snippet.slice(0, inspiration ? 500 : 600),
           imerominia,
           content_mode: inspiration ? "recipe_inspiration" : "facts",
-          global: inspiration
+          global: inspiration,
+          inspiration_score: inspiration ? inspirationScore(titlos, p.keywords || []) : 0
         };
       })
       .filter(i => i.titlos)
-      .filter(i => !inspiration || pernaeiKeywords(`${i.titlos} ${i.proti_yli}`, p.keywords || []));
+      // Για ΒΡΩΜΙΑ ΣΠΙΤΙ μετράει μόνο ο ΤΙΤΛΟΣ. Έτσι ένα άσχετο soup/cake
+      // δεν περνάει επειδή το snippet περιέχει τυχαία λέξεις όπως loaded/cheese/chicken.
+      .filter(i => !inspiration || i.inspiration_score > 0);
+
+    if (inspiration) items.sort((a, b) => b.inspiration_score - a.inspiration_score);
+    return items;
   } catch (e) {
     console.log(`  ΣΦΑΛΜΑ ${p.onoma}: ${e.message}`);
     return [];
@@ -147,10 +162,11 @@ console.log("\nGLOBAL / ΒΡΩΜΙΑ ΣΠΙΤΙ");
   const ola = [];
   for (const p of pigis.global || []) {
     const items = await pigi(p);
-    if (items.length) console.log(`  ${p.onoma}: ${items.length} ιδέες`);
+    if (items.length) console.log(`  ${p.onoma}: ${items.length} στοχευμένες ιδέες`);
     ola.push(...items);
   }
 
+  ola.sort((a, b) => (b.inspiration_score || 0) - (a.inspiration_score || 0));
   const runSeen = new Set();
   apotelesma.global = ola.filter(i => {
     if (seen.has(i.id)) return false;
