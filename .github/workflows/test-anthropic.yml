@@ -1,0 +1,28 @@
+name: Test Anthropic API key
+
+on:
+  push:
+    paths:
+      - ".github/workflows/test-anthropic.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify API key with minimal request
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$ANTHROPIC_API_KEY" || { echo "ANTHROPIC_API_KEY is missing"; exit 1; }
+          RESPONSE=$(curl -sS --fail-with-body https://api.anthropic.com/v1/messages \
+            -H "content-type: application/json" \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -d '{"model":"claude-haiku-4-5-20251001","max_tokens":8,"messages":[{"role":"user","content":"Reply exactly OK"}]}')
+          RESPONSE="$RESPONSE" node -e 'const d=JSON.parse(process.env.RESPONSE); const t=(d.content||[]).filter(x=>x.type==="text").map(x=>x.text).join("").trim(); if(!t){console.error("No text returned"); process.exit(1)}; console.log("Anthropic API key works. Model returned a valid response.")'
