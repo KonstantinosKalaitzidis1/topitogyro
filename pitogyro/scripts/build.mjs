@@ -1,5 +1,6 @@
 // Παίρνει τα άρθρα και ξαναφτιάχνει το index.html από το template.
 // Local city stories κρατούν το hero. Global "ΒΡΩΜΙΑ ΣΠΙΤΙ" μπαίνει στη ροή και των δύο πόλεων.
+// Οι εικόνες έρχονται μόνο από content/images.json με ρητό credit/license metadata.
 
 import { readFile, writeFile } from "node:fs/promises";
 
@@ -12,6 +13,13 @@ try {
   console.log("Δεν βρέθηκαν παραγόμενα άρθρα. Το site βγαίνει με το υπάρχον template.");
   await writeFile("index.html", template);
   process.exit(0);
+}
+
+let images = {};
+try {
+  images = JSON.parse(await readFile("content/images.json", "utf8"));
+} catch {
+  images = {};
 }
 
 const arxi = template.indexOf("const DEDOMENA = {");
@@ -29,19 +37,28 @@ function sourceLabel(a) {
   return name ? `${name.startsWith("Έμπνευση:") ? "" : "Πηγή: "}${name}` : "ΤΟ ΠΙΤΟΓΥΡΟ";
 }
 
-function card(a) {
+function withImage(a) {
+  if (!a) return a;
+  const sid = a?.source?.source_id || "";
+  const eikona = a.eikona || (sid ? images[sid] : null) || null;
+  return { ...a, eikona };
+}
+
+function card(article) {
+  const a = withImage(article);
   return {
     kat: a.kat || "ΠΟΛΗ",
     titlos: a.titlos,
     keimeno: a.keimeno || "",
     soma: a.soma,
-    ypografi: sourceLabel(a)
+    ypografi: sourceLabel(a),
+    eikona: a.eikona || null
   };
 }
 
 function antikatastasi(blok, poli, local, global) {
-  const nea = Array.isArray(local) ? local : [];
-  const koina = Array.isArray(global) ? global : [];
+  const nea = (Array.isArray(local) ? local : []).map(withImage);
+  const koina = (Array.isArray(global) ? global : []).map(withImage);
   let out = blok;
 
   if (nea.length) {
@@ -52,7 +69,8 @@ function antikatastasi(blok, poli, local, global) {
       titlos:${JSON.stringify(kyrio.titlos)},
       keimeno:${JSON.stringify(kyrio.keimeno || "")},
       ypografi:${JSON.stringify(sourceLabel(kyrio))},
-      soma:${JSON.stringify(kyrio.soma)}
+      soma:${JSON.stringify(kyrio.soma)},
+      eikona:${JSON.stringify(kyrio.eikona || null)}
     }`;
 
     const dei = new RegExp(`(${poli}:\\s*\\{[\\s\\S]*?)kyrio:\\{[\\s\\S]*?\\n    \\}`, "m");
@@ -86,6 +104,23 @@ const launchSafeCss = `
   .diakoptis button[data-poli="thes"]{display:none!important}
   #roi:has(#roi-grid:empty){display:none!important}
 
+  .eikona-arthrou.me-foto,
+  .anagnosi .zoni.me-foto{
+    background-size:cover!important;
+    background-position:center!important;
+    background-repeat:no-repeat!important;
+  }
+  .eikona-arthrou.me-foto::before,
+  .anagnosi .zoni.me-foto::before{
+    background:linear-gradient(to top,rgba(0,0,0,.68),rgba(0,0,0,.03) 58%)!important;
+  }
+  .photo-credit{
+    font-size:12px;
+    line-height:1.4;
+    color:var(--melani-soft);
+    margin:-17px 0 24px;
+  }
+
   .poioi-eimaste{
     border-top:2px solid var(--melani);
     border-bottom:2px solid var(--melani);
@@ -109,9 +144,71 @@ const aboutSection = `
 selida = selida.replace("</main>", `${aboutSection}\n\n</main>`);
 selida = selida.replace('<a href="#">Ποιοι είμαστε</a>', '<a href="#poioi">Ποιοι είμαστε</a>');
 
-const js = selida.split("<script>")[1].split("</scr" + "ipt>")[0];
+const imageRuntime = `
+<script id="pitogyro-images">
+(function(){
+  function bg(el, eikona){
+    if(!el) return;
+    if(eikona && eikona.url){
+      const safeUrl = String(eikona.url).replace(/"/g, "%22");
+      el.classList.add("me-foto");
+      el.style.backgroundImage = 'url("' + safeUrl + '")';
+    }else{
+      el.classList.remove("me-foto");
+      el.style.backgroundImage = "";
+    }
+  }
+
+  function hero(){
+    if(typeof DEDOMENA === "undefined" || typeof poliTora === "undefined") return;
+    const a = DEDOMENA[poliTora] && DEDOMENA[poliTora].kyrio;
+    if(!a) return;
+    const box = document.querySelector(".eikona-arthrou");
+    bg(box, a.eikona);
+    const leg = document.getElementById("legenda-eikonas");
+    if(leg){
+      const parts = [a.legenda];
+      if(a.eikona && a.eikona.credit) parts.push(a.eikona.credit);
+      leg.textContent = parts.filter(Boolean).join(" · ");
+    }
+  }
+
+  function fullArticle(link){
+    if(typeof DEDOMENA === "undefined" || typeof poliTora === "undefined") return;
+    const d = DEDOMENA[poliTora];
+    if(!d) return;
+    const i = link && link.dataset ? link.dataset.arthro : null;
+    const a = i === "kyrio" ? d.kyrio : d.arthra[Number(i)];
+    if(!a) return;
+    setTimeout(function(){
+      const z = document.querySelector(".anagnosi .zoni");
+      bg(z, a.eikona);
+      const old = document.querySelector(".anagnosi .photo-credit");
+      if(old) old.remove();
+      if(z && a.eikona && a.eikona.credit){
+        const c = document.createElement("div");
+        c.className = "photo-credit";
+        c.textContent = a.eikona.credit + (a.eikona.license ? " · " + a.eikona.license : "");
+        z.insertAdjacentElement("afterend", c);
+      }
+    }, 0);
+  }
+
+  hero();
+  document.querySelectorAll('.diakoptis button').forEach(function(b){
+    b.addEventListener("click", function(){ setTimeout(hero,0); });
+  });
+  document.addEventListener("click", function(e){
+    const link = e.target.closest("[data-arthro]");
+    if(link) fullArticle(link);
+  });
+})();
+</script>`;
+selida = selida.replace("</body>", `${imageRuntime}\n</body>`);
+
+const jsBlocks = [...selida.matchAll(/<script(?:[^>]*)>([\s\S]*?)<\/script>/g)].map(m => m[1]);
 try {
-  new Function(js);
+  for (const js of jsBlocks) new Function(js);
 } catch (e) {
   console.error("Το παραγόμενο JavaScript είναι άκυρο:", e.message);
   console.error("Το site ΔΕΝ ενημερώθηκε.");
@@ -121,4 +218,4 @@ try {
 await writeFile("index.html", selida);
 
 const synolo = (arthra.ath?.length || 0) + (arthra.thes?.length || 0) + (arthra.global?.length || 0);
-console.log(`index.html ενημερώθηκε με ${synolo} QA-passed άρθρα/συνταγές σε launch-safe mode.`);
+console.log(`index.html ενημερώθηκε με ${synolo} QA-passed άρθρα/συνταγές και licensed image metadata.`);
