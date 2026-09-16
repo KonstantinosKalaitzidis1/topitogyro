@@ -1,5 +1,5 @@
 // Παίρνει τα άρθρα και ξαναφτιάχνει το index.html από το template.
-// Αν δεν υπάρχουν νέα άρθρα, χρησιμοποιεί το τελευταίο content/arthra.json.
+// Local city stories κρατούν το hero. Global "ΒΡΩΜΙΑ ΣΠΙΤΙ" μπαίνει στη ροή και των δύο πόλεων.
 
 import { readFile, writeFile } from "node:fs/promises";
 
@@ -26,16 +26,27 @@ const paliaDedomena = template.slice(arxi, telos);
 
 function sourceLabel(a) {
   const name = a?.source?.name?.trim();
-  return name ? `Πηγή: ${name}` : "ΤΟ ΠΙΤΟΓΥΡΟ";
+  return name ? `${name.startsWith("Έμπνευση:") ? "" : "Πηγή: "}${name}` : "ΤΟ ΠΙΤΟΓΥΡΟ";
 }
 
-function antikatastasi(blok, poli, nea) {
-  if (!nea || !nea.length) return blok;
+function card(a) {
+  return {
+    kat: a.kat || "ΠΟΛΗ",
+    titlos: a.titlos,
+    keimeno: a.keimeno || "",
+    soma: a.soma,
+    ypografi: sourceLabel(a)
+  };
+}
 
-  const kyrio = nea[0];
-  const ypoloipa = nea.slice(1);
+function antikatastasi(blok, poli, local, global) {
+  const nea = Array.isArray(local) ? local : [];
+  const koina = Array.isArray(global) ? global : [];
+  let out = blok;
 
-  const neoKyrio = `kyrio:{
+  if (nea.length) {
+    const kyrio = nea[0];
+    const neoKyrio = `kyrio:{
       etiketa:${JSON.stringify(kyrio.kat || "ΣΗΜΕΡΑ")},
       legenda:${JSON.stringify(new Date().toLocaleDateString("el-GR"))},
       titlos:${JSON.stringify(kyrio.titlos)},
@@ -44,30 +55,27 @@ function antikatastasi(blok, poli, nea) {
       soma:${JSON.stringify(kyrio.soma)}
     }`;
 
-  const neaArthra = `arthra:${JSON.stringify(ypoloipa.map(a => ({
-    kat: a.kat || "ΠΟΛΗ",
-    titlos: a.titlos,
-    keimeno: a.keimeno || "",
-    soma: a.soma,
-    ypografi: sourceLabel(a)
-  })), null, 6)}`;
+    const dei = new RegExp(`(${poli}:\\s*\\{[\\s\\S]*?)kyrio:\\{[\\s\\S]*?\\n    \\}`, "m");
+    out = out.replace(dei, `$1${neoKyrio}`);
+  }
 
-  const dei = new RegExp(`(${poli}:\\s*\\{[\\s\\S]*?)kyrio:\\{[\\s\\S]*?\\n    \\}`, "m");
-  let out = blok.replace(dei, `$1${neoKyrio}`);
-
-  const dei2 = new RegExp(`(${poli}:\\s*\\{[\\s\\S]*?)arthra:\\[[\\s\\S]*?\\n    \\]`, "m");
-  out = out.replace(dei2, `$1${neaArthra}`);
+  const ypoloipa = [...nea.slice(1), ...koina];
+  if (ypoloipa.length) {
+    const neaArthra = `arthra:${JSON.stringify(ypoloipa.map(card), null, 6)}`;
+    const dei2 = new RegExp(`(${poli}:\\s*\\{[\\s\\S]*?)arthra:\\[[\\s\\S]*?\\n    \\]`, "m");
+    out = out.replace(dei2, `$1${neaArthra}`);
+  }
 
   return out;
 }
 
 let neaDedomena = paliaDedomena;
-neaDedomena = antikatastasi(neaDedomena, "ath", arthra.ath);
-neaDedomena = antikatastasi(neaDedomena, "thes", arthra.thes);
+neaDedomena = antikatastasi(neaDedomena, "ath", arthra.ath, arthra.global);
+neaDedomena = antikatastasi(neaDedomena, "thes", arthra.thes, arthra.global);
 
 let selida = template.slice(0, arxi) + neaDedomena + template.slice(telos);
 
-// Launch-safe mode: τα prototype events/τιμές/Θεσσαλονίκη παραμένουν στο template
+// Launch-safe mode: prototype events/τιμές/Θεσσαλονίκη παραμένουν στο template
 // μόνο για μελλοντική ενεργοποίηση, αλλά δεν εμφανίζονται δημόσια μέχρι να
 // τροφοδοτούνται από verified production data.
 const launchSafeCss = `
@@ -112,5 +120,5 @@ try {
 
 await writeFile("index.html", selida);
 
-const synolo = (arthra.ath?.length || 0) + (arthra.thes?.length || 0);
-console.log(`index.html ενημερώθηκε με ${synolo} verified άρθρα σε launch-safe mode.`);
+const synolo = (arthra.ath?.length || 0) + (arthra.thes?.length || 0) + (arthra.global?.length || 0);
+console.log(`index.html ενημερώθηκε με ${synolo} QA-passed άρθρα/συνταγές σε launch-safe mode.`);
