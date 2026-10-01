@@ -8,7 +8,7 @@ const KLEIDI = process.env.ANTHROPIC_API_KEY || "";
 const MONTELO = process.env.AI_MODEL || "claude-haiku-4-5-20251001";
 const LIMIT_TOTAL = Number(process.env.VERIFY_SEARCH_LIMIT_TOTAL || 2);
 const HTTP_TIMEOUT_MS = Number(process.env.VERIFY_HTTP_TIMEOUT_MS || 12000);
-const SEARCH_VERSION = 1;
+const SEARCH_VERSION = 2;
 const parser = new Parser({ timeout: HTTP_TIMEOUT_MS });
 
 if (!KLEIDI || LIMIT_TOTAL <= 0) {
@@ -177,13 +177,20 @@ const history=await readJson("content/verification-history.json",{checks:{}});
 auto.ath||=[];auto.thes||=[];history.checks||={};
 const done=new Set([...auto.ath,...auto.thes].map(x=>x.original_candidate_id).filter(Boolean));
 
-const eligibleReasons=new Set(["publisher_article_unresolved","no_plausible_first_party_link","first_party_not_sufficient","generic_or_no_entity"]);
+const eligibleReasons=new Set(["publisher_article_unresolved","no_plausible_first_party_link","first_party_not_sufficient","first_party_not_sufficient_or_date_scope_unclear","generic_or_no_entity"]);
 const pool=[];
 for(const city of ["ath","thes"]){
   for(const c of discovery[city]||[]){
     if(!c?.id||done.has(c.id))continue;
     const h=history.checks[c.id]||{};
-    if(h.search_status==="verified"||h.search_version===SEARCH_VERSION)continue;
+    if(h.search_status==="verified")continue;
+    // Retry fallback when the main verifier has re-checked the candidate after the
+    // previous search attempt (for example after a better publisher resolution).
+    // This prevents stale search_version history from permanently suppressing a lead.
+    const verifyTs=Date.parse(h.checked_at||"")||0;
+    const searchTs=Date.parse(h.search_checked_at||"")||0;
+    const searchIsFresh=h.search_version===SEARCH_VERSION && searchTs>=verifyTs;
+    if(searchIsFresh)continue;
     if(h.status && h.status!=="not_verified")continue;
     if(h.reason && !eligibleReasons.has(h.reason))continue;
     const entity=entityHint(c.title); if(!entity)continue;
