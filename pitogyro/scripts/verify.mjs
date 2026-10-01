@@ -8,7 +8,7 @@ const MONTELO = process.env.AI_MODEL || "claude-haiku-4-5-20251001";
 const LIMIT_TOTAL = Number(process.env.VERIFY_LIMIT_TOTAL || 2);
 const RETRY_DAYS = Number(process.env.VERIFY_RETRY_DAYS || 7);
 const HTTP_TIMEOUT_MS = Number(process.env.VERIFY_HTTP_TIMEOUT_MS || 12000);
-const RESOLVER_VERSION = 3;
+const RESOLVER_VERSION = 4;
 
 if (!KLEIDI) {
   console.log("VERIFY: λείπει ANTHROPIC_API_KEY — παραλείπεται η αυτόματη επαλήθευση.");
