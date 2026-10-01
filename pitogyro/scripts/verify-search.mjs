@@ -8,7 +8,7 @@ const KLEIDI = process.env.ANTHROPIC_API_KEY || "";
 const MONTELO = process.env.AI_MODEL || "claude-haiku-4-5-20251001";
 const LIMIT_TOTAL = Number(process.env.VERIFY_SEARCH_LIMIT_TOTAL || 2);
 const HTTP_TIMEOUT_MS = Number(process.env.VERIFY_HTTP_TIMEOUT_MS || 12000);
-const SEARCH_VERSION = 2;
+const SEARCH_VERSION = 3;
 const parser = new Parser({ timeout: HTTP_TIMEOUT_MS });
 
 if (!KLEIDI || LIMIT_TOTAL <= 0) {
