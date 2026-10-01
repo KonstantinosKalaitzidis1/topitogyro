@@ -47,11 +47,11 @@ const GENERIC = [
 
 const GENERIC_ENTITIES = new Set([
   "αθηνα", "athens", "θεσσαλονικη", "thessaloniki", "εικονες", "images", "new entry",
-  "νεα", "news", "μουσικη", "music", "φαγητο", "food", "street food", "festival", "φεστιβαλ"
+  "νεα", "news", "μουσικη", "music", "φαγητο", "food", "street food", "festival", "φεστιβαλ", "βιντεο", "video"
 ].map(norm));
 
 const GENERIC_ENTITY_PREFIXES = [
-  "εικονες ", "images ", "νεα ", "news ", "αθηνα ", "athens ", "θεσσαλονικη ", "thessaloniki "
+  "εικονες ", "images ", "βιντεο ", "video ", "νεα ", "news ", "αθηνα ", "athens ", "θεσσαλονικη ", "thessaloniki "
 ];
 
 const FOOD_SIGNALS = [
